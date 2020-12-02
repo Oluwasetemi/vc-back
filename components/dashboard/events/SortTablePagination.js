@@ -1,10 +1,5 @@
-import React from "react";
-import clsx from "clsx";
 import {
-  createStyles,
-  lighten,
-  makeStyles,
-  Theme,
+  makeStyles
 } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -14,23 +9,17 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-import HeightIcon from '@material-ui/icons/Height'
+import HeightIcon from "@material-ui/icons/Height";
 import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
-import styled from 'styled-components';
 
 const Wrapper = styled.div`
 .paper{
   background-color: #fff;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
+  border-radius: 10px;
 }
 .status{
 	font-size: 12px;
@@ -51,7 +40,7 @@ td .button{
   font-size: 12px;
 line-height: 16px;
 color: #4B6962;
-font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell, Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+font-family: Matteo, -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell, Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 font-weight: normal;
 }
 .MuiTableCell-root,.MuiTablePagination-caption{
@@ -61,7 +50,7 @@ color: #2F3930;
 text-align: left;
 padding: 16px 0 16px 30px;
 font-weight: 500;
-font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell, Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+font-family:Matteo, -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell, Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 }
 tbody .MuiTableRow-root>th{
   padding-left: 30px;
@@ -84,7 +73,7 @@ tbody .MuiTableRow-root>th{
     background-color: #F26144;
     border-radius: 0.5rem;
   }
-  
+
 }
 }
 table{
@@ -92,7 +81,7 @@ table{
     border-collapse: collapse;
     min-width: 850px;
 }
-`
+`;
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -120,9 +109,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-
-
-function EnhancedTableHead({headCells, ...props}) {
+function EnhancedTableHead({ headCells, ...props }) {
   const {
     classes,
     onSelectAllClick,
@@ -149,12 +136,11 @@ function EnhancedTableHead({headCells, ...props}) {
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              IconComponent= {HeightIcon}
+              IconComponent={HeightIcon}
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
-              
             </TableSortLabel>
           </TableCell>
         ))}
@@ -191,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SortTablePagination({ rows, paper,headCells }) {
+export default function SortTablePagination({ rows, paper, headCells }) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("userEmail");
@@ -250,7 +236,7 @@ export default function SortTablePagination({ rows, paper,headCells }) {
         <TableContainer>
           <Table className={classes.table}>
             <EnhancedTableHead
-            headCells={headCells}
+              headCells={headCells}
               classes={classes}
               numSelected={selected.length}
               order={order}
@@ -275,7 +261,6 @@ export default function SortTablePagination({ rows, paper,headCells }) {
                       tabIndex={-1}
                       key={row.userId}
                       selected={isItemSelected}
-                      
                     >
                       <TableCell
                         component="th"
@@ -285,13 +270,13 @@ export default function SortTablePagination({ rows, paper,headCells }) {
                       >
                         {row.userId}
                       </TableCell>
-                      <TableCell >{row.userEmail}</TableCell>
-                      <TableCell >{row.zipCode}</TableCell>
-                      <TableCell >{row.noOfItems}</TableCell>
-                     {row.location &&  <TableCell >{row.location}</TableCell>}
-                      <TableCell >{row.date}</TableCell>
-                      <TableCell >{row.type}</TableCell>
-                      <TableCell >{row.link}</TableCell>
+                      <TableCell>{row.userEmail}</TableCell>
+                      <TableCell>{row.zipCode}</TableCell>
+                      <TableCell>{row.noOfItems}</TableCell>
+                      {row.location && <TableCell>{row.location}</TableCell>}
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell>{row.type}</TableCell>
+                      <TableCell>{row.link}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -303,17 +288,16 @@ export default function SortTablePagination({ rows, paper,headCells }) {
             </TableBody>
           </Table>
         </TableContainer>
-        
       </div>
       <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </Wrapper>
   );
 }
