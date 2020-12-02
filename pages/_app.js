@@ -3,8 +3,9 @@ import GlobalStyles from '@styles/GlobalStyles'
 function Application({ Component, pageProps }) {
   return (
     <>
-      <GlobalStyles />
+      <GlobalStyles>
       <Component {...pageProps} />
+      </GlobalStyles>
     </>
   )
 
