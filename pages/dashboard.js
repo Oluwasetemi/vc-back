@@ -59,7 +59,7 @@ function Dashboard(props) {
               value="5,323"
               info="Requests for approval"
               link={
-                <Link href="/">
+                <Link href="/calendar/allEvents">
                   <Button theme="pinkBtn">View</Button>
                 </Link>
               }
@@ -70,7 +70,7 @@ function Dashboard(props) {
               value="5,323"
               info="Items to deliver"
               link={
-                <Link href="/">
+                <Link href="/calendar/allEvents">
                   <Button theme="pinkBtn">View</Button>
                 </Link>
               }
@@ -81,7 +81,7 @@ function Dashboard(props) {
               value="5,323"
               info="Items for pickup"
               link={
-                <Link href="/">
+                <Link href="/calendar/allEvents">
                   <Button theme="pinkBtn">View</Button>
                 </Link>
               }
@@ -98,7 +98,7 @@ function Dashboard(props) {
               value="5,323"
               info="Items to catalogue"
               link={
-                <Link href="/">
+                <Link href="/calendar/allEvents">
                   <Button theme="pinkBtn">View</Button>
                 </Link>
               }
@@ -121,7 +121,7 @@ function Dashboard(props) {
 			  <div className="table-section">
 			  <div className="flex">
 				  <p className='table-title'>Activity  • </p>
-				  <Link  href="/">
+				  <Link  href="/calendar/allEvents">
                   View All
                 </Link>
 			  </div>
