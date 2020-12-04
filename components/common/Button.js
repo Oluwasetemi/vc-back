@@ -38,7 +38,7 @@ function Button({style, theme, isLoading, children, text, title, ...rest}) {
 			<button
 				disabled={isLoading}
 				type="button"
-				className={`${themeClassName} ${theme} button`}
+				className={`${themeClassName} button`}
 				title={title}
 				style={{
 					borderRadius: '9px',

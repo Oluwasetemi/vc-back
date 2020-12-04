@@ -83,7 +83,7 @@ function Dashboard(props) {
               info="Requests for approval"
               link={
                 <Link href="/calendar/allEvents">
-                  <Button theme="pinkBtn">View</Button>
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
@@ -94,7 +94,7 @@ function Dashboard(props) {
               info="Items to deliver"
               link={
                 <Link href="/calendar/allEvents">
-                  <Button theme="pinkBtn">View</Button>
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
@@ -105,7 +105,7 @@ function Dashboard(props) {
               info="Items for pickup"
               link={
                 <Link href="/calendar/allEvents">
-                  <Button theme="pinkBtn">View</Button>
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
@@ -122,7 +122,7 @@ function Dashboard(props) {
               info="Items to catalogue"
               link={
                 <Link href="/calendar/allEvents">
-                  <Button theme="pinkBtn">View</Button>
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
