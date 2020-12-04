@@ -63,17 +63,9 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  style: PropTypes.object,
-  title: PropTypes.string,
-  theme: PropTypes.oneOf([
-    "pink",
-    "purple",
-    "yellow",
-    "green",
-    "white",
-    "deepYellow",
-    "darkGreen",
-  ]),
+	style: PropTypes.object,
+	title: PropTypes.string,
+	theme: PropTypes.string.isRequired,
 };
 
 export default Button;

@@ -1,5 +1,7 @@
 import Button from '@components/common/Button';
-import Crumbs from "@components/common/Crumbs";
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import LinkMaterial from '@material-ui/core/Link';
 import SimpleTable from "@components/common/SimpleTable";
 import { homeTableConstants } from '@components/dashboard/home/homeTableConstants';
 import { smallHomeTableData } from '@components/dashboard/home/homeTableData';
@@ -10,6 +12,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+.bread-crumbs{
+  margin: 30px 0 10px 0;
+}
+.crumbs{
+  font-size: 18px;
+line-height: 30px;
+@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+  font-size: 13px;
+  }
+}
   .grid-container {
      display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
@@ -50,7 +62,18 @@ function Dashboard(props) {
   return (
     <Wrapper>
       <DashboardLayout>
-        <Crumbs homeColor="textPrimary" />
+      <Breadcrumbs className="bread-crumbs" separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+        <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
+          Home
+        </LinkMaterial>    
+        <LinkMaterial className='crumbs' color="textPrimary" href="/calendar/allEvents" >
+          Events
+        </LinkMaterial>    
+        <LinkMaterial className='crumbs' color="textPrimary" href="/requests/deliveryRequest" >
+          Delivery Request
+        </LinkMaterial>    
+                   </Breadcrumbs>
+                   <p>(IGNORE: trying to get easy access to embedded pages for now)</p>
         <section className="home-content">
           <div className="grid-container">
             <SmallCardPaper
@@ -58,8 +81,8 @@ function Dashboard(props) {
               value="5,323"
               info="Requests for approval"
               link={
-                <Link href="/">
-                  <Button theme="pinkBtn">View</Button>
+                <Link href="/calendar/allEvents">
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
@@ -69,8 +92,8 @@ function Dashboard(props) {
               value="5,323"
               info="Items to deliver"
               link={
-                <Link href="/">
-                  <Button theme="pinkBtn">View</Button>
+                <Link href="/calendar/allEvents">
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
@@ -80,8 +103,8 @@ function Dashboard(props) {
               value="5,323"
               info="Items for pickup"
               link={
-                <Link href="/">
-                  <Button theme="pinkBtn">View</Button>
+                <Link href="/calendar/allEvents">
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
@@ -97,8 +120,8 @@ function Dashboard(props) {
               value="5,323"
               info="Items to catalogue"
               link={
-                <Link href="/">
-                  <Button theme="pinkBtn">View</Button>
+                <Link href="/calendar/allEvents">
+                  <Button theme="pink">View</Button>
                 </Link>
               }
               href="/"
@@ -120,7 +143,7 @@ function Dashboard(props) {
 			  <div className="table-section">
 			  <div className="flex">
 				  <p className='table-title'>Activity  • </p>
-				  <Link  href="/">
+				  <Link  href="/calendar/allEvents">
                   View All
                 </Link>
 			  </div>
