@@ -2,7 +2,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import homeIcon from "../public/assets/homeIcon.png";
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";

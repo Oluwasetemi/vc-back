@@ -1,5 +1,7 @@
 import Button from '@components/common/Button';
-import Crumbs from "@components/common/Crumbs";
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import LinkMaterial from '@material-ui/core/Link';
 import SimpleTable from "@components/common/SimpleTable";
 import { homeTableConstants } from '@components/dashboard/home/homeTableConstants';
 import { smallHomeTableData } from '@components/dashboard/home/homeTableData';
@@ -64,10 +66,10 @@ function Dashboard(props) {
         <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
           Home
         </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="textPrimary" href="/allEvents" >
+        <LinkMaterial className='crumbs' color="textPrimary" href="/calendar/allEvents" >
           Events
         </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="textPrimary" href="/deliveryRequest" >
+        <LinkMaterial className='crumbs' color="textPrimary" href="/requests/deliveryRequest" >
           Delivery Request
         </LinkMaterial>    
                    </Breadcrumbs>

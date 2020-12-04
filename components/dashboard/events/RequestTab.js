@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import React from "react";
 import styled from "styled-components";
-import { allEventsData, outfitRequestEventsData, pickupRequestEventsData, stylistRequestEventsData } from "./EventsTableData";
+import { allEventsData, deliveryRequestData, outfitRequestEventsData, pickupRequestEventsData, stylistRequestEventsData } from "./EventsTableData";
 import SortTablePagination from "./SortTablePagination";
 
 
@@ -131,7 +131,7 @@ export default function RequestTab() {
           />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <SortTablePagination rows={allEventsData} headCells={headCells} />
+          <SortTablePagination rows={deliveryRequestData} headCells={headCells} />
         </TabPanel>
         <TabPanel value={value} index={3}>
           <SortTablePagination

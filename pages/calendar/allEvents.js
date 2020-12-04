@@ -2,7 +2,6 @@ import EventsTab from '@components/dashboard/events/EventsTab';
 import DashboardLayout from "@components/layout/DashboardLayout";
 import React from "react";
 import PropTypes from "prop-types";
-import DashboardLayout from "../../components/layout/DashboardLayout";
 import LinkMaterial from '@material-ui/core/Link';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';

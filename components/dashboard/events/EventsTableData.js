@@ -325,6 +325,75 @@ export const pickupRequestEventsData = [
     ),
   },
 ];
+
+export const deliveryRequestData = [
+	{
+	  userId: "00450",
+	  userEmail: "carlson@tucker.com",
+	  zipCode: "10234",
+	  noOfItems: "32",
+	  date: "Today, 2:30 AM ",
+	  type: <span className="status">Pickup</span>,
+	  link: (
+		<Link className="btn" href="/requests/deliveryRequest">
+		  <Button theme="pinkBtn">View</Button>
+		</Link>
+	  ),
+	},
+	{
+	  userId: "00450",
+	  userEmail: "carlson@tucker.com",
+	  zipCode: "10234",
+	  noOfItems: "22",
+	  date: "03 Jan 2020, 2:30 AM ",
+	  type: <span className="status">Pickup</span>,
+	  link: (
+		<Link className="btn" href="/requests/deliveryRequest">
+		  <Button theme="pinkBtn">View</Button>
+		</Link>
+	  ),
+	},
+	{
+	  userId: "00450",
+	  userEmail: "carlson@tucker.com",
+	  zipCode: "10234",
+	  noOfItems: "11",
+	  date: "03 Aug 2020, 2:30 AM ",
+	  type: <span className="status">Delivery</span>,
+	  link: (
+		<Link className="btn" href="/requests/deliveryRequest">
+		  <Button theme="pinkBtn">View</Button>
+		</Link>
+	  ),
+	},
+	{
+	  userId: "00450",
+	  userEmail: "carlson@tucker.com",
+	  zipCode: "10234",
+	  noOfItems: "10",
+	  date: "03 Aug 2020, 2:30 AM ",
+	  type: <span className="status">Pickup</span>,
+	  link: (
+		<Link className="btn" href="/requests/deliveryRequest">
+		  <Button theme="pinkBtn">View</Button>
+		</Link>
+	  ),
+	},
+	{
+	  userId: "00450",
+	  userEmail: "carlson@tucker.com",
+	  zipCode: "10234",
+	  noOfItems: "19",
+	  date: "Today, 2:30 AM ",
+	  type: <span className="status">Delivery</span>,
+	  link: (
+		<Link className="btn" href="/requests/deliveryRequest">
+		  <Button theme="pinkBtn">View</Button>
+		</Link>
+	  ),
+	},
+  ];
+
 export const stylistRequestEventsData = [
   {
     userId: "00450",
