@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import AppBar from "@material-ui/core/AppBar";
 import SortTablePagination from './SortTablePagination';
 import {allEventsData} from './EventsTableData'
-import {activeEventsData} from './EventsTableData'
+import {deliveryEventsData} from './EventsTableData'
 import {pickupRequestEventsData} from './EventsTableData'
 import {outfitRequestEventsData} from './EventsTableData'
 import {stylistRequestEventsData} from './EventsTableData'
@@ -139,7 +139,7 @@ function TabPanel(props) {
 		<SortTablePagination   rows={pickupRequestEventsData} headCells={headCells2}/>
 		</TabPanel>
 		<TabPanel value={value} index={2}>
-		<SortTablePagination   rows={allEventsData} headCells={headCells}/>
+		<SortTablePagination   rows={deliveryEventsData} headCells={headCells}/>
 
 		</TabPanel>
 		<TabPanel value={value} index={3}>

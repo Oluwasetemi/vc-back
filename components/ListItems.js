@@ -2,9 +2,6 @@ import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import Link from "next/link";
 import homeIcon from "../public/assets/homeIcon.png";
 import calendarIcon from "../public/assets/calendarIcon.png";
 import clientsIcon from "../public/assets/clientsIcon.png";
@@ -61,7 +58,7 @@ export function ListItems() {
 
         <ListItemLink
           href="/calendar"
-          className={(router.pathname === "/calendar" ? "active" : "" ) || (router.pathname === "/calendar/allEvents" ? "active" : "" )}
+          className={(router.pathname === "/calendar" ? "active" : "" ) || (router.pathname === "/calendar/allEvents" ? "active" : "" ) || (router.pathname === "/requests/deliveryRequest" ? "active" : "" )}
         >
           <ListItemIcon>
             <img src={calendarIcon} alt="calendarIcon" />

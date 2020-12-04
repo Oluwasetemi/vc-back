@@ -1,16 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DashboardLayout from "../components/layout/DashboardLayout";
-import Crumbs from "../components/common/Crumbs";
 import SimpleTable from "../components/common/SimpleTable";
 import { homeTableConstants } from '../components/dashboard/home/homeTableConstants';
 import { smallHomeTableData } from '../components/dashboard/home/homeTableData';
 import SmallCardPaper from "../components/dashboard/home/SmallCardPaper";
 import styled from "styled-components";
 import Link from "next/link";
+import LinkMaterial from '@material-ui/core/Link';
 import Button from '../components/common/Button'
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const Wrapper = styled.div`
+.bread-crumbs{
+  margin: 30px 0 10px 0;
+}
+.crumbs{
+  font-size: 18px;
+line-height: 30px;
+@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+  font-size: 13px;
+  }
+}
   .grid-container {
      display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
@@ -51,7 +63,18 @@ function Dashboard(props) {
   return (
     <Wrapper>
       <DashboardLayout>
-        <Crumbs homeColor="textPrimary" />
+      <Breadcrumbs className="bread-crumbs" separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+        <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
+          Home
+        </LinkMaterial>    
+        <LinkMaterial className='crumbs' color="textPrimary" href="/allEvents" >
+          Events
+        </LinkMaterial>    
+        <LinkMaterial className='crumbs' color="textPrimary" href="/deliveryRequest" >
+          Delivery Request
+        </LinkMaterial>    
+                   </Breadcrumbs>
+                   <p>(IGNORE: trying to get easy access to embedded pages for now)</p>
         <section className="home-content">
           <div className="grid-container">
             <SmallCardPaper

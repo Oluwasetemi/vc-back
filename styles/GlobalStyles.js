@@ -53,6 +53,9 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
   }
+  img{
+    vertical-align: middle;
+  }
 
 `;
 
