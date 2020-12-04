@@ -21,8 +21,7 @@ line-height: 30px;
 function Clients(props) {
 	return (
 		<Wrapper>
-			
-			<DashboardLayout>
+					<DashboardLayout>
 			<Breadcrumbs className="bread-crumbs" separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
         <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
           Home

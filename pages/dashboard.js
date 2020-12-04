@@ -1,16 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import DashboardLayout from "../components/layout/DashboardLayout";
-import SimpleTable from "../components/common/SimpleTable";
-import { homeTableConstants } from '../components/dashboard/home/homeTableConstants';
-import { smallHomeTableData } from '../components/dashboard/home/homeTableData';
-import SmallCardPaper from "../components/dashboard/home/SmallCardPaper";
-import styled from "styled-components";
+import Button from '@components/common/Button';
+import Crumbs from "@components/common/Crumbs";
+import SimpleTable from "@components/common/SimpleTable";
+import { homeTableConstants } from '@components/dashboard/home/homeTableConstants';
+import { smallHomeTableData } from '@components/dashboard/home/homeTableData';
+import SmallCardPaper from "@components/dashboard/home/SmallCardPaper";
+import DashboardLayout from "@components/layout/DashboardLayout";
 import Link from "next/link";
-import LinkMaterial from '@material-ui/core/Link';
-import Button from '../components/common/Button'
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
 .bread-crumbs{
@@ -127,7 +124,7 @@ function Dashboard(props) {
               }
               href="/"
             />
-            
+
             <SmallCardPaper
               title="Closet"
               value="5,323"
@@ -148,7 +145,7 @@ function Dashboard(props) {
                   View All
                 </Link>
 			  </div>
-			  
+
         <SimpleTable cols={homeTableConstants()} data={smallHomeTableData}/>
 
 			  </div>

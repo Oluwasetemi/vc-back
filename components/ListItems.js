@@ -1,16 +1,17 @@
-import React from "react";
+import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import homeIcon from "../public/assets/homeIcon.png";
+import { useRouter } from "next/router";
+import React from "react";
+import styled from "styled-components";
 import calendarIcon from "../public/assets/calendarIcon.png";
 import clientsIcon from "../public/assets/clientsIcon.png";
+import homeIcon from "../public/assets/homeIcon.png";
 import paymentsIcon from "../public/assets/paymentIcon.png";
 import subscriptionsIcon from "../public/assets/subscriptionIcon.png";
 import supportIcon from "../public/assets/supportIcon.png";
-import styled from "styled-components";
-import { useRouter } from "next/router";
-import List from "@material-ui/core/List";
 
 const Wrapper = styled.div`
   .MuiTypography-body1 {
@@ -58,7 +59,10 @@ export function ListItems() {
 
         <ListItemLink
           href="/calendar"
-          className={(router.pathname === "/calendar" ? "active" : "" ) || (router.pathname === "/calendar/allEvents" ? "active" : "" ) || (router.pathname === "/requests/deliveryRequest" ? "active" : "" )}
+          className={
+            (router.pathname === "/calendar" ? "active" : "") ||
+            (router.pathname === "/calendar/allEvents" ? "active" : "")
+          }
         >
           <ListItemIcon>
             <img src={calendarIcon} alt="calendarIcon" />
@@ -74,7 +78,7 @@ export function ListItems() {
             <img src={clientsIcon} alt="clientsIcon" />
           </ListItemIcon>
           <ListItemText primary="Clients" />
-        </ ListItemLink>
+        </ListItemLink>
 
         <ListItem button>
           <ListItemIcon>

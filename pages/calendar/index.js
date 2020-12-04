@@ -44,4 +44,3 @@ Calendar.propTypes = {
 }
 
 export default Calendar
-

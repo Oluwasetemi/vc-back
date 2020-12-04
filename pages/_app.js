@@ -1,11 +1,11 @@
-import GlobalStyles from '@styles/GlobalStyles'
+import Theme from '@styles/GlobalStyles'
 
 function Application({ Component, pageProps }) {
   return (
     <>
-      <GlobalStyles>
-      <Component {...pageProps} />
-      </GlobalStyles>
+      <Theme>
+        <Component {...pageProps} />
+      </Theme>
     </>
   )
 
