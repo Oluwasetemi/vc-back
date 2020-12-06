@@ -263,7 +263,7 @@ export const pickupRequestEventsData = [
     date: "Today, 2:30 AM ",
     type: <span className="status">On Demand</span>,
     link: (
-      <Link className="btn" href="/">
+      <Link className="btn" href="/requests/pickupRequest">
         <Button theme="pinkBtn">View</Button>
       </Link>
     ),
@@ -277,7 +277,7 @@ export const pickupRequestEventsData = [
     date: "03 Jan 2020, 2:30 AM ",
     type: <span className="status">On Demand</span>,
     link: (
-      <Link className="btn" href="/">
+      <Link className="btn" href="/requests/pickupRequest">
         <Button theme="pinkBtn">View</Button>
       </Link>
     ),
@@ -291,7 +291,7 @@ export const pickupRequestEventsData = [
     date: "03 Aug 2020, 2:30 AM ",
     type: <span className="status">On Demand</span>,
     link: (
-      <Link className="btn" href="/">
+      <Link className="btn" href="/requests/pickupRequest">
         <Button theme="pinkBtn">View</Button>
       </Link>
     ),
@@ -305,7 +305,7 @@ export const pickupRequestEventsData = [
     date: "03 Aug 2020, 2:30 AM ",
     type: <span className="status">On Demand</span>,
     link: (
-      <Link className="btn" href="/">
+      <Link className="btn" href="/requests/pickupRequest">
         <Button theme="pinkBtn">View</Button>
       </Link>
     ),
@@ -319,7 +319,7 @@ export const pickupRequestEventsData = [
     date: "Today, 2:30 AM ",
     type: <span className="status">On Demand</span>,
     link: (
-      <Link className="btn" href="/">
+      <Link className="btn" href="/requests/pickupRequest">
         <Button theme="pinkBtn">View</Button>
       </Link>
     ),

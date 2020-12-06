@@ -63,14 +63,17 @@ function Dashboard(props) {
     <Wrapper>
       <DashboardLayout>
       <Breadcrumbs className="bread-crumbs" separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-        <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
+        <LinkMaterial className='crumbs' color="textPrimary" href="/dashboard" >
           Home
         </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="textPrimary" href="/calendar/allEvents" >
+        <LinkMaterial className='crumbs' color="inherit" href="/calendar/allEvents" >
           Events
         </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="textPrimary" href="/requests/deliveryRequest" >
+        <LinkMaterial className='crumbs' color="inherit" href="/requests/deliveryRequest" >
           Delivery Request
+        </LinkMaterial>    
+        <LinkMaterial className='crumbs' color="inherit" href="/requests/pickupRequest" >
+          Pickup Request
         </LinkMaterial>    
                    </Breadcrumbs>
                    <p>(IGNORE: trying to get easy access to embedded pages for now)</p>

@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 
 export default function CalendarModal() {
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -78,6 +78,7 @@ export default function CalendarModal() {
         aria-labelledby="title"
         aria-describedby="description"
       >
+        
         {body}
       </Modal>
     </div>
