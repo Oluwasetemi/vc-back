@@ -23,7 +23,7 @@ const Typography = createGlobalStyle`
     letter-spacing: 0.5px;
   }
 
-  h1,h2,h3,h4,h5,h6 {
+  h1,h2,h3,h4,h5,h6,p {
     font-weight: normal;
     margin: 0;
   }

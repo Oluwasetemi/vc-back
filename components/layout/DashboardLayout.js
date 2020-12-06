@@ -11,9 +11,9 @@ import clsx from "clsx";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import brand from "../../public/assets/brand.png";
+import brand from "../../public/assets/brand.svg";
 import dpIcon from "../../public/assets/dpIcon.png";
-import notifyIcon from "../../public/assets/notifyIcon.png";
+import notifyIcon from "../../public/assets/notifyIcon.svg";
 import { ListItems } from "../ListItems";
 
 const Wrapper = styled.div`
@@ -63,6 +63,13 @@ const Wrapper = styled.div`
     padding: 0 20px;
     margin-top: 60px;
     overflow-x: scroll;
+    &::-webkit-scrollbar {
+      height: 0.1rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgray;
+      border-radius: 0.5rem;
+    }
     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
       margin-left: 0;
     }

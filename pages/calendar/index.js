@@ -4,6 +4,7 @@ import DashboardLayout from '../../components/layout/DashboardLayout'
 import styled from "styled-components";
 import CalendarModal from '../../components/dashboard/calendar/CalendarModal';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Paper from '@material-ui/core/Paper';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import LinkMaterial from '@material-ui/core/Link';
 
@@ -18,7 +19,13 @@ line-height: 30px;
 @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 	font-size: 13px;
 	}
-}`
+}
+.paper{
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+}
+
+`
 
 function Calendar(props) {
 	return (
@@ -34,6 +41,10 @@ function Calendar(props) {
           </LinkMaterial> 
       </Breadcrumbs>
 			<CalendarModal/>
+
+			<Paper className="paper">
+
+			</Paper>
 			</DashboardLayout>
 		</Wrapper>
 	)
@@ -44,3 +55,4 @@ Calendar.propTypes = {
 }
 
 export default Calendar
+

@@ -1,6 +1,7 @@
 import Footer from '@components/Footer'
 import Header from '@components/Header'
 import Head from 'next/head'
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,9 +13,9 @@ export default function Home() {
 
       <main>
         <Header title="Virtual Closet!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        <Link className="description" href="/dashboard">
+          Go to dashboard
+        </Link>
       </main>
       <Footer />
     </div>

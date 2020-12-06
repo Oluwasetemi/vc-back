@@ -5,12 +5,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
-import calendarIcon from "../public/assets/calendarIcon.png";
-import clientsIcon from "../public/assets/clientsIcon.png";
-import homeIcon from "../public/assets/homeIcon.png";
-import paymentsIcon from "../public/assets/paymentIcon.png";
-import subscriptionsIcon from "../public/assets/subscriptionIcon.png";
-import supportIcon from "../public/assets/supportIcon.png";
+import calendarIcon from "../public/assets/calendarIcon.svg";
+import clientsIcon from "../public/assets/clientsIcon.svg";
+import homeIcon from "../public/assets/homeIcon.svg";
+import paymentsIcon from "../public/assets/paymentsIcon.svg";
+import subscriptionsIcon from "../public/assets/subscriptionsIcon.svg";
+import supportIcon from "../public/assets/supportIcon.svg";
 
 const Wrapper = styled.div`
   .MuiTypography-body1 {
