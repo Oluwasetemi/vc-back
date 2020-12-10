@@ -36,6 +36,7 @@ const Wrapper = styled.div`
     border-radius: 10px;
     padding: 21px 41px;
     position: relative;
+    z-index:2221;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
       padding: 21px;
     }
@@ -170,10 +171,9 @@ const Wrapper = styled.div`
       transition: 0.3s;
     }
   }
-  .grid {
-    display: grid;
-  }
+ 
   .grid-4 {
+    display: grid;
     grid-gap: 28px;
     grid-template-columns: repeat(auto-fill, minmax(214px, 1fr));
   }
@@ -239,6 +239,13 @@ const Wrapper = styled.div`
   .storage-laundry .gray-paper .item-summary a {
     color: #f26144;
     text-decoration: underline;
+  }
+  .checkbox h2{
+    font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+color: #4B6962;
+margin: 39px 0 9px 0;
   }
 `;
 function TabPanel(props) {
@@ -311,7 +318,7 @@ const sendPickup = (props) => {
                 <Link href="/requests/startPickup">
                   <p className="accept pink"> Back</p>
                 </Link>
-                <p className="accept red">Send out Pickup</p>
+                <p className="accept red" onClick={() => setValue(1)}>Send out Pickup</p>
               </div>
             </div>
           </TabPanel>
@@ -324,7 +331,7 @@ const sendPickup = (props) => {
                   Reschedule
                 </p>
 
-                <p className="accept red">Confirm Pickup</p>
+                <p className="accept red" onClick={() => setValue(2)}>Confirm Pickup</p>
               </div>
             </div>
           </TabPanel>
@@ -337,7 +344,7 @@ const sendPickup = (props) => {
                   Back
                 </p>
 
-                <p className="accept red">Proceed</p>
+                <p className="accept red" onClick={() => setValue(3)}>Proceed</p>
               </div>
             </div>
           </TabPanel>
@@ -350,7 +357,7 @@ const sendPickup = (props) => {
                   Back
                 </p>
 
-                <p className="accept red">Proceed</p>
+                <p className="accept red" onClick={() => setValue(4)}>Proceed</p>
               </div>
             </div>
           </TabPanel>
@@ -435,18 +442,70 @@ const sendPickup = (props) => {
         </Paper>
 
         <TabPanel className="tabpanel2" value={value} index={1}>
-          <UserDetailCard
-            top={
-              <p className="date">Items are being picked up from the client.</p>
-            }
+          <UserDetailCard fullDetail={<> <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Items to deliver</p>
+                      <p className="text bold">5</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">On Demand</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Location</p>
+                      <p className="text bold">12 Bounty Lane, DC</p>
+                    </div>
+                  </div>
+                  <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Delivery Date</p>
+                      <p className="text bold">5/10/2020</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">From Vault</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Subscription</p>
+                      <p className="text bold">Plus+</p>
+                    </div>
+                  </div></>} buttons={<Link href="/clients/client">
+                  <p className="pink">View Client</p></Link>} 
+            weight="date mb-70" text="Items are being picked up from the client."
           />
         </TabPanel>
 
         <TabPanel className="tabpanel2" value={value} index={2}>
-          <UserDetailCard
-            top={
-              <p className="date">Items are being picked up from the client.</p>
-            }
+          <UserDetailCard fullDetail={<> <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Items to deliver</p>
+                      <p className="text bold">5</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">On Demand</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Location</p>
+                      <p className="text bold">12 Bounty Lane, DC</p>
+                    </div>
+                  </div>
+                  <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Delivery Date</p>
+                      <p className="text bold">5/10/2020</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">From Vault</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Subscription</p>
+                      <p className="text bold">Plus+</p>
+                    </div>
+                  </div></>} buttons={<Link href="/clients/client">
+                  <p className="pink">View Client</p></Link>} 
+            weight="date mb-70" text="Items are being picked up from the client."
           />
 
           <Paper className="item-detail paper">
@@ -537,10 +596,36 @@ const sendPickup = (props) => {
         </TabPanel>
 
         <TabPanel className="tabpanel2" value={value} index={3}>
-          <UserDetailCard
-            top={
-              <p className="date">Items are being picked up from the client.</p>
-            }
+          <UserDetailCard fullDetail={<> <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Items to deliver</p>
+                      <p className="text bold">5</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">On Demand</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Location</p>
+                      <p className="text bold">12 Bounty Lane, DC</p>
+                    </div>
+                  </div>
+                  <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Delivery Date</p>
+                      <p className="text bold">5/10/2020</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">From Vault</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Subscription</p>
+                      <p className="text bold">Plus+</p>
+                    </div>
+                  </div></>} buttons={<Link href="/clients/client">
+                  <p className="pink">View Client</p></Link>} 
+            weight="date mb-70" text="Items are being picked up from the client."
           />
 
           <Paper className="item-detail paper">
@@ -614,7 +699,15 @@ const sendPickup = (props) => {
                   />
                 </div>
               </div>
-              <CheckboxInput />
+
+              <div className="checkbox">
+                <h2>Where is the next destination for this item?</h2>
+                <div className="flex">
+                <CheckboxInput label='To Vault'/>
+                <CheckboxInput label='To Storage'/>
+                <CheckboxInput label='To Laundry'/>
+                </div>
+              </div>
             </div>
             <div className="gray-paper mt-24 ">
               <div className=" grid grid-4 grid-4-small">
@@ -684,15 +777,48 @@ const sendPickup = (props) => {
                   />
                 </div>
               </div>
-              <CheckboxInput />
+              <div className="checkbox">
+                <h2>Where is the next destination for this item?</h2>
+                <div className="flex">
+                <CheckboxInput label='To Vault'/>
+                <CheckboxInput label='To Storage'/>
+                <CheckboxInput label='To Laundry'/>
+                </div>
+              </div>
             </div>
           </Paper>
         </TabPanel>
         <TabPanel className="tabpanel2" value={value} index={4}>
-          <UserDetailCard
-            top={
-              <p className="date">Items are being picked up from the client.</p>
-            }
+          <UserDetailCard fullDetail={<> <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Items to deliver</p>
+                      <p className="text bold">5</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">On Demand</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Location</p>
+                      <p className="text bold">12 Bounty Lane, DC</p>
+                    </div>
+                  </div>
+                  <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Delivery Date</p>
+                      <p className="text bold">5/10/2020</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">From Vault</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Subscription</p>
+                      <p className="text bold">Plus+</p>
+                    </div>
+                  </div></>} buttons={<Link href="/clients/client">
+                  <p className="pink">View Client</p></Link>} 
+            weight="date mb-70" text="Items are being picked up from the client."
           />
 
           <Paper className="paper storage-laundry">

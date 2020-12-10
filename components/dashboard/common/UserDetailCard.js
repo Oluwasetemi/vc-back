@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
+import Link from "next/link";
 
 const Wrapper = styled.div`
 .wrap{
@@ -18,21 +19,25 @@ const Wrapper = styled.div`
 	margin-bottom: 50px;
 		  }
 
-  .paper-top-head .date,
+.date,
   .paper-tail h1 {
     font-weight: 600;
     font-size: 18px;
     line-height: 24px;
     color: #2f3930;
   }
+  .mb-70{
+    margin-bottom: 70px;
+  }
   .paper-top-head .buttons{
+    align-items: end;
 	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		display: block ;
 	  }
   }
   .paper-top-head .buttons p,
   .paper-top-tail .names .pink {
-    padding: 7px 30px;
+    padding: 7px 10px;
     border-radius: 10px;
     font-weight: 600;
     font-size: 14px;
@@ -49,6 +54,7 @@ const Wrapper = styled.div`
   .pink {
     color: #f26144;
     background-color: #fff1de;
+    margin-bottom: 10px;
     &:hover {
       color: #fff1de;
       background-color: #f26144;
@@ -65,8 +71,8 @@ const Wrapper = styled.div`
     }
   }
   .paper-top-tail .user-details .dp {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     background-color: #9c9b7c;
     border-radius: 50%;
     justify-content: center;
@@ -110,24 +116,25 @@ const Wrapper = styled.div`
   }
   .paper-top-tail .user-details .lhs {
  margin-bottom:30px;
+ align-items: flex-start;
  @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
 	width: 100%;
   }
 
   }
-  .paper-top-tail .user-details .lhs .value {
+ .value {
     font-size: 16px;
     line-height: 24px;
     color: #2f3930;
-    margin-bottom: 24px;
-	max-width: 32%;
+    	max-width: 32%;
 		  @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		max-width: 100%;
 	  }
   }
   .full-detail {
     grid-template-columns: 1fr 1fr;
-	grid-gap: 40px;
+  grid-gap: 10px;
+  margin-top: 24px;
 	@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
 		display: flex;
 		justify-content: space-between;
@@ -140,7 +147,7 @@ const Wrapper = styled.div`
     border-bottom: 1px solid #d6d8d3;
   }
   .full-detail .rhs .grid .text {
-    font-size: 16px;
+    font-size: 13px;
     line-height: 24px;
     color: #2f3930;
   }
@@ -153,7 +160,7 @@ const Wrapper = styled.div`
     border-top: 1px solid #d6d8d3;
   }
 `
-function UserDetailCard({top}) {
+function UserDetailCard({top, text, weight,fullDetail,buttons }) {
 	return (
 		<Wrapper>
 			<Paper className="paper paper-top">
@@ -169,42 +176,17 @@ function UserDetailCard({top}) {
                 <div className="names">
                   <p className="name">Joseph Thornberry</p>
                   <p className="id">User ID: 2342323</p>
-                  <p className="pink">View Client</p>
+                  <div className="buttons">
+                    {buttons}
+                  </div>
                 </div>
               </div>
               <div className="lhs rhs">
-                <p className="value">
-                  User has requested to checkout 5 items from their closet
-                </p>
+                <div className={`${weight}` }>
+                 {text}
+                </div>
                 <div className="full-detail grid">
-                  <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Items to deliver</p>
-                      <p className="text bold">5</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">On Demand</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Location</p>
-                      <p className="text bold">12 Bounty Lane, DC</p>
-                    </div>
-                  </div>
-                  <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Delivery Date</p>
-                      <p className="text bold">5/10/2020</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">From Vault</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Subscription</p>
-                      <p className="text bold">Plus+</p>
-                    </div>
-                  </div>
+                 {fullDetail}
                 </div>
               </div>
             </div>
@@ -216,8 +198,12 @@ function UserDetailCard({top}) {
 
 
 UserDetailCard.propTypes = {
-	top: PropTypes.string,
-
+	top: PropTypes.any,
+	buttons: PropTypes.any,
+	fullDetail: PropTypes.any,
+date: PropTypes.string,
+text: PropTypes.string,
+weight: PropTypes.string,
 }
 
 export default UserDetailCard

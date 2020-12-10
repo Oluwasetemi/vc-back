@@ -52,7 +52,35 @@ function startPickup(props) {
               <Link href="/requests/sendPickup">
 			  <p className="accept red">Start Pickup</p>
 			  </Link>
-            </div></>}/>
+            </div></>} fullDetail={<> <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Items to deliver</p>
+                      <p className="text bold">5</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">On Demand</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Location</p>
+                      <p className="text bold">12 Bounty Lane, DC</p>
+                    </div>
+                  </div>
+                  <div className="rhs">
+                    <div className="list grid first">
+                      <p className="text">Delivery Date</p>
+                      <p className="text bold">5/10/2020</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Type</p>
+                      <p className="text bold">From Vault</p>
+                    </div>
+                    <div className="list grid">
+                      <p className="text">Subscription</p>
+                      <p className="text bold">Plus+</p>
+                    </div>
+                  </div></>} buttons={<Link href="/clients/client">
+                  <p className="pink">View Client</p></Link>}  weight="value" text="User has requested to checkout 5 items from their closet"/>
       
       </DashboardLayout>
     </Wrapper>

@@ -75,6 +75,7 @@ const Wrapper = styled.div`
     }
   }
   main .MuiContainer-root {
+    position: relative;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
       padding-left: 0;
       padding-right: 0;
