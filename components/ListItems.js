@@ -60,7 +60,12 @@ export function ListItems() {
           href="/calendar"
           className={
             (router.pathname === "/calendar" ? "active" : "") ||
-            (router.pathname === "/calendar/allEvents" ? "active" : "")
+            (router.pathname === "/calendar/allEvents" ? "active" : "") ||
+            (router.pathname === "/requests/pickupRequest" ? "active" : "") ||
+            (router.pathname === "/requests/deliveryRequest" ? "active" : "") ||
+            (router.pathname === "/requests/startPickup" ? "active" : "") ||
+            (router.pathname === "/requests/sendPickup" ? "active" : "") ||
+            (router.pathname === "/deliveries/delivery" ? "active" : "")
           }
         >
           <ListItemIcon>
@@ -71,7 +76,11 @@ export function ListItems() {
 
         <ListItemLink
           href="/clients"
-          className={router.pathname === "/clients" ? "active" : ""}
+          className={
+            (router.pathname === "/clients" ? "active" : "") ||
+            (router.pathname === "/clients/client" ? "active" : "") ||
+            (router.pathname === "/clients/item" ? "active" : "")
+          }
         >
           <ListItemIcon>
             <img src={clientsIcon} alt="clientsIcon" />

@@ -1,6 +1,3 @@
-import {
-  makeStyles
-} from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,17 +6,49 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
-import HeightIcon from "@material-ui/icons/Height";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import searchIcon from "../../../public/assets/searchIcon.svg";
 
+const SearchWraper = styled.div`
+position: absolute;
+top: 0;
+right: 24px;
+background: #FFFFFF;
+border: 1px solid #9C9B7C;
+border-radius: 10px;
+padding: 3px 15px;
+width: 300px;
+@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+  position: relative;
+  margin-left: auto;
+}
+@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+   width: fit-content;
+}
+}
+&:focus-within{
+  border: 1px solid #F26144;
+}
+input{
+  outline:none;
+ border:none;
+font-size: 14px;
+line-height: 24px;
+font-family: 'Matteo';
+padding-left: 8px;
 
+}
+`;
 const Wrapper = styled.div`
 .paper{
   background-color: #fff;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+    padding-top: 20px;
+  }
 }
 .status{
 	font-size: 12px;
@@ -81,67 +110,36 @@ table{
     border-collapse: collapse;
     min-width: 850px;
 }
+.MuiTablePagination-root .MuiTablePagination-caption{
+  @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+    padding-left: 0;
+  }
+}
+.MuiTablePagination-root .MuiToolbar-gutters, .MuiTablePagination-root .MuiIconButton-root{
+  @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+    padding: 0;
+  }
+}
+.MuiTablePagination-root .MuiTablePagination-actions{
+  @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+    margin-left: 0;
+  }
+}
+.MuiTablePagination-root ..MuiTablePagination-input{
+  @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+    margin: 0 15px 0 0px;
+  }
+}
 `;
 
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 function EnhancedTableHead({ headCells, ...props }) {
-  const {
-    classes,
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-  } = props;
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
-
   return (
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox"></TableCell>
         {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "default"}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              IconComponent={HeightIcon}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-            </TableSortLabel>
+          <TableCell key={headCell.id}>
+            <TableSortLabel>{headCell.label}</TableSortLabel>
           </TableCell>
         ))}
       </TableRow>
@@ -153,70 +151,25 @@ EnhancedTableHead.propTypes = {
   headCells: PropTypes.array.isRequired,
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-  },
-  table: {
-    minWidth: 750,
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: "rect(0 0 0 0)",
-    height: 1,
-    margin: -1,
-    overflow: "hidden",
-    padding: 0,
-    position: "absolute",
-    top: 20,
-    width: 1,
-  },
-}));
+const EnhancedTableToolbar = (props) => {
+  const { value, handleSearch } = props;
+
+  return (
+    <SearchWraper>
+      <img src={searchIcon} alt="searchIcon" />
+      <input placeholder="Search" onChange={handleSearch} value={value} />
+    </SearchWraper>
+  );
+};
 
 export default function SortTablePagination({ rows, paper, headCells }) {
-  const classes = useStyles();
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("userEmail");
-  const [selected, setSelected] = React.useState([]);
+  const [data, setData] = React.useState(rows);
+  const [filterData, setFilterData] = React.useState(rows);
+  const [searchValue, setSearchValue] = React.useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
-  };
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.userId);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-  const handleClick = (event, userId) => {
-    const selectedIndex = selected.indexOf(userId);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, userId);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelected(newSelected);
-  };
+  console.log(rows);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -225,61 +178,84 @@ export default function SortTablePagination({ rows, paper, headCells }) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const isSelected = (userId) => selected.indexOf(userId) !== -1;
+
+  const handleSearch = (event) => {
+    let filteredDatas = [];
+    filteredDatas = data.filter((e) => {
+      return (
+        (e.userId &&
+          e.userId
+            .toString()
+            .toLowerCase()
+            .includes(searchValue.toLowerCase())) ||
+        (e.userEmail &&
+          e.userEmail.toLowerCase().includes(searchValue.toLowerCase())) ||
+        (e.userName &&
+          e.userName.toLowerCase().includes(searchValue.toLowerCase())) ||
+        (e.location &&
+          e.location.toLowerCase().includes(searchValue.toLowerCase())) ||
+        (e.type &&
+          e.type.props.children
+            .toLowerCase()
+            .includes(searchValue.toLowerCase())) ||
+        (e.zipCode &&
+          e.zipCode
+            .toString()
+            .toLowerCase()
+            .includes(searchValue.toLowerCase())) ||
+        (e.noOfItems &&
+          e.noOfItems
+            .toString()
+            .toLowerCase()
+            .includes(searchValue.toLowerCase())) ||
+        (e.date &&
+          e.date
+            .toString()
+            .toLowerCase()
+            .includes(searchValue.toLowerCase())) ||
+        (e.joined &&
+          e.joined.toString().toLowerCase().includes(searchValue.toLowerCase()))
+      );
+    });
+    setFilterData(filteredDatas);
+    setSearchValue(event.target.value);
+  };
+
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <Wrapper className={classes.root}>
+    <Wrapper>
       <div className={`${paper}`}>
-        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
-        <TableContainer>
-          <Table className={classes.table}>
+        <EnhancedTableToolbar
+          handleSearch={handleSearch}
+          value={searchValue}
+        />
+        <TableContainer >
+          <Table>
             <EnhancedTableHead
               headCells={headCells}
-              classes={classes}
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.userId);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.userId)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.userId}
-                      selected={isItemSelected}
-                    >
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                      >
-                        {row.userId}
-                      </TableCell>
-                      <TableCell>{row.userEmail}</TableCell>
-                      <TableCell>{row.zipCode}</TableCell>
-                      <TableCell>{row.noOfItems}</TableCell>
-                      {row.location && <TableCell>{row.location}</TableCell>}
-                      <TableCell>{row.date}</TableCell>
-                      <TableCell>{row.type}</TableCell>
-                      <TableCell>{row.link}</TableCell>
-                    </TableRow>
-                  );
-                })}
+              {filterData.map((row, index) => {
+                return (
+                  <TableRow hover tabIndex={-1} key={row.userId}>
+                    <TableCell component="th" scope="row" padding="none">
+                      {row.userId}
+                    </TableCell>
+                    <TableCell>{row.userEmail}</TableCell>
+                    {row.userName && <TableCell>{row.userName}</TableCell>}
+                    <TableCell>{row.zipCode}</TableCell>
+                    <TableCell>{row.noOfItems}</TableCell>
+                    {row.location && <TableCell>{row.location}</TableCell>}
+                    <TableCell>{row.date}</TableCell>
+                    {row.joined && <TableCell>{row.joined}</TableCell>}
+                    <TableCell>{row.type}</TableCell>
+                    <TableCell>{row.link}</TableCell>
+                  </TableRow>
+                );
+              })}
               {emptyRows > 0 && (
                 <TableRow>
                   <TableCell colSpan={6} />

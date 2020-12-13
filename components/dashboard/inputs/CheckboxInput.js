@@ -3,18 +3,10 @@ import PropTypes from "prop-types";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
-const Wrapper = styled.div`
-h6{
-	margin: 39px 0 9px 0;
-	font-weight: 600;
-font-size: 18px;
-line-height: 24px;
-color: #4B6962;
-}`;
+
 
 const useStyles = makeStyles({
  
@@ -43,7 +35,7 @@ const useStyles = makeStyles({
  
   },
 });
-function CheckboxInput(props) {
+function CheckboxInput({label}, props) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -55,8 +47,6 @@ function CheckboxInput(props) {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
   return (
-    <Wrapper>
-		<h6>Where is the next destination for this item?</h6>
       <FormGroup row>
         <FormControlLabel
           control={
@@ -75,51 +65,14 @@ function CheckboxInput(props) {
               {...props}
             />
           }
-          label="To Vault"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={state.checkedStorage}
-              onChange={handleChange}
-              name="checkedStorage"
-              className={classes.root}
-              disableRipple
-              color="default"
-              checkedIcon={
-                <span className={clsx(classes.icon, classes.checkedIcon)} />
-              }
-              icon={<span className={classes.icon} />}
-              inputProps={{ "aria-label": "decorative checkbox" }}
-              {...props}
-            />
-          }
-          label="To Storage"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={state.checkedLaundry}
-              onChange={handleChange}
-              name="checkedLaundry"
-              className={classes.root}
-              disableRipple
-              color="default"
-              checkedIcon={
-                <span className={clsx(classes.icon, classes.checkedIcon)} />
-              }
-              icon={<span className={classes.icon} />}
-              inputProps={{ "aria-label": "decorative checkbox" }}
-              {...props}
-            />
-          }
-          label="To Laundry"
+          label={label}
         />
       </FormGroup>
-    </Wrapper>
   );
 }
 
-CheckboxInput.propTypes = {};
+CheckboxInput.propTypes = {
+  label : PropTypes.string,
+};
 
 export { CheckboxInput };

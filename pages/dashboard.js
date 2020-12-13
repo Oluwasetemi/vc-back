@@ -75,6 +75,9 @@ function Dashboard(props) {
         <LinkMaterial className='crumbs' color="inherit" href="/requests/pickupRequest" >
           Pickup Request
         </LinkMaterial>    
+        <LinkMaterial className='crumbs' color="inherit" href="/deliveries/delivery" >
+          Deliveries
+        </LinkMaterial>    
                    </Breadcrumbs>
                    <p>(IGNORE: trying to get easy access to embedded pages for now)</p>
         <section className="home-content">
