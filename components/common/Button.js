@@ -18,6 +18,17 @@ const Wrapper = styled.div`
     background-color: #f26144;
     transition: 0.4s;
   }
+  .orangeBtn {
+    border: 1px solid #f26144;
+    color: #ffffff;
+    background-color: #f26144;
+  }
+
+  .orangeBtn:hover {
+    color: #f26144;
+    background-color: #fff1de;
+    transition: 0.4s;
+  }
 
   .button {
     display: flex;

@@ -18,6 +18,8 @@ import menShoes from "../../public/assets/men_shoes.png";
 import tie from "../../public/assets/tie.png";
 import vault from "../../public/assets/inVaultIcon.svg";
 import storage from "../../public/assets/inStorageIcon.svg";
+import vaultIcon from "../../public/assets/Vault.svg";
+import Button from "@components/common/Button";
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -34,7 +36,7 @@ const Wrapper = styled.div`
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 25px 29px;
-    margin-bottom: 50px;
+    margin: 30px 0 50px 0;
     #tag {
       font-weight: 600;
       font-size: 18px;
@@ -42,6 +44,7 @@ const Wrapper = styled.div`
       color: #2f3930;
     }
   }
+
   .paper-client .MuiAppBar-colorPrimary {
     color: #2f3930;
     background-color: rgba(0, 0, 0, 0);
@@ -81,10 +84,30 @@ const Wrapper = styled.div`
       border-radius: 0.5rem;
     }
   }
-
-  .paper-client {
-    margin: 30px 0 50px 0;
+  .gray-paper-client {
+    background: #fbfcfa;
+    padding: 24px 35px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
+  .gray-paper-client .season {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.75px;
+    margin-bottom: 26px;
+    text-transform: uppercase;
+    color: #2f3930;
+  }
+  .gray-paper-client .season1 {
+    margin-bottom: 0;
+  }
+  .mb-26 {
+    margin-bottom: 26px;
+  }
+  .mt-22{
+    margin-top: 22px;
+  }
+
   .paper-client .MuiBox-root {
     padding: 0;
     max-width: 100%;
@@ -98,18 +121,18 @@ const Wrapper = styled.div`
       border-radius: 0.5rem;
     }
   }
-  .paper-client .flex {
+  .paper-client .flexy {
     display: flex;
     width: 100%;
     min-width: max-content;
-    margin: 30px 0;
-    grid-gap: 28px;
+    margin: 0 0 30px 0;
   }
 
   .grid-items .product {
     background-color: #f3f0f0;
     padding: 38px 5px;
     position: relative;
+    margin-right: 28px;
     border-radius: 5px;
     overflow: hidden;
     width: 157px;
@@ -162,6 +185,23 @@ const Wrapper = styled.div`
     right: 8px;
     bottom: 8px;
   }
+
+  .button {
+    padding: 0.4rem 2.5rem;
+  }
+  .gray-paper-client .edit-outfit {
+    font-weight: 600;
+    margin-left: 19px;
+    font-size: 16px;
+    line-height: 32px;
+    text-decoration-line: underline;
+    color: #f26144;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      transition: 0.3s;
+    }
+  }
 `;
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -183,10 +223,10 @@ function client(props) {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/clients">
+          <LinkMaterial className="crumbs" color="inherit" href="/clients">
             Clients
           </LinkMaterial>
-          <LinkMaterial color="textPrimary" href="#">
+          <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Joseph Thornberry
           </LinkMaterial>
         </Breadcrumbs>
@@ -242,10 +282,10 @@ function client(props) {
               <Link href="/clients/client">
                 <p className="pink">Add to Closet (10)</p>
               </Link>
-              <Link href="/clients/client">
+              <Link href="/clients/subscriptionHistory">
                 <p className="pink">Subscription History</p>
               </Link>
-              <Link href="/clients/client">
+              <Link href="/clients/paymentHistory">
                 <p className="pink">Transaction History</p>
               </Link>
             </>
@@ -255,14 +295,30 @@ function client(props) {
         <Paper className="paper-client">
           <h1 id="tag">Items</h1>
           <AppBar position="static">
-            <Tabs value={value} onChange={handleChange}>
-              <Tab label="Closet (10)" />
-              <Tab label="Vault (2)" />
-              <Tab label="Outfits (2)" />
-            </Tabs>
+            <div className="flex" style={{ justifyContent: "space-between" }}>
+              <Tabs value={value} onChange={handleChange}>
+                <Tab label="Closet (10)" />
+                <Tab label="Vault (2)" />
+                <Tab label="Outfits (2)" />
+              </Tabs>
+              {value === 1 && (
+                <TabPanel value={value} index={1}>
+                  <Link href="#">
+                    <Button theme="orange">Edit</Button>
+                  </Link>
+                </TabPanel>
+              )}
+              {value === 2 && (
+                <TabPanel value={value} index={2}>
+                  <Link href="/clients/createAnOutfit">
+                    <Button theme="orange"> Outfit</Button>
+                  </Link>
+                </TabPanel>
+              )}
+            </div>
           </AppBar>
           <TabPanel value={value} index={0}>
-            <div className="flex">
+            <div className="flexy">
               <div className="grid-items">
                 <Link href="/clients/item">
                   <div className="product">
@@ -359,50 +415,184 @@ function client(props) {
               </div>
             </div>
           </TabPanel>
-          <TabPanel value={value} index={1}>
-            <div className="flex">
-              <div className="grid-items">
-                <Link href="/clients/item">
-                  <div className="product">
-                    <div className="image image1"></div>
-                  </div>
-                </Link>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
+          {value === 1 && (
+            <TabPanel value={value} index={1} className="gray-paper-client">
+              <p className="season">Sweet Summer </p>
+              <div className="flexy">
+                <div className="grid-items">
+                  <Link href="/clients/item">
+                    <div className="product">
+                      <div className="location absolute">
+                        <img src={vaultIcon} alt="vault" />{" "}
+                      </div>
+                      <div className="image image1"></div>
+                    </div>
+                  </Link>
+                  <p className="name text">Plain black shirt</p>
+                  <p className="id text">ID: 2342323</p>
+                </div>
+                <div className="grid-items">
+                  <Link href="/clients/item">
+                    <div className="product">
+                      <div className="location absolute">
+                        <img src={vaultIcon} alt="vault" />{" "}
+                      </div>
+                      <div className="image image2"></div>
+                    </div>
+                  </Link>
+                  <p className="name text">Plain black shirt</p>
+                  <p className="id text">ID: 2342323</p>
+                </div>
+                <div className="grid-items">
+                  <Link href="/clients/item">
+                    <div className="product">
+                      <div className="location absolute">
+                        <img src={vaultIcon} alt="vault" />{" "}
+                      </div>
+                      <div className="image image2"></div>
+                    </div>
+                  </Link>
+                  <p className="name text">Plain black shirt</p>
+                  <p className="id text">ID: 2342323</p>
+                </div>
+                <div className="grid-items">
+                  <Link href="/clients/item">
+                    <div className="product">
+                      <div className="location absolute">
+                        <img src={vaultIcon} alt="vault" />{" "}
+                      </div>
+                      <div className="image image2"></div>
+                    </div>
+                  </Link>
+                  <p className="name text">Plain black shirt</p>
+                  <p className="id text">ID: 2342323</p>
+                </div>
+                <div className="grid-items">
+                  <Link href="/clients/item">
+                    <div className="product">
+                      <div className="location absolute">
+                        <img src={vaultIcon} alt="vault" />{" "}
+                      </div>
+                      <div className="image image2"></div>
+                    </div>
+                  </Link>
+                  <p className="name text">Plain black shirt</p>
+                  <p className="id text">ID: 2342323</p>
+                </div>
               </div>
-              <div className="grid-items">
-                <Link href="/clients/item">
-                  <div className="product">
-                    <div className="image image2"></div>
+            </TabPanel>
+          )}
+
+          {value === 2 && (
+            <TabPanel value={value} index={2}>
+              <div className="gray-paper-client">
+                <div className="flex mb-26">
+                  <p className="season season1">Sweet Summer </p>{" "}
+                  <span className="edit-outfit">Edit Outfit</span>
+                </div>
+                <div className="flexy">
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image1"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
                   </div>
-                </Link>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-              </div>
-            </div>
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <div className="flex">
-              <div className="grid-items">
-                <Link href="/clients/item">
-                  <div className="product">
-                    <div className="image image4"></div>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
                   </div>
-                </Link>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-              </div>
-              <div className="grid-items">
-                <Link href="/clients/item">
-                  <div className="product">
-                    <div className="image image3"></div>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
                   </div>
-                </Link>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
+                  </div>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </TabPanel>
+              <div className="gray-paper-client mt-22">
+                <div className="flex mb-26">
+                  <p className="season season1">WINTER WONDERLAND </p>{" "}
+                  <span className="edit-outfit">Edit Outfit</span>
+                </div>
+                <div className="flexy">
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image1"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
+                  </div>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
+                  </div>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
+                  </div>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
+                  </div>
+                  <div className="grid-items">
+                    <Link href="/clients/item">
+                      <div className="product">
+                        <div className="image image2"></div>
+                      </div>
+                    </Link>
+                    <p className="name text">Plain black shirt</p>
+                    <p className="id text">ID: 2342323</p>
+                  </div>
+                </div>
+              </div>
+            </TabPanel>
+          )}
         </Paper>
       </DashboardLayout>
     </Wrapper>

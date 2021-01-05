@@ -352,13 +352,13 @@ const sendPickup = (props) => {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/calendar">
+          <LinkMaterial className="crumbs" color="inherit" href="/calendar">
             Calendar
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="#">
+          <LinkMaterial className="crumbs" color="inherit" href="#">
             Deliveries
           </LinkMaterial>
-          <LinkMaterial color="textPrimary" href="#">
+          <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Delivery 00439
           </LinkMaterial>
         </Breadcrumbs>

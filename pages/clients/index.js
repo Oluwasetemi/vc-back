@@ -5,7 +5,7 @@ import LinkMaterial from '@material-ui/core/Link';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import styled from "styled-components";
-import { clientsData } from "../../components/dashboard/events/EventsTableData";
+import { clientsData } from "../../components/dashboard/clients/ClientsTableData";
 import SortTablePagination from "../../components/dashboard/events/SortTablePagination";
 
 const Wrapper = styled.div`
@@ -38,7 +38,7 @@ function Clients(props) {
         <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
           Home
         </LinkMaterial>    
-        <LinkMaterial color="textPrimary" href="/calendar/allEvents" >
+        <LinkMaterial className="crumbs" color="textPrimary" href="/calendar/allEvents" >
         Clients
           </LinkMaterial> 
       </Breadcrumbs>

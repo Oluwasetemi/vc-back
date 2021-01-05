@@ -75,7 +75,7 @@ export default function EventsTab() {
     { id: "zipCode", label: "ZIP CODE" },
     { id: "noOfItems", label: "NO OF ITEMS" },
     { id: "location", label: "LOCATION" },
-    { id: "date", label: "EVENT DATE" },
+    { id: "date", label: "PICKUP DATE" },
     { id: "type", label: "STORAGE" },
     { id: "link", label: "" },
   ];

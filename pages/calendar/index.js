@@ -36,7 +36,7 @@ function Calendar(props) {
         <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
           Home
         </LinkMaterial>    
-        <LinkMaterial color="textPrimary" href="/calendar" >
+        <LinkMaterial className="crumbs" color="textPrimary" href="/calendar" >
 			Calendar
           </LinkMaterial> 
       </Breadcrumbs>

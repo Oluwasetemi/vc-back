@@ -97,13 +97,13 @@ function item(props) {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/clients">
+          <LinkMaterial className="crumbs" color="inherit" href="/clients">
             Clients
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/clients/client">
+          <LinkMaterial className="crumbs" color="inherit" href="/clients/client">
             Joseph Thornberry
           </LinkMaterial>
-          <LinkMaterial color="textPrimary" href="#">
+          <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Plain Black Shirt
           </LinkMaterial>
         </Breadcrumbs>
