@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import DashboardLayout from "../../../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
-import shirt from "../../public/assets/shirt.png";
-import pants from "../../public/assets/pants.png";
-import menShoes from "../../public/assets/men_shoes.png";
-import tie from "../../public/assets/tie.png";
-import { CheckboxInput } from "../../components/dashboard/inputs";
+import shirt from "../../../public/assets/shirt.png";
+import pants from "../../../public/assets/pants.png";
+import menShoes from "../../../public/assets/men_shoes.png";
+import tie from "../../../public/assets/tie.png";
+import { CheckboxInput } from "../../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
 
@@ -30,10 +30,10 @@ const Wrapper = styled.div`
     font-size: 30px;
     line-height: 32px;
     margin: 33px 0;
-	color: #4b6962;
-	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
-		font-size: 20px;
-	  }
+    color: #4b6962;
+    @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+      font-size: 20px;
+      }
   }
    .user-details .dp {
     width: 70px;
@@ -237,7 +237,7 @@ const Wrapper = styled.div`
     margin-right: 0;
   }
 `;
-function createAnOutfit(props) {
+function index(props) {
   return (
     <Wrapper>
       <DashboardLayout>
@@ -260,10 +260,10 @@ function createAnOutfit(props) {
             Joseph Thornberry
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Create an Outfit
+          Add to Wardrobe
           </LinkMaterial>
         </Breadcrumbs>
-        <h3 className="title">Create an Outfit</h3>
+        <h3 className="title">Add to Wardrobe/Vault</h3>
         <div className="paper flex user-details wrap ">
           <div className="lhs flex">
             <div className="dp flex">
@@ -302,7 +302,7 @@ function createAnOutfit(props) {
 
         <div className="paper paper-tail">
           <div className="flex"><h1>Items</h1>
-		  <Link href="/clients/editOutfit">
+		  <Link href="/clients/wardrobe/addToWardrobe1">
                     <Button theme="orange">Continue</Button>
                   </Link></div>
       <div className="scroll">
@@ -376,6 +376,6 @@ function createAnOutfit(props) {
   );
 }
 
-createAnOutfit.propTypes = {};
+index.propTypes = {};
 
-export default createAnOutfit;
+export default index;

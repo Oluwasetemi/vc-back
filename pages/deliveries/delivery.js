@@ -283,6 +283,7 @@ overflow-y: hidden;
     display: block;
     position: absolute;
     height: 0%;
+    left:0;
     width: 100%;
     bottom: 0;
     transition: height 0.5s ease-out;
@@ -555,6 +556,7 @@ const sendPickup = (props) => {
             </div>
           </div>
         </Paper>
+      
         </TabPanel>
 
         <TabPanel className="tabpanel2" value={value} index={2}>

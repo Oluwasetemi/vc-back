@@ -25,7 +25,10 @@ const Wrapper = styled.div`
 	font-size: 30px;
 	line-height: 32px;
 margin: 33px 0;	
-	color: #4B6962;
+  color: #4B6962;
+  @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+		font-size: 20px;
+	  }
   }
 `;
 function subscriptionHistory(props) {

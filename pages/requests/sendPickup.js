@@ -247,6 +247,9 @@ line-height: 24px;
 color: #4B6962;
 margin: 39px 0 9px 0;
   }
+  .checked .MuiFormControlLabel-root{
+    margin-left: 0;
+  }
 `;
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

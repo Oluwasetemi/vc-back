@@ -43,6 +43,9 @@ const Wrapper = styled.div`
       line-height: 24px;
       color: #2f3930;
     }
+     .wrap{
+      flex-wrap: wrap;
+    }
   }
 
   .paper-client .MuiAppBar-colorPrimary {
@@ -142,6 +145,7 @@ const Wrapper = styled.div`
     content: "";
     display: block;
     position: absolute;
+    left: 0;
     height: 0%;
     width: 100%;
     bottom: 0;
@@ -295,7 +299,7 @@ function client(props) {
         <Paper className="paper-client">
           <h1 id="tag">Items</h1>
           <AppBar position="static">
-            <div className="flex" style={{ justifyContent: "space-between" }}>
+            <div className="flex wrap" style={{ justifyContent: "space-between" }}>
               <Tabs value={value} onChange={handleChange}>
                 <Tab label="Closet (10)" />
                 <Tab label="Vault (2)" />
@@ -303,7 +307,7 @@ function client(props) {
               </Tabs>
               {value === 1 && (
                 <TabPanel value={value} index={1}>
-                  <Link href="#">
+                  <Link href="/clients/editOutfit">
                     <Button theme="orange">Edit</Button>
                   </Link>
                 </TabPanel>
@@ -311,7 +315,7 @@ function client(props) {
               {value === 2 && (
                 <TabPanel value={value} index={2}>
                   <Link href="/clients/createAnOutfit">
-                    <Button theme="orange"> Outfit</Button>
+                    <Button theme="orange"> Create an Outfit</Button>
                   </Link>
                 </TabPanel>
               )}
@@ -488,7 +492,7 @@ function client(props) {
               <div className="gray-paper-client">
                 <div className="flex mb-26">
                   <p className="season season1">Sweet Summer </p>{" "}
-                  <span className="edit-outfit">Edit Outfit</span>
+                  <Link href='/clients/editOutfit'><span className="edit-outfit">Edit Outfit</span></Link>
                 </div>
                 <div className="flexy">
                   <div className="grid-items">
@@ -541,7 +545,7 @@ function client(props) {
               <div className="gray-paper-client mt-22">
                 <div className="flex mb-26">
                   <p className="season season1">WINTER WONDERLAND </p>{" "}
-                  <span className="edit-outfit">Edit Outfit</span>
+                  <Link href='/clients/editOutfit'><span className="edit-outfit">Edit Outfit</span></Link>
                 </div>
                 <div className="flexy">
                   <div className="grid-items">

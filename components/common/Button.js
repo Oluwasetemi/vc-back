@@ -50,6 +50,7 @@ function Button({ style, theme, isLoading, children, text, title, ...rest }) {
           borderRadius: "9px",
           fontSize: "14px",
           fontWeight: "bold",
+          fontFamily:" Matteo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
           outline: "none",
           cursor: "pointer",
           ...style,

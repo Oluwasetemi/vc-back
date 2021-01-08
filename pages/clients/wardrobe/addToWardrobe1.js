@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import DashboardLayout from "../../../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
-import shirt from "../../public/assets/shirt.png";
-import pants from "../../public/assets/pants.png";
-import menShoes from "../../public/assets/men_shoes.png";
-import tie from "../../public/assets/tie.png";
-import { CheckboxInput } from "../../components/dashboard/inputs";
+import shirt from "../../../public/assets/shirt.png";
+import pants from "../../../public/assets/pants.png";
+import menShoes from "../../../public/assets/men_shoes.png";
+import tie from "../../../public/assets/tie.png";
+import { CheckboxInput } from "../../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
 
@@ -64,78 +64,15 @@ const Wrapper = styled.div`
   display: grid;
 }
 
- .user-details {
-	align-items: flex-end;
-    justify-content: space-between;
-}
- .user-details>.lhs{
-	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
-		flex-wrap: wrap;
-	  }
-}
-  }
-   .names .name {
-    font-size: 20px;
-    line-height: 30px;
-    color: #2f3930;
-  }
-   .names .id {
-    font-size: 16px;
-    line-height: 24px;
-    margin: 10px 0;
-    color: #2f3930;
-  }
-   .names .pink {
-    margin-left: 0;
-  }
-   .user-details .lhs {
- margin-bottom:30px;
- align-items: flex-start;
- @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-	width: 100%;
-  }
-
-  }
- .value {
-    font-size: 16px;
-    line-height: 24px;
-    color: #2f3930;
-    	max-width: 32%;
-		  @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
-		max-width: 100%;
-	  }
-  }
-  .full-detail {
-    grid-template-columns: 1fr 1fr;
-  grid-gap: 15px;
-  margin-top: 24px;
-	@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-	  }
-  }
-  .full-detail .rhs .grid {
-    grid-template-columns: 1fr 1fr;
-    padding: 11px 0;
-    border-bottom: 1px solid #d6d8d3;
-  }
-  .full-detail .rhs .grid .text {
-    font-size: 16px;
-    line-height: 24px;
-    color: #2f3930;
-  }
-  .full-detail .rhs .grid .bold {
-    white-space: nowrap;
-    justify-self: end;
-    font-weight: 600;
-  }
-  .full-detail .rhs .first {
-    border-top: 1px solid #d6d8d3;
-  }
   .paper-tail {
 	margin: 30px 0 50px 0;
-	
+	.buttons.flex{
+		align-items: baseline;
+		min-width: 270px;
+		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+			min-width: -webkit-fill-available;
+		}
+	}	 
   }
   
   .paper-tail h1 {
@@ -173,8 +110,14 @@ const Wrapper = styled.div`
 	  justify-content: space-between;
 	  .button {
 		padding: 0.4rem 2.5rem;
-		margin-left: auto;
+		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+			padding: 0.4rem 1.5rem;
+		}
 	  }
+  }
+  .grid-items .button{
+	  padding: .4rem 2.5rem;
+	  margin-top: 15px;
   }
   .grid-items .product {
     background-color: #f3f0f0;
@@ -216,14 +159,19 @@ const Wrapper = styled.div`
   .grid-items .image4 {
     background-image: url(${tie});
   }
-  .grid-items .text {
+  
+  .text {
     font-size: 16px;
     line-height: 24px;
     color: #2f3930;
   }
-  .grid-items .name {
+  
+  .name {
     font-weight: bold;
     margin: 18px 0 10px 0;
+  }
+  .grid-items .info{
+	font-weight:normal;
   }
   .absolute{
 	  position: absolute;
@@ -237,7 +185,7 @@ const Wrapper = styled.div`
     margin-right: 0;
   }
 `;
-function createAnOutfit(props) {
+function addToWardrobe1(props) {
   return (
     <Wrapper>
       <DashboardLayout>
@@ -260,51 +208,25 @@ function createAnOutfit(props) {
             Joseph Thornberry
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Create an Outfit
+          Add to Wardrobe
           </LinkMaterial>
         </Breadcrumbs>
-        <h3 className="title">Create an Outfit</h3>
-        <div className="paper flex user-details wrap ">
-          <div className="lhs flex">
-            <div className="dp flex">
-              <p className="initials">JT</p>
-            </div>
-            <div className="names">
-              <p className="name">Joseph Thornberry</p>
-              <p className="id">User ID: 2342323</p>
-            </div>
-          </div>
-          <div className="lhs rhs">
-            <div className="full-detail grid">
-              <div className="rhs">
-                <div className="list grid first">
-                  <p className="text">Items in closet</p>
-                  <p className="text bold">25</p>
-                </div>
-                <div className="list grid">
-                  <p className="text">Outfits</p>
-                  <p className="text bold">20</p>
-                </div>
-              </div>
-              <div className="rhs">
-                <div className="list grid first">
-                  <p className="text">Items in Vault</p>
-                  <p className="text bold">20</p>
-                </div>
-                <div className="list grid">
-                  <p className="text">Pending for storage</p>
-                  <p className="text bold">0</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <h3 className="title">Add to Wardrobe/Vault</h3>
+       
         <div className="paper paper-tail">
-          <div className="flex"><h1>Items</h1>
-		  <Link href="/clients/editOutfit">
+		<div className="flex wrap"><h1>Items</h1>
+		  <div className="buttons flex">
+		  <Link href="/clients/wardrobe">
+                    <Button theme="pink">Back</Button>
+                  </Link>
+				  <Link href="/clients/wardrobe/addToWardrobe2">
                     <Button theme="orange">Continue</Button>
-                  </Link></div>
+                  </Link>
+		  </div>
+				  </div>
+
+				  <p className="info name text">This user has tagged items yet to add to wardrobe. Select items to add.</p>
+
       <div className="scroll">
 	  <div className="grid">
             <div className="grid-items">
@@ -316,7 +238,10 @@ function createAnOutfit(props) {
               </div>
               <p className="name text">Plain black shirt</p>
               <p className="id text">ID: 2342323</p>
-            </div>
+			  <Link href="#">
+                    <Button theme="pink">View</Button>
+                  </Link>
+		            </div>
             <div className="grid-items">
               <div className="product">
                 <div className="checked absolute">
@@ -326,6 +251,9 @@ function createAnOutfit(props) {
               </div>
               <p className="name text">Plain black shirt</p>
               <p className="id text">ID: 2342323</p>
+			  <Link href="#">
+                    <Button theme="pink">View</Button>
+                  </Link>
             </div>
             <div className="grid-items">
               <div className="product">
@@ -336,6 +264,9 @@ function createAnOutfit(props) {
               </div>
               <p className="name text">Plain black shirt</p>
               <p className="id text">ID: 2342323</p>
+			  <Link href="#">
+                    <Button theme="pink">View</Button>
+                  </Link>
             </div>
             <div className="grid-items">
               <div className="product">
@@ -346,6 +277,9 @@ function createAnOutfit(props) {
               </div>
               <p className="name text">Plain black shirt</p>
               <p className="id text">ID: 2342323</p>
+			  <Link href="#">
+                    <Button theme="pink">View</Button>
+                  </Link>
             </div>
             <div className="grid-items">
               <div className="product">
@@ -356,6 +290,9 @@ function createAnOutfit(props) {
               </div>
               <p className="name text">Plain black shirt</p>
               <p className="id text">ID: 2342323</p>
+			  <Link href="#">
+                    <Button theme="pink">View</Button>
+                  </Link>
             </div>
             <div className="grid-items">
               <div className="product">
@@ -366,6 +303,9 @@ function createAnOutfit(props) {
               </div>
               <p className="name text">Plain black shirt</p>
               <p className="id text">ID: 2342323</p>
+			  <Link href="#">
+                    <Button theme="pink">View</Button>
+                  </Link>
             </div>
           </div>
 	  </div>
@@ -376,6 +316,6 @@ function createAnOutfit(props) {
   );
 }
 
-createAnOutfit.propTypes = {};
+addToWardrobe1.propTypes = {};
 
-export default createAnOutfit;
+export default addToWardrobe1;
