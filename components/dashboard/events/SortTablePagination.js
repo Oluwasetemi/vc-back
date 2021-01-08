@@ -169,7 +169,7 @@ export default function SortTablePagination({ rows, paper, headCells }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  console.log(rows);
+  {/*console.log(rows)*/}
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
