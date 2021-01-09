@@ -9,12 +9,10 @@ import shirt from "../../public/assets/shirt.png";
 import pants from "../../public/assets/pants.png";
 import menShoes from "../../public/assets/men_shoes.png";
 import tie from "../../public/assets/tie.png";
-import { CheckboxInput } from "../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
 import vault from "../../public/assets/inVaultIcon.svg";
 import storage from "../../public/assets/inStorageIcon.svg";
-
 
 const Wrapper = styled.div`
 
@@ -194,118 +192,104 @@ function editOutfit(props) {
           </LinkMaterial>
         </Breadcrumbs>
         <h3 className="title">Edit Outfit</h3>
-    
 
         <div className="paper paper-tail">
           <h1>Closet</h1>
-		 
-      <div className="scroll">
-	  <div className="grid">
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image1"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Add to Outfit</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image2"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Add to Outfit</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="image-tag absolute">
-                  <img src={storage} alt="storage"/>
+
+          <div className="scroll">
+            <div className="grid">
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image1"></div>
                 </div>
-                <div className="image image3"></div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Add to Outfit</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Add to Outfit</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-			  <div className="image-tag absolute">
-                  <img src={vault} alt="vault"/>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image2"></div>
                 </div>
-                <div className="image image4"></div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Add to Outfit</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Add to Outfit</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-			  <div className="image-tag absolute">
-                  <img src={storage} alt="storage"/>
-                </div>{" "}
-                <div className="image image1"></div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image-tag absolute">
+                    <img src={storage} alt="storage" />
+                  </div>
+                  <div className="image image3"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Add to Outfit</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Add to Outfit</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-			  <div className="image-tag absolute">
-                  <img src={vault} alt="vault"/>
-                </div>{" "}
-                <div className="image image2"></div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image-tag absolute">
+                    <img src={vault} alt="vault" />
+                  </div>
+                  <div className="image image4"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Add to Outfit</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Add to Outfit</p>
-                
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image-tag absolute">
+                    <img src={storage} alt="storage" />
+                  </div>{" "}
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Add to Outfit</p>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image-tag absolute">
+                    <img src={vault} alt="vault" />
+                  </div>{" "}
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Add to Outfit</p>
+              </div>
             </div>
           </div>
-	  </div>
         </div>
 
         <div className="paper paper-tail">
-		<div className="flex"><h1>Outfit</h1>
-		  <Link href="/clients/reviewOutfit">
-                    <Button theme="orange">Continue</Button>
-                  </Link></div>
-		 
-      <div className="scroll">
-	  <div className="grid">
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image1"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Remove</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image2"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Remove</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                               <div className="image image3"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Remove</p>
-                
-            </div>
-          
+          <div className="flex">
+            <h1>Outfit</h1>
+            <Link href="/clients/reviewOutfit">
+              <Button theme="orange">Continue</Button>
+            </Link>
           </div>
-	  </div>
+
+          <div className="scroll">
+            <div className="grid">
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Remove</p>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Remove</p>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image3"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Remove</p>
+              </div>
+            </div>
+          </div>
         </div>
- 
       </DashboardLayout>
     </Wrapper>
   );

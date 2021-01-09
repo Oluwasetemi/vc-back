@@ -68,6 +68,7 @@ export default function RequestTab() {
     { id: "userEmail", label: "USER EMAIL" },
     { id: "zipCode", label: "ZIP CODE" },
     { id: "noOfItems", label: "NO OF ITEMS" },
+    { id: "", label: "" },
     { id: "date", label: "DATE" },
     { id: "type", label: "TYPE" },
     { id: "link", label: "" },
@@ -78,31 +79,14 @@ export default function RequestTab() {
     { id: "userEmail", label: "USER EMAIL" },
     { id: "zipCode", label: "ZIP CODE" },
     { id: "noOfItems", label: "NO OF ITEMS" },
+    { id: "", label: "" },
     { id: "location", label: "LOCATION" },
     { id: "date", label: "PICKUP DATE" },
     { id: "type", label: "TYPE" },
     { id: "link", label: "" },
   ];
-  const headCells3 = [
-    { id: "userId", label: "USER ID" },
-    { id: "userEmail", label: "USER EMAIL" },
-    { id: "zipCode", label: "ZIP CODE" },
-    { id: "noOfItems", label: "NO OF ITEMS" },
-    { id: "location", label: "LOCATION" },
-    { id: "date", label: "EVENT DATE" },
-    { id: "type", label: "NATURE" },
-    { id: "link", label: "" },
-  ];
-  const headCells4 = [
-    { id: "userId", label: "USER ID" },
-    { id: "userEmail", label: "USER EMAIL" },
-    { id: "zipCode", label: "ZIP CODE" },
-    { id: "noOfItems", label: "NO OF ITEMS" },
-    { id: "location", label: "LOCATION" },
-    { id: "date", label: "REQUEST DATE" },
-    { id: "type", label: "" },
-    { id: "link", label: "" },
-  ];
+
+ 
 
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -136,19 +120,19 @@ export default function RequestTab() {
         <TabPanel value={value} index={3}>
           <SortTablePagination
             rows={stylistRequestEventsData}
-            headCells={headCells3}
+            headCells={headCells2}
           />
         </TabPanel>
         <TabPanel value={value} index={4}>
           <SortTablePagination
             rows={outfitRequestEventsData}
-            headCells={headCells4}
+            headCells={headCells2}
           />
         </TabPanel>
         <TabPanel value={value} index={5}>
           <SortTablePagination
             rows={stylistRequestEventsData}
-            headCells={headCells3}
+            headCells={headCells2}
           />
         </TabPanel>
       </Paper>

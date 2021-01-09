@@ -9,12 +9,9 @@ import shirt from "../../public/assets/shirt.png";
 import pants from "../../public/assets/pants.png";
 import menShoes from "../../public/assets/men_shoes.png";
 import tie from "../../public/assets/tie.png";
-import {   TextInput
-} from "../../components/dashboard/inputs";
+import { TextInput } from "../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
-import vault from "../../public/assets/inVaultIcon.svg";
-import storage from "../../public/assets/inStorageIcon.svg";
 
 
 const Wrapper = styled.div`
@@ -188,7 +185,7 @@ letter-spacing: 0.5px;
 
 `;
 function reviewOutfit(props) {
-	const [outfitName, setOutfitName] = useState("");
+  const [outfitName, setOutfitName] = useState("");
 
   return (
     <Wrapper>
@@ -219,67 +216,59 @@ function reviewOutfit(props) {
             Outfit
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-		  Review Outfit
+            Review Outfit
           </LinkMaterial>
         </Breadcrumbs>
         <h3 className="title">Review Outfit</h3>
-    
-
 
         <div className="paper paper-tail">
-		<div className="flex wrap"><h1>Outfit</h1>
-		  <div className="buttons flex">
-		  <Link href="/clients/editOutfit">
-                    <Button theme="pink">Back</Button>
-                  </Link>
-				  <Link href="/clients/outfitCreated">
-                    <Button theme="orange">Finish</Button>
-                  </Link>
-		  </div>
-				  </div>
-				 <div className="text-input">
-				 <TextInput
- label="Enter Outfit Name"
- value={outfitName}
- onChange={setOutfitName}
- type="text"
- placeholder="Outfit Name"
-                />
-				 </div>
-		 
-      <div className="scroll">
-	  <div className="grid">
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image1"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Remove</p>
-                
+          <div className="flex wrap">
+            <h1>Outfit</h1>
+            <div className="buttons flex">
+              <Link href="/clients/editOutfit">
+                <Button theme="pink">Back</Button>
+              </Link>
+              <Link href="/clients/outfitCreated">
+                <Button theme="orange">Finish</Button>
+              </Link>
             </div>
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image2"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Remove</p>
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                               <div className="image image3"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="pink"> Remove</p>
-                
-            </div>
-          
           </div>
-	  </div>
+          <div className="text-input">
+            <TextInput
+              label="Enter Outfit Name"
+              value={outfitName}
+              onChange={setOutfitName}
+              type="text"
+              placeholder="Outfit Name"
+            />
+          </div>
+
+          <div className="scroll">
+            <div className="grid">
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Remove</p>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Remove</p>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image3"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="pink"> Remove</p>
+              </div>
+            </div>
+          </div>
         </div>
- 
       </DashboardLayout>
     </Wrapper>
   );

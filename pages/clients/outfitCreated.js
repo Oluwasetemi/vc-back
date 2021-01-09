@@ -13,8 +13,7 @@ import {   TextInput
 } from "../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
-import vault from "../../public/assets/inVaultIcon.svg";
-import storage from "../../public/assets/inStorageIcon.svg";
+
 
 
 const Wrapper = styled.div`

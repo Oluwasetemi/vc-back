@@ -301,76 +301,77 @@ function createAnOutfit(props) {
         </div>
 
         <div className="paper paper-tail">
-          <div className="flex"><h1>Items</h1>
-		  <Link href="/clients/editOutfit">
-                    <Button theme="orange">Continue</Button>
-                  </Link></div>
-      <div className="scroll">
-	  <div className="grid">
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
+          <div className="flex">
+            <h1>Items</h1>
+            <Link href="/clients/editOutfit">
+              <Button theme="orange">Continue</Button>
+            </Link>
+          </div>
+          <div className="scroll">
+            <div className="grid">
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />
+                  </div>
+                  <div className="image image1"></div>
                 </div>
-                <div className="image image1"></div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />
+                  </div>
+                  <div className="image image2"></div>
                 </div>
-                <div className="image image2"></div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />
+                  </div>
+                  <div className="image image3"></div>
                 </div>
-                <div className="image image3"></div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />
+                  </div>
+                  <div className="image image4"></div>
                 </div>
-                <div className="image image4"></div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>{" "}
-                <div className="image image1"></div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />
+                  </div>{" "}
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>{" "}
-                <div className="image image2"></div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />
+                  </div>{" "}
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
             </div>
           </div>
-	  </div>
         </div>
- 
       </DashboardLayout>
     </Wrapper>
   );
