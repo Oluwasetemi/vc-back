@@ -5,7 +5,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import gql from 'graphql-tag';
 import React from "react";
 import styled from "styled-components";
-import { clientsData } from "../../components/dashboard/events/EventsTableData";
+import { clientsData } from "../../components/dashboard/clients/ClientsTableData";
 import SortTablePagination from "../../components/dashboard/events/SortTablePagination";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 
@@ -49,13 +49,14 @@ const Wrapper = styled.div`
 `;
 function Clients(props) {
   const {error, loading, data} = useQuery(ALL_USERS);
-  console.log({loading, data, error})
+  console.log(data)
   const headCells = [
-    { id: "userId", label: "USER ID" },
-    { id: "userEmail", label: "USER EMAIL" },
-    { id: "userName", label: "USER NAME" },
+    { id: "_id", label: "USER ID" },
+    { id: "email", label: "USER EMAIL" },
+    { id: "name", label: "USER NAME" },
+   
     { id: "noOfItems", label: "NO OF ITEMS" },
-    { id: "joined", label: "JOINED" },
+    { id: "createdAt", label: "JOINED" },
     { id: "accountType", label: "ACCOUNT TYPE" },
     { id: "link", label: "" },
   ];
@@ -80,11 +81,12 @@ function Clients(props) {
           </Breadcrumbs>
 
           <SortTablePagination
+          linkText="View"
+          linkTo="/clients/client"
             paper="paper"
-            rows={clientsData}
+            rows={data.users}
             headCells={headCells}
             />
-            {data && <p>{data.users.map(user => (<p>{user.email}</p>))}</p>}
         </DashboardLayout>
       </Wrapper>
     );

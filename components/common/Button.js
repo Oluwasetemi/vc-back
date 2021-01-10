@@ -18,6 +18,17 @@ const Wrapper = styled.div`
     background-color: #f26144;
     transition: 0.4s;
   }
+  .orangeBtn {
+    border: 1px solid #f26144;
+    color: #ffffff;
+    background-color: #f26144;
+  }
+
+  .orangeBtn:hover {
+    color: #f26144;
+    background-color: #fff1de;
+    transition: 0.4s;
+  }
 
   .button {
     display: flex;
@@ -39,6 +50,7 @@ function Button({ style, theme, isLoading, children, text, title, ...rest }) {
           borderRadius: "9px",
           fontSize: "14px",
           fontWeight: "bold",
+          fontFamily:" Matteo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
           outline: "none",
           cursor: "pointer",
           ...style,

@@ -247,6 +247,9 @@ line-height: 24px;
 color: #4B6962;
 margin: 39px 0 9px 0;
   }
+  .checked .MuiFormControlLabel-root{
+    margin-left: 0;
+  }
 `;
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -299,13 +302,13 @@ const sendPickup = (props) => {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/calendar">
+          <LinkMaterial className="crumbs"  color="inherit" href="/calendar">
             Calendar
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/calendar/allEvents">
+          <LinkMaterial  className="crumbs"  color="inherit" href="/calendar/allEvents">
             Requests
           </LinkMaterial>
-          <LinkMaterial color="textPrimary" href="#">
+          <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Request 00439
           </LinkMaterial>
         </Breadcrumbs>

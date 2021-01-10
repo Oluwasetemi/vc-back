@@ -79,7 +79,20 @@ export function ListItems() {
           className={
             (router.pathname === "/clients" ? "active" : "") ||
             (router.pathname === "/clients/client" ? "active" : "") ||
-            (router.pathname === "/clients/item" ? "active" : "")
+            (router.pathname === "/clients/item" ? "active" : "") || 
+            (router.pathname === "/clients/paymentHistory" ? "active" : "")  ||
+            (router.pathname === "/clients/subscriptionHistory" ? "active" : "") ||  
+            (router.pathname === "/clients/createAnOutfit" ? "active" : "")   ||
+            (router.pathname === "/clients/editOutfit" ? "active" : "")  || 
+            (router.pathname === "/clients/reviewOutfit" ? "active" : "")  ||
+            (router.pathname === "/clients/outfitCreated" ? "active" : "")  || 
+            (router.pathname === "/clients/wardrobe" ? "active" : "")  ||
+            (router.pathname === "/clients/wardrobe/addToWardrobe1" ? "active" : "")  || 
+            (router.pathname === "/clients/wardrobe/addToWardrobe2" ? "active" : "")  ||
+            (router.pathname === "/clients/wardrobe/addToWardrobe3" ? "active" : "")  ||
+            (router.pathname === "/clients/addAStylist" ? "active" : "")  || 
+            (router.pathname === "/clients/stylists" ? "active" : "")  ||
+            (router.pathname === "/clients/stylists/stylist" ? "active" : "")  
           }
         >
           <ListItemIcon>

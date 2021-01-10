@@ -283,6 +283,7 @@ overflow-y: hidden;
     display: block;
     position: absolute;
     height: 0%;
+    left:0;
     width: 100%;
     bottom: 0;
     transition: height 0.5s ease-out;
@@ -352,13 +353,13 @@ const sendPickup = (props) => {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/calendar">
+          <LinkMaterial className="crumbs" color="inherit" href="/calendar">
             Calendar
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="#">
+          <LinkMaterial className="crumbs" color="inherit" href="#">
             Deliveries
           </LinkMaterial>
-          <LinkMaterial color="textPrimary" href="#">
+          <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Delivery 00439
           </LinkMaterial>
         </Breadcrumbs>
@@ -555,6 +556,7 @@ const sendPickup = (props) => {
             </div>
           </div>
         </Paper>
+      
         </TabPanel>
 
         <TabPanel className="tabpanel2" value={value} index={2}>

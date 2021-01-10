@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import DashboardLayout from "../../../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
-import menShoes from "../../public/assets/men_shoes.png";
+import Link from "next/link";
+import Button from "@components/common/Button";
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -45,17 +46,22 @@ const Wrapper = styled.div`
   .grid {
     display: grid;
   }
-  .item-image {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url(${menShoes});
-    padding: 38px 5px;
-    border-radius: 5px;
-    width: 216px;
-    margin-bottom: 20px;
-    height: 308px;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+
+  .dp {
+	margin-right: 28px;
+		width: 70px;
+		height: 70px;
+		background-color: #9c9b7c;
+		border-radius: 50%;
+		justify-content: center;
+		background-color: #9c9b7c;
+		.initials {
+		  font-weight: 600;
+		  font-size: 40px;
+		  line-height: 48px;
+		  color: #ffffff;
+		}
+	}
 
   .full-detail {
     grid-template-columns: 1fr 1fr;
@@ -71,21 +77,38 @@ const Wrapper = styled.div`
     padding: 11px 0;
     border-bottom: 1px solid #d6d8d3;
   }
-  .full-detail .rhs .grid .text {
+  .full-detail .rhs .grid .text, .item-details .text.email, .bio .text{
     font-size: 15px;
     line-height: 24px;
     color: #2f3930;
   }
-  .full-detail .rhs .grid .bold {
+  .item-details .text.email{
+	  margin: 10px 0 13px 0;
+  }
+  .item-details .name{
+	font-size: 20px;
+	line-height: 30px;
+	color: #2F3930;
+	  }
+  .full-detail .rhs .grid .bold, .bio . {
     white-space: nowrap;
     justify-self: end;
     font-weight: 600;
   }
+  .full-detail .rhs .grid .red-color{
+	color: #F26144;
+}
   .full-detail .rhs .first {
     border-top: 1px solid #d6d8d3;
   }
+  .button{
+	padding: 7px 35px;
+  }
+  .bio{
+	  margin-top: 12px;
+  }
 `;
-function item(props) {
+function stylist(props) {
   return (
     <Wrapper>
       <DashboardLayout>
@@ -100,51 +123,61 @@ function item(props) {
           <LinkMaterial className="crumbs" color="inherit" href="/clients">
             Clients
           </LinkMaterial>
-          <LinkMaterial className="crumbs" color="inherit" href="/clients/client">
-            Joseph Thornberry
+          <LinkMaterial className="crumbs" color="inherit" href="/clients/stylists">
+            Stylists
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Plain Black Shirt
+		  Stylist
           </LinkMaterial>
         </Breadcrumbs>
         <Paper className="paper">
           <h1 id="tag">Plain Black Shirt</h1>
           <div className="flex item-details wrap">
-            <div className="item-image"></div>
-            <div className="full-detail grid">
+            <div className="flex">
+			<div className="dp flex">
+				
+                  <p className="initials">JT</p>
+                </div>
+				<div>
+				<p className="name">Joseph Thornberry</p>
+				<p className="text email">Email: john233@gmail.com</p>
+				<Link href="/clients/stylists/stylist">
+                    <Button theme="pink">Remove</Button>
+                  </Link>
+				</div>
+			</div>
+            <div >
+              <div className="full-detail grid">
+			  <div className="rhs">
+                <div className="list grid first">
+                  <p className="text">Phone</p>
+                  <p className="text bold">2341232334544</p>
+                </div>
+                <div className="list grid">
+                  <p className="text">Joined </p>
+                  <p className="text bold">20/10/2020</p>
+                </div>
+                            </div>
               <div className="rhs">
                 <div className="list grid first">
-                  <p className="text">Item Name</p>
-                  <p className="text bold">Long Sleeve LV Shirt</p>
+                  <p className="text">Email</p>
+                  <p className="text bold">jane@ekanem.com</p>
                 </div>
                 <div className="list grid">
-                  <p className="text">Type </p>
-                  <p className="text bold">Shirt</p>
+                  <p className="text">Tags</p>
+                  <p className="text bold red-color">Corporate, Social, Tall</p>
                 </div>
-                <div className="list grid">
-                  <p className="text">Label</p>
-                  <p className="text bold">Louis Vuitton</p>
-                </div>
-                <div className="list grid">
-                  <p className="text">Location</p>
-                  <p className="text bold">In Storage</p>
-                </div>
+                
               </div>
-              <div className="rhs">
-                <div className="list grid first">
-                  <p className="text">Item Tag</p>
-                  <p className="text bold">129i2312123</p>
-                </div>
-                <div className="list grid">
-                  <p className="text">Category</p>
-                  <p className="text bold">Sleeveless</p>
-                </div>
-                <div className="list grid">
-                  <p className="text">Date of Last Pickup</p>
-                  <p className="text bold">12/10/2020</p>
-                </div>
-              </div>
+			  </div>
+			  <div className="bio">
+				<p className="text">Bio</p>
+				<p className="text bold">
+				Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
+				</p>
+			</div>
             </div>
+			
           </div>
         </Paper>
       </DashboardLayout>
@@ -152,6 +185,6 @@ function item(props) {
   );
 }
 
-item.propTypes = {};
+stylist.propTypes = {};
 
-export default item;
+export default stylist;

@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import searchIcon from "../../../public/assets/searchIcon.svg";
+import Link from "next/link";
+import Button from "../../common/Button";
 
 const SearchWraper = styled.div`
 position: absolute;
@@ -162,14 +164,12 @@ const EnhancedTableToolbar = (props) => {
   );
 };
 
-export default function SortTablePagination({ rows, paper, headCells }) {
+export default function SortTablePagination({ rows, linkText,linkTo, paper, headCells }) {
   const [data, setData] = React.useState(rows);
   const [filterData, setFilterData] = React.useState(rows);
   const [searchValue, setSearchValue] = React.useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  {/*console.log(rows)*/}
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -183,20 +183,15 @@ export default function SortTablePagination({ rows, paper, headCells }) {
     let filteredDatas = [];
     filteredDatas = data.filter((e) => {
       return (
-        (e.userId &&
-          e.userId
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.userEmail &&
-          e.userEmail.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.userName &&
-          e.userName.toLowerCase().includes(searchValue.toLowerCase())) ||
+        (e._id &&
+          e._id.toString().toLowerCase().includes(searchValue.toLowerCase())) ||
+        (e.email &&
+          e.email.toLowerCase().includes(searchValue.toLowerCase())) ||
+        (e.name && e.name.toLowerCase().includes(searchValue.toLowerCase())) ||
         (e.location &&
           e.location.toLowerCase().includes(searchValue.toLowerCase())) ||
         (e.type &&
-          e.type.props.children
-            .toLowerCase()
+          e.type.toLowerCase()
             .includes(searchValue.toLowerCase())) ||
         (e.zipCode &&
           e.zipCode
@@ -213,8 +208,11 @@ export default function SortTablePagination({ rows, paper, headCells }) {
             .toString()
             .toLowerCase()
             .includes(searchValue.toLowerCase())) ||
-        (e.joined &&
-          e.joined.toString().toLowerCase().includes(searchValue.toLowerCase()))
+        (e.createdAt &&
+          e.createdAt
+            .toString()
+            .toLowerCase()
+            .includes(searchValue.toLowerCase()))
       );
     });
     setFilterData(filteredDatas);
@@ -227,32 +225,50 @@ export default function SortTablePagination({ rows, paper, headCells }) {
   return (
     <Wrapper>
       <div className={`${paper}`}>
-        <EnhancedTableToolbar
-          handleSearch={handleSearch}
-          value={searchValue}
-        />
-        <TableContainer >
+        <EnhancedTableToolbar handleSearch={handleSearch} value={searchValue} />
+        <TableContainer>
           <Table>
-            <EnhancedTableHead
-              headCells={headCells}
-              rowCount={rows.length}
-            />
+            <EnhancedTableHead headCells={headCells} rowCount={rows.length} />
             <TableBody>
               {filterData.map((row, index) => {
                 return (
-                  <TableRow hover tabIndex={-1} key={row.userId}>
-                    <TableCell component="th" scope="row" padding="none">
-                      {row.userId}
-                    </TableCell>
-                    <TableCell>{row.userEmail}</TableCell>
+                  <TableRow hover tabIndex={-1} key={row._id}>
+                    {row.userId && (
+                      <TableCell component="th" scope="row" padding="none">
+                        {row.userId}
+                      </TableCell>
+                    )}
+                    {row.userEmail && <TableCell>{row.userEmail}</TableCell>}
                     {row.userName && <TableCell>{row.userName}</TableCell>}
-                    <TableCell>{row.zipCode}</TableCell>
-                    <TableCell>{row.noOfItems}</TableCell>
+                    {row._id &&<TableCell component="th" scope="row" padding="none">
+                      {row._id.substring(0, 7)}
+                    </TableCell>}
+                    {row.email && <TableCell>{row.email}</TableCell>}
+                    {row.name && <TableCell>{row.name}</TableCell>}
+                    {row.zipCode && <TableCell>{row.zipCode}</TableCell>}
+
+                    {row.noOfItems != null ? (
+                      <TableCell>{row.noOfItems}</TableCell>
+                    ) : (
+                      <TableCell> </TableCell>
+                    )}
+                       {row.createdAt != null ? (
+                      <TableCell>{row.createdAt}</TableCell>
+                    ) : (
+                      <TableCell> </TableCell>
+                    )}
+                    {/* { <TableCell>{row.noOfItems}</TableCell>}
+                    {  <TableCell>{row.createdAt}</TableCell>} */}
+
                     {row.location && <TableCell>{row.location}</TableCell>}
-                    <TableCell>{row.date}</TableCell>
+                    {row.date &&<TableCell>{row.date}</TableCell>}
                     {row.joined && <TableCell>{row.joined}</TableCell>}
-                    <TableCell>{row.type}</TableCell>
-                    <TableCell>{row.link}</TableCell>
+                    {row.type && <TableCell><span className="status">{row.type}</span></TableCell>}
+                    <TableCell>
+                    <Link className="btn" href={linkTo}>
+        <Button theme="pinkBtn">{linkText}</Button>
+      </Link>
+      </TableCell>
                   </TableRow>
                 );
               })}
@@ -277,9 +293,14 @@ export default function SortTablePagination({ rows, paper, headCells }) {
     </Wrapper>
   );
 }
-
+SortTablePagination.defaultProps  = {
+  linkText: "view",
+  linkTo: "/"
+};
 SortTablePagination.propTypes = {
   rows: PropTypes.array.isRequired,
   headCells: PropTypes.array.isRequired,
   paper: PropTypes.string,
+  linkTo: PropTypes.string,
+  linkText:PropTypes.string,
 };

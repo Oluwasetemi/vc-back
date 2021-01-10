@@ -34,13 +34,13 @@ function startPickup(props) {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/calendar">
+          <LinkMaterial className="crumbs" color="inherit" href="/calendar">
             Calendar
           </LinkMaterial>
-          <LinkMaterial color="inherit" href="/calendar/allEvents">
+          <LinkMaterial className="crumbs" color="inherit" href="/calendar/allEvents">
             Requests
           </LinkMaterial>
-          <LinkMaterial color="textPrimary" href="#">
+          <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Request 00439
           </LinkMaterial>
         </Breadcrumbs>

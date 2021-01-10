@@ -5,8 +5,12 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import styled from "styled-components";
 
 
+const Wrapper = styled.div`
+
+`
 
 const useStyles = makeStyles({
  
@@ -39,21 +43,20 @@ function CheckboxInput({label}, props) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
-    checkedLVault: false,
-    checkedLStorage: false,
-    checkedLaundry: true,
+    checkedItem: false,
   });
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
   return (
-      <FormGroup row>
+    <Wrapper>
+        <FormGroup row>
         <FormControlLabel
           control={
             <Checkbox
-              checked={state.checkedVault}
+              checked={state.checkedItem}
               onChange={handleChange}
-              name="checkedVault"
+              name="checkedItem"
               className={classes.root}
               disableRipple
               color="default"
@@ -68,6 +71,7 @@ function CheckboxInput({label}, props) {
           label={label}
         />
       </FormGroup>
+    </Wrapper>
   );
 }
 

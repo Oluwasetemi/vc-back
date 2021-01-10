@@ -4,11 +4,14 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import React from "react";
 import styled from "styled-components";
-import { activeEventsData, allEventsData, laundryEventsData, pickupStorageEventsData } from "./EventsTableData";
+import {
+  activeEventsData,
+  allEventsData,
+  laundryEventsData,
+  pickupStorageEventsData,
+} from "./EventsTableData";
 import RequestTab from "./RequestTab";
 import SortTablePagination from "./SortTablePagination";
-
-
 
 const Wrapper = styled.div`
   .MuiAppBar-colorPrimary {
@@ -53,6 +56,10 @@ const Wrapper = styled.div`
   .MuiBox-root {
     padding: 0;
   }
+  .no-bg {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
 `;
 
 function TabPanel(props) {
@@ -65,6 +72,7 @@ export default function EventsTab() {
     { id: "userEmail", label: "USER EMAIL" },
     { id: "zipCode", label: "ZIP CODE" },
     { id: "noOfItems", label: "NO OF ITEMS" },
+    { id: "", label: "" },
     { id: "date", label: "DATE" },
     { id: "type", label: "TYPE" },
     { id: "link", label: "" },
@@ -74,16 +82,17 @@ export default function EventsTab() {
     { id: "userEmail", label: "USER EMAIL" },
     { id: "zipCode", label: "ZIP CODE" },
     { id: "noOfItems", label: "NO OF ITEMS" },
+    { id: "", label: "" },
     { id: "location", label: "LOCATION" },
-    { id: "date", label: "EVENT DATE" },
+    { id: "date", label: "PICKUP DATE" },
     { id: "type", label: "STORAGE" },
     { id: "link", label: "" },
   ];
   const headCells4 = [
     { id: "userId", label: "USER ID" },
     { id: "userEmail", label: "USER EMAIL" },
-    { id: "zipCode", label: "" },
     { id: "noOfItems", label: "NO OF ITEMS" },
+    { id: "", label: "" },
     { id: "date", label: "PICKUP DATE" },
     { id: "type", label: "STORAGE" },
     { id: "link", label: "" },
@@ -94,7 +103,7 @@ export default function EventsTab() {
   };
   return (
     <Wrapper>
-      <AppBar position="static">
+      <AppBar position="static" className="no-bg">
         <Tabs value={value} onChange={handleChange}>
           <Tab label={`All`} />
           <Tab label={`Active`} />

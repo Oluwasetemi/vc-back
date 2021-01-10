@@ -66,20 +66,8 @@ function Dashboard(props) {
         <LinkMaterial className='crumbs' color="textPrimary" href="/dashboard" >
           Home
         </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="inherit" href="/calendar/allEvents" >
-          Events
-        </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="inherit" href="/requests/deliveryRequest" >
-          Delivery Request
-        </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="inherit" href="/requests/pickupRequest" >
-          Pickup Request
-        </LinkMaterial>    
-        <LinkMaterial className='crumbs' color="inherit" href="/deliveries/delivery" >
-          Deliveries
-        </LinkMaterial>    
+         
                    </Breadcrumbs>
-                   <p>(IGNORE: trying to get easy access to embedded pages for now)</p>
         <section className="home-content">
           <div className="grid-container">
             <SmallCardPaper
@@ -91,35 +79,36 @@ function Dashboard(props) {
                   <Button theme="pink">View</Button>
                 </Link>
               }
-              href="/"
-            />
+              />
             <SmallCardPaper
               title="Upcoming Deliveries"
               value="5,323"
               info="Items to deliver"
               link={
-                <Link href="/calendar/allEvents">
+                <Link href="/requests/deliveryRequest">
                   <Button theme="pink">View</Button>
                 </Link>
               }
-              href="/"
-            />
+              />
             <SmallCardPaper
               title="Upcoming Pickups"
               value="5,323"
               info="Items for pickup"
               link={
-                <Link href="/calendar/allEvents">
+                <Link href="/requests/pickupRequest">
                   <Button theme="pink">View</Button>
                 </Link>
               }
-              href="/"
-            />
+              />
 			<SmallCardPaper
               title="Laundry"
               value="5,323"
               info="Items to catalogue"
-              href=""
+              link={
+                <Link href="/calendar/allEvents">
+                  <Button theme="pink">View</Button>
+                </Link>
+              }
             />
             <SmallCardPaper
               title="Stylists Requests"
@@ -130,8 +119,7 @@ function Dashboard(props) {
                   <Button theme="pink">View</Button>
                 </Link>
               }
-              href="/"
-            />
+              />
 
             <SmallCardPaper
               title="Closet"

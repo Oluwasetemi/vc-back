@@ -28,10 +28,10 @@ function allEvents(props) {
         <LinkMaterial className='crumbs' color="inherit" href="/dashboard" >
           Home
         </LinkMaterial>    
-        <LinkMaterial color="inherit" href="#" >
+        <LinkMaterial className="crumbs" color="inherit" href="#" >
           Calendar
           </LinkMaterial> 
-        <LinkMaterial color="textPrimary" href="#" >
+        <LinkMaterial className="crumbs" color="textPrimary" href="#" >
           Events
           </LinkMaterial> 
       </Breadcrumbs>
