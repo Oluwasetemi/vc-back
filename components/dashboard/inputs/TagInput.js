@@ -1,10 +1,10 @@
 /* eslint-disable no-use-before-define */
-import React from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types'
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import PropTypes from 'prop-types';
+import React from 'react';
 import styled from "styled-components";
-import add from '../../../public/assets/add.svg';
+import add from '../../../public/assets/Add.svg';
 
 const Wrapper = styled.div`
 h6{
@@ -58,9 +58,9 @@ function TagInput({label}) {
         renderInput={(params) => (
           <TextField {...params} variant="outlined"  />
         )}
-     
+
       />
-  
+
     </Wrapper>
   );
 }
@@ -77,6 +77,6 @@ const strengths = [
 TagInput.propTypes = {
   label: PropTypes.string.isRequired,
   }
-  
 
-export {TagInput}
+
+export { TagInput };
