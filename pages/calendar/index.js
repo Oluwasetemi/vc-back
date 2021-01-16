@@ -41,7 +41,6 @@ function Calendar(props) {
           </LinkMaterial> 
       </Breadcrumbs>
 			<CalendarModal/>
-
 			<Paper className="paper">
 
 			</Paper>

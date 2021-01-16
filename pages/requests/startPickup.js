@@ -72,8 +72,8 @@ function startPickup(props) {
                       <p className="text bold">5/10/2020</p>
                     </div>
                     <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">From Vault</p>
+                    <p className="text">Phone Number</p>
+        <p className="text bold">0888800000000</p>
                     </div>
                     <div className="list grid">
                       <p className="text">Subscription</p>
