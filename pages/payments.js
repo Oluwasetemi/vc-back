@@ -1,16 +1,17 @@
-import useTable from "../../components/common/table/useTable";
+import useTable from "../components/common/table/useTable";
 import gql from "graphql-tag";
 import React, { useState } from "react";
 import { Paper, TableBody, TableRow, TableCell } from "@material-ui/core";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
-import Button from "../../components/common/Button";
+import Button from "../components/common/Button";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import DashboardLayout from "../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
+import searchIcon from "../public/assets/searchIcon.svg";
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -31,6 +32,35 @@ const Wrapper = styled.div`
     color: #4b6962;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
       font-size: 20px;
+    }
+  }
+  .searchbar {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    background: #ffffff;
+    border: 1px solid #9c9b7c;
+    border-radius: 10px;
+    padding: 3px 15px;
+    width: 300px;
+    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+      position: relative;
+      margin-left: auto;
+    }
+    @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+      width: fit-content;
+    }
+
+    &:focus-within {
+      border: 1px solid #f26144;
+    }
+    input {
+      outline: none;
+      border: none;
+      font-size: 14px;
+      line-height: 24px;
+      font-family: "Matteo";
+      padding-left: 8px;
     }
   }
   .paper {
@@ -100,7 +130,7 @@ const Wrapper = styled.div`
   .MuiTableRow-root.Mui-selected:hover {
     background-color: rgba(0, 0, 0, 0);
   }
-
+ 
 
   table {
     width: 100%;
@@ -150,14 +180,17 @@ const ALL_PAYMENTS = gql`
   }
 `;
 const headCells = [
-  { id: "id", label: "REF" },
-  { id: "email", label: "CLIENT" },
+  { id: "id", label: "USER ID" },
+  { id: "email", label: "USER EMAIL" },
+  { id: "username", label: "USER NAME" },
   { id: "amount", label: "AMOUNT" },
   { id: "created", label: "DATE" },
   { id: "paymentType", label: "PAYMENT TYPE" },
   { id: "link", label: "" },
 ];
-function paymentHistory(props) {
+function payments(props) {
+	const { value } = props;
+
   const { error, loading, data } = useQuery(ALL_PAYMENTS);
   const [records, setRecords] = useState(
     data && data.fetchAllPaymentFromStripe.results
@@ -174,6 +207,18 @@ function paymentHistory(props) {
     recordsAfterPagingAndSorting,
   } = useTable(records, headCells, filterFn);
 
+  const handleSearch = (e) => {
+    let target = e.target;
+    setFilterFn({
+      fn: (items) => {
+        if (target.value == "") return items;
+        else
+          return items.filter((x) =>
+            x.email.toLowerCase().includes(target.value)
+          );
+      },
+    });
+  };
   return (
     <Wrapper>
       <DashboardLayout>
@@ -185,21 +230,15 @@ function paymentHistory(props) {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial className="crumbs" color="inherit" href="/clients">
-            Clients
-          </LinkMaterial>
-          <LinkMaterial
-            className="crumbs"
-            color="inherit"
-            href="/clients/client"
-          >
-            Joseph Thornberry
-          </LinkMaterial>
+        
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Payment History
+            Payments
           </LinkMaterial>
         </Breadcrumbs>
-        <h3 className="title">Payment History</h3>
+        <div className="searchbar">
+          <img src={searchIcon} alt="searchIcon" />
+          <input placeholder="Search" onChange={handleSearch} value={value} />
+        </div>
 
         {loading ? (
           <p>loading</p>
@@ -214,8 +253,9 @@ function paymentHistory(props) {
                   <TableRow key={item.id}>
                     <TableCell>{item.id.substring(0, 8)}</TableCell>
                     <TableCell>{item.email}</TableCell>
+                    <TableCell>{item.username}</TableCell>
                     <TableCell>${item.amount}</TableCell>
-                    <TableCell>{item.created}</TableCell>
+					<TableCell>{item.created}</TableCell>
                     <TableCell>
                         <span className="status">{item.paymentType}</span>
                       </TableCell>
@@ -239,6 +279,6 @@ function paymentHistory(props) {
   );
 }
 
-paymentHistory.propTypes = {};
+payments.propTypes = {};
 
-export default paymentHistory;
+export default payments;
