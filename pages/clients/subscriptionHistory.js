@@ -11,6 +11,7 @@ import { Paper, TableBody, TableRow, TableCell } from "@material-ui/core";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import Button from "../../components/common/Button";
+import AmountConverter from "../../components/common/AmountConverter";
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -159,6 +160,8 @@ const headCells = [
 function subscriptionHistory(props) {
   const { error, loading, data } = useQuery(ALL_SUBSCRIPTION);
   const [records, setRecords] = useState(data && data.fetchAllSubscription);
+  // console.log(data&& data.fetchAllSubscription)
+
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -215,7 +218,7 @@ function subscriptionHistory(props) {
                     ) : (
                       <TableCell>00450</TableCell>
                     )}
-                    <TableCell>${item.amount}</TableCell>
+                    <TableCell>{AmountConverter(item.amount)}</TableCell>
                     <TableCell>{item.createdAt.substring(0, 10)}</TableCell>
                     {item.name && (
                       <TableCell>
@@ -224,7 +227,7 @@ function subscriptionHistory(props) {
                     )}
                     <TableCell>
                       {" "}
-                      <Link className="btn" href="/subscriptions">
+                      <Link className="btn" href="/subscriptions/[item.name]">
                         <Button theme="pinkBtn">View</Button>
                       </Link>
                     </TableCell>
