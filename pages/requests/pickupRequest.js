@@ -5,7 +5,7 @@ import LinkMaterial from "@material-ui/core/Link";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import styled from "styled-components";
-import UserDetailCard from '../../components/dashboard/common/UserDetailCard'
+import  SingleRequest from '../../components/dashboard/events/request/SingleRequest'
 import Link from "next/link";
 
 
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   }
 
 `;
-function pickupRequest(props) {
+const pickupRequest =(props) => {
   return (
     <Wrapper>
       <DashboardLayout>
@@ -46,43 +46,7 @@ function pickupRequest(props) {
           </LinkMaterial>
         </Breadcrumbs>
 
-        <UserDetailCard top={<><p className="date">Monday, June 2, 2020</p>
-            <div className="buttons flex wrap">
-                      <p className="reschedule pink">Reschedule</p>
-              <Link href="/requests/startPickup">
-			  <p className="accept red">Accept</p>
-			  </Link>
-            </div></>} fullDetail={<> <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Items to deliver</p>
-                      <p className="text bold">5</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">On Demand</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Location</p>
-                      <p className="text bold">12 Bounty Lane, DC</p>
-                    </div>
-                  </div>
-                  <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Delivery Date</p>
-                      <p className="text bold">5/10/2020</p>
-                    </div>
-                    <div className="list grid">
-                    <p className="text">Phone Number</p>
-        <p className="text bold">0888800000000</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Subscription</p>
-                      <p className="text bold">Plus+</p>
-                    </div>
-                  </div></>} buttons={<Link href="/clients/client">
-                  <p className="pink">View Client</p></Link>}  weight="value" text="User has requested to checkout 5 items from their closet"/>
-
-      
+        <SingleRequest />
       </DashboardLayout>
     </Wrapper>
   );

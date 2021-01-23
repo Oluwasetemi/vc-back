@@ -233,6 +233,11 @@ export default function SortTablePagination({ rows, linkText,linkTo, paper, head
               {filterData.map((row, index) => {
                 return (
                   <TableRow hover tabIndex={-1} key={row._id}>
+                    {row.bookingId && (
+                      <TableCell component="th" scope="row" padding="none">
+                        {row.bookingId.substring(0, 7)}
+                      </TableCell>
+                    )}
                     {row.userId && (
                       <TableCell component="th" scope="row" padding="none">
                         {row.userId}
@@ -257,9 +262,6 @@ export default function SortTablePagination({ rows, linkText,linkTo, paper, head
                     ) : (
                       <TableCell> </TableCell>
                     )}
-                    {/* { <TableCell>{row.noOfItems}</TableCell>}
-                    {  <TableCell>{row.createdAt}</TableCell>} */}
-
                     {row.location && <TableCell>{row.location}</TableCell>}
                     {row.date &&<TableCell>{row.date}</TableCell>}
                     {row.joined && <TableCell>{row.joined}</TableCell>}

@@ -133,6 +133,7 @@ const Wrapper = styled.div`
 const ALL_SUBSCRIPTION = gql`
   query ALL_SUBSCRIPTION {
     fetchAllSubscription {
+      _id
       name
       amount
       services {
@@ -227,7 +228,7 @@ function subscriptionHistory(props) {
                     )}
                     <TableCell>
                       {" "}
-                      <Link className="btn" href="/subscriptions/[item.name]">
+                      <Link className="btn" href="/subscriptions">
                         <Button theme="pinkBtn">View</Button>
                       </Link>
                     </TableCell>
