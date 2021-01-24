@@ -57,8 +57,11 @@ function DeliveryRequest({ error, loading, data }) {
                       <Link
                         className="btn"
                         href={{
-                          pathname: "/item",
-                          query: { id: item._id },
+                          pathname: `/requests/${item.type.toLowerCase()}Request`,
+                          query: {
+                            type: "Delivery",
+                            id: item._id,
+                          },
                         }}
                       >
                         <Button theme="pinkBtn">View</Button>

@@ -8,25 +8,25 @@ export const modalEventTableConstants = () => {
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["id"]}</span>;
+        return <span>{rowData["_id"].substring(0,5)}</span>;
       },
     },
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["User Email"]}</span>;
+        return <span>{rowData["user"].email}</span>;
       },
     },
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["Items"]}</span>;
+        return <span>{rowData["numberOfItems"]} Items</span>;
       },
     },
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["Created"]}</span>;
+        return <span>{rowData["createdAt"].substring(0,10)}</span>;
       },
     },
 

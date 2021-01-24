@@ -246,7 +246,7 @@ function Clients(props) {
               <TableBody>
                 {recordsAfterPagingAndSorting().map((item) => (
                   <TableRow key={item._id}>
-                    <TableCell>{item._id.substring(0, 7)}</TableCell>
+                    <TableCell>{item._id.substr(_id.length - 5)}</TableCell>
                     <TableCell>{item.email}</TableCell>
                     <TableCell>{item.name}</TableCell>
                     {item.noOfItems != null ? (

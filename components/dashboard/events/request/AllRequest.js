@@ -54,9 +54,12 @@ function AllRequest({error, loading, data}) {
 					<TableCell>
                       {" "}
                       <Link className="btn" href={{
-              pathname: '/item',
-              query: { id: item._id },
-            }}>
+                        pathname: `/requests/${item.type.toLowerCase()}Request`,
+                        query: {
+                          type: item.type,
+                          id: item._id,
+                        },
+                      }}>
                         <Button theme="pinkBtn">View</Button>
                       </Link>
                     </TableCell> 

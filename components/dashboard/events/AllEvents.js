@@ -60,7 +60,7 @@ function AllEvents({ error, loading, data }) {
                       href={{
                         pathname: `/requests/${item.type.toLowerCase()}Request`,
                         query: {
-                          type: "pickup",
+                          type: item.type,
                           id: item._id,
                         },
                       }}

@@ -7,6 +7,8 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../../common/Button";
 import CalendarTab from "./CalendarTab";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/client";
 
 const Wrapper = styled.div`
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
@@ -44,8 +46,38 @@ const Wrapper = styled.div`
     margin: auto;
   }
 `;
-
+const ALL_REQUEST = gql`
+  query ALL_REQUEST {
+    fetchAllRequest(first: 12, sort: descending, type: All) {
+		total
+		data {
+		  _id
+		  numberOfItems
+		  type
+		  pickupLocation {
+      _id
+      location
+		  }
+		  user {
+      _id
+      name
+      email
+			currentSubscriptionPlan {
+			  _id
+			}
+		  }
+		  bookingId
+		  datetimePicked
+		  contactPhoneNumber
+		  status
+		  createdAt
+		  updatedAt
+		}
+	  }
+  }`;
 export default function CalendarModal() {
+  const { error, loading, data } = useQuery(ALL_REQUEST );
+console.log(data)
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [open, setOpen] = React.useState(false);
 
@@ -60,7 +92,7 @@ export default function CalendarModal() {
   const body = (
     <Wrapper>
       <h2 id="title">Monday, June 2, 2020</h2>
-      <CalendarTab />
+      <CalendarTab data={data}/>
       <Link className="btn" href="/calendar/allEvents">
         <Button theme="pinkBtn">View All</Button>
       </Link>

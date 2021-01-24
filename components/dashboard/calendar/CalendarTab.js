@@ -2,11 +2,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Box from "@material-ui/core/Box";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SimpleTable from "../../common/SimpleTable";
-import { activeModalEventData, allModalEventData, deliveryModalEventData, laundryModalEventData, pickupModalEventData, requestModalEventData } from "../../dashboard/calendar/modalEventData";
-import { modalEventTableConstants } from "../../dashboard/calendar/modalEventTableConstants";
+import { activeModalEventData, deliveryModalEventData, laundryModalEventData, pickupModalEventData } from "../../dashboard/calendar/modalEventData";
+import { modalEventTableConstants } from "./modalEventTableConstants";
 
 
 const Wrapper = styled.div`
@@ -54,11 +54,13 @@ const Wrapper = styled.div`
   }
 `;
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
 }
-export default function CalendarTab() {
+export default function CalendarTab({data}) {
+
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -67,9 +69,9 @@ export default function CalendarTab() {
     <Wrapper>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange}>
-          <Tab label={`All (${allModalEventData.length})`} />
+          <Tab label={`All (${data.fetchAllRequest.data.length})`} />
           <Tab label={`Active (${activeModalEventData.length})`} />
-          <Tab label={`Requests (${requestModalEventData.length})`} />
+          <Tab label={`Requests (${data.fetchAllRequest.data.length})`} />
           <Tab label={`Deliveries (${deliveryModalEventData.length})`} />
           <Tab label={`Pickups (${pickupModalEventData.length})`} />
           <Tab label={`Laundry (${laundryModalEventData.length})`} />
@@ -79,35 +81,35 @@ export default function CalendarTab() {
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={allModalEventData}
+          data={data.fetchAllRequest.data}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={activeModalEventData}
+          data={data.fetchAllRequest.data}
         />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={requestModalEventData}
+          data={data.fetchAllRequest.data}
         />
       </TabPanel>
       <TabPanel value={value} index={3}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={deliveryModalEventData}
+          data={data.fetchAllRequest.data}
         />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={pickupModalEventData}
+          data={data.fetchAllRequest.data}
         />
       </TabPanel>
       <TabPanel value={value} index={5}>

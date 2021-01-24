@@ -2,6 +2,19 @@ import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 import { useRouter } from "next/router";
 import React from "react";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+.red{
+  border: none; 
+border-radius: 10px;
+margin-left: 14px;
+
+p{
+  margin-left:0px !important;
+}
+}
+`
 
 const ACCEPT_PICKUP_REQUEST = gql`
   mutation ACCEPT_PICKUP_REQUEST($id: ID, $bookingId: String) {
@@ -20,8 +33,8 @@ export default function AcceptPickRequest({ id, bookingId }) {
     }
   );
   return (
-    <div>
-      <button
+    <Wrapper>
+      <button  className="accept red"
         onClick={async () => {
           try {
             // call the acceptPickup mutation
@@ -38,8 +51,8 @@ export default function AcceptPickRequest({ id, bookingId }) {
           }
         }}
       >
-        <p className="accept red">Accept{loading ? "ing" : ""}</p>
+        <p>Accept{loading ? "ing" : ""}</p>
       </button>
-    </div>
+    </Wrapper>
   );
 }
