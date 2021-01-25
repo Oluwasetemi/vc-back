@@ -39,7 +39,6 @@ const Wrapper = styled.div`
 			padding: 21px;
 		}
 	}
-
 	.appbar .tooltiptext {
 		visibility: hidden;
 		width: 120px;
@@ -53,10 +52,8 @@ const Wrapper = styled.div`
 		top: 90%;
 		left: 10px;
 	}
-
 	.appbar:hover .tooltiptext {
 		visibility: hidden;
-
 		@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
 			visibility: visible;
 		}
@@ -80,7 +77,6 @@ const Wrapper = styled.div`
 			line-height: 17px;
 		}
 	}
-
 	.tabpanel1 {
 		width: 60%;
 		font-size: 16px;
@@ -125,7 +121,6 @@ const Wrapper = styled.div`
 		justify-content: space-between;
 		margin-bottom: 50px;
 	}
-
 	.date,
 	.paper-tail h1 {
 		font-weight: 600;
@@ -154,7 +149,6 @@ const Wrapper = styled.div`
 			margin-left: 0;
 		}
 	}
-
 	.pink {
 		color: #f26144;
 		background-color: #fff1de;
@@ -173,7 +167,6 @@ const Wrapper = styled.div`
 			transition: 0.3s;
 		}
 	}
-
 	.grid-4 {
 		display: grid;
 		grid-gap: 28px;
@@ -185,7 +178,6 @@ const Wrapper = styled.div`
 			grid-template-columns: 1fr;
 		}
 	}
-
 	.mt-24 {
 		margin-top: 24px;
 	}

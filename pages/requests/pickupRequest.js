@@ -37,6 +37,7 @@ const SINGLE_REQUEST = gql`
 				currentSubscriptionPlan {
 					_id
 					amount
+					name
 					services {
 						storage
 					}
@@ -83,7 +84,7 @@ const pickupRequest = props => {
 						Requests
 					</LinkMaterial>
 					<LinkMaterial className="crumbs" color="textPrimary" href="#">
-						{loading ? 'loading' : singleRequest._id}
+					Request {loading ? 'loading' : singleRequest._id}
 					</LinkMaterial>
 				</Breadcrumbs>
 

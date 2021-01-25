@@ -1,6 +1,8 @@
+import { useQuery } from '@apollo/client';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import gql from 'graphql-tag';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -20,10 +22,46 @@ const Wrapper = styled.div`
 		}
 	}
 `;
+
+const SINGLE_REQUEST = gql`
+	query SINGLE_REQUEST($id: ID!) {
+		fetchOneRequest(id: $id) {
+			_id
+			numberOfItems
+			type
+			pickupLocation {
+				_id
+				location
+			}
+			user {
+				_id
+				email
+				currentSubscriptionPlan {
+					_id
+					name
+					amount
+					services {
+						storage
+					}
+				}
+			}
+			bookingId
+			datetimePicked
+			contactPhoneNumber
+			status
+			createdAt
+			updatedAt
+		}
+	}
+`;
 function startPickup(props) {
 	const { query } = useRouter();
 	// fetch the id from the page
 	const { id } = query;
+	const { error, loading, data } = useQuery(SINGLE_REQUEST, {
+		variables: { id },
+	});
+	const singleRequest = data && data.fetchOneRequest;
 	return (
 		<Wrapper>
 			<DashboardLayout>
@@ -46,17 +84,24 @@ function startPickup(props) {
 						Requests
 					</LinkMaterial>
 					<LinkMaterial className="crumbs" color="textPrimary" href="#">
-						Request 00439
+						Request {loading ? 'loading' : singleRequest._id}
 					</LinkMaterial>
 				</Breadcrumbs>
 
 				<UserDetailCard
+					userName={singleRequest && singleRequest.user.email}
+					userId={singleRequest && singleRequest.user._id}
 					top={
 						<>
 							<p className="date">Monday, June 2, 2020</p>
 							<div className="buttons flex wrap">
 								<p className="cancel pink">Cancel</p>
-								<p className="reschedule pink">Reschedule</p>
+								<p
+									className="reschedule pink"
+									onClick={() => alert('coming soon')}
+								>
+									Reschedule
+								</p>
 								<Link
 									href={{ pathname: '/requests/sendPickup', query: { id } }}
 								>
@@ -71,40 +116,60 @@ function startPickup(props) {
 							<div className="rhs">
 								<div className="list grid first">
 									<p className="text">Items to deliver</p>
-									<p className="text bold">5</p>
+									<p className="text bold">
+										{singleRequest && singleRequest.numberOfItems}
+									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Type</p>
-									<p className="text bold">On Demand</p>
+									<p className="text bold">
+										{singleRequest && singleRequest.type}
+									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Location</p>
-									<p className="text bold">12 Bounty Lane, DC</p>
+									<p className="text bold">
+										{singleRequest && singleRequest.pickupLocation.location}
+									</p>
 								</div>
 							</div>
 							<div className="rhs">
 								<div className="list grid first">
 									<p className="text">Delivery Date</p>
-									<p className="text bold">5/10/2020</p>
+									<p className="text bold">
+										{singleRequest &&
+											singleRequest.datetimePicked.substring(0, 10)}
+									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Phone Number</p>
-									<p className="text bold">0888800000000</p>
+									<p className="text bold">
+										{singleRequest && singleRequest.contactPhoneNumber}
+									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Subscription</p>
-									<p className="text bold">Plus+</p>
+									<p className="text bold">
+										{singleRequest &&
+											singleRequest.user.currentSubscriptionPlan.name}
+									</p>
 								</div>
 							</div>
 						</>
 					}
 					buttons={
-						<Link href="/clients/client">
+						<Link
+							href={{
+								pathname: '/clients/client',
+								query: { id: `${singleRequest && singleRequest.user._id}` },
+							}}
+						>
 							<p className="pink">View Client</p>
 						</Link>
 					}
 					weight="value"
-					text="User has requested to checkout 5 items from their closet"
+					text={`User has requested to checkout ${singleRequest &&
+						singleRequest.numberOfItems} items from their closet`}
 				/>
 			</DashboardLayout>
 		</Wrapper>

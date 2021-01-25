@@ -315,7 +315,7 @@ function client(props) {
 								<div className="list grid">
 									<p className="text">Joined</p>
 									<p className="text bold">
-										{loading ? 'loading' : userById.createdAt.substring(0, 10)}
+										{loading ? 'loading' : userById.createdAt !== null ? userById.createdAt.substring(0, 10) : ''}
 									</p>
 								</div>
 								<div className="list grid">
