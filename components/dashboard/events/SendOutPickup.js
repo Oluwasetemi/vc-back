@@ -16,20 +16,20 @@ const Wrapper = styled.div`
 	}
 `;
 
-const ACCEPT_PICKUP_REQUEST = gql`
-	mutation ACCEPT_PICKUP_REQUEST($id: ID) {
+const SEND_OUT_PICKUP_REQUEST = gql`
+	mutation SEND_OUT_PICKUP_REQUEST($id: ID) {
 		sendOutPickup(id: $id) {
 			message
 		}
 	}
 `;
 
-export default function SendOutPickup({ id }) {
+export default function SendOutPickup({ id, move }) {
 	const router = useRouter();
-	const [acceptPickup, { loading, error }] = useMutation(
-		ACCEPT_PICKUP_REQUEST,
+	const [sendOutPickup, { loading, error }] = useMutation(
+		SEND_OUT_PICKUP_REQUEST,
 		{
-			variables: { id, bookingId },
+			variables: { id },
 		},
 	);
 	return (
@@ -39,20 +39,17 @@ export default function SendOutPickup({ id }) {
 				onClick={async () => {
 					try {
 						// call the acceptPickup mutation
-						const res = await acceptPickup();
+						const res = await sendOutPickup();
 
 						console.log(res);
-						alert('successful');
-						router.push({
-							pathname: '/requests/startPickup',
-							query: { id },
-						});
+						alert('Pick sent out successfully');
+						move();
 					} catch (error) {
 						alert(error.message);
 					}
 				}}
 			>
-				<p>Accept{loading ? 'ing' : ''}</p>
+				<p>Send{loading ? 'ing' : ''} out Pick</p>
 			</button>
 		</Wrapper>
 	);

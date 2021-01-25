@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -7,12 +8,14 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import UserDetailCard from '../../components/dashboard/common/UserDetailCard';
 import InventoryReportsTab from '../../components/dashboard/events/request/InventoryReportsTab';
+import SendOutPickup from '../../components/dashboard/events/SendOutPickup';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-
+import { SINGLE_REQUEST } from './pickupRequest';
 
 const Wrapper = styled.div`
 	.bread-crumbs {
@@ -259,6 +262,13 @@ function TabPanel(props) {
 }
 
 const sendPickup = props => {
+	const { query } = useRouter();
+	// fetch the id from the page
+	const { id } = query;
+	const { error, loading, data } = useQuery(SINGLE_REQUEST, {
+		variables: { id },
+	});
+	const singleRequest = data && data.fetchOneRequest;
 	const [value, setValue] = React.useState(0);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -285,7 +295,7 @@ const sendPickup = props => {
 						Requests
 					</LinkMaterial>
 					<LinkMaterial className="crumbs" color="textPrimary" href="#">
-						Request 00439
+						{loading ? 'loading' : singleRequest._id}
 					</LinkMaterial>
 				</Breadcrumbs>
 
@@ -297,9 +307,7 @@ const sendPickup = props => {
 								<Link href="/requests/startPickup">
 									<p className="accept pink"> Back</p>
 								</Link>
-								<p className="accept red" onClick={() => setValue(1)}>
-									Send out Pickup
-								</p>
+								<SendOutPickup id={id} move={() => setValue(1)} />
 							</div>
 						</div>
 					</TabPanel>
@@ -405,29 +413,49 @@ const sendPickup = props => {
 								<div className="rhs">
 									<div className="list grid first">
 										<p className="text">Items to deliver</p>
-										<p className="text bold">5</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.numberOfItems}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Type</p>
-										<p className="text bold">On Demand</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.type}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Location</p>
-										<p className="text bold">12 Bounty Lane, DC</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.pickupLocation.location}
+										</p>
 									</div>
 								</div>
 								<div className="rhs">
 									<div className="list grid first">
-										<p className="text">Delivery Date</p>
-										<p className="text bold">5/10/2020</p>
+										<p className="text">
+											{loading ? 'loading' : singleRequest.type} Date
+										</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.datetimePicked.substring(0, 10)}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Phone Number</p>
-										<p className="text bold">0888800000000</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.contactPhoneNumber}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Subscription</p>
-										<p className="text bold">Plus+</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.user.currentSubscriptionPlan.name}
+										</p>
 									</div>
 								</div>
 							</>

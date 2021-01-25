@@ -2,6 +2,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import UserDetailCard from '../../components/dashboard/common/UserDetailCard';
@@ -20,6 +21,9 @@ const Wrapper = styled.div`
 	}
 `;
 function startPickup(props) {
+	const { query } = useRouter();
+	// fetch the id from the page
+	const { id } = query;
 	return (
 		<Wrapper>
 			<DashboardLayout>
@@ -53,7 +57,9 @@ function startPickup(props) {
 							<div className="buttons flex wrap">
 								<p className="cancel pink">Cancel</p>
 								<p className="reschedule pink">Reschedule</p>
-								<Link href="/requests/sendPickup">
+								<Link
+									href={{ pathname: '/requests/sendPickup', query: { id } }}
+								>
 									<p className="accept red">Start Pickup</p>
 								</Link>
 							</div>

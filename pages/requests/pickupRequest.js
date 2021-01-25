@@ -96,3 +96,4 @@ const pickupRequest = props => {
 pickupRequest.propTypes = {};
 
 export default pickupRequest;
+export { SINGLE_REQUEST };
