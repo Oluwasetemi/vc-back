@@ -13,6 +13,8 @@ import shirt from "../../public/assets/shirt.png";
 import tie from "../../public/assets/tie.png";
 import { useRouter } from 'next/router';
 import SingleRequest from "../../components/dashboard/events/request/SingleRequest";
+import { useQuery } from '@apollo/client';
+import gql from 'graphql-tag';
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -116,10 +118,44 @@ overflow-y: hidden;
     margin: 18px 0 10px 0;
   }
 `;
+
+const SINGLE_REQUEST = gql`
+	query SINGLE_REQUEST($id: ID!) {
+		fetchOneRequest(id: $id) {
+			_id
+			numberOfItems
+			type
+			pickupLocation {
+				_id
+				location
+			}
+			user {
+				_id
+				currentSubscriptionPlan {
+					_id
+					amount
+					services {
+						storage
+					}
+				}
+			}
+			bookingId
+			datetimePicked
+			contactPhoneNumber
+			status
+			createdAt
+			updatedAt
+		}
+	}
+`;
 function deliveryRequest(props) {
   const {query} = useRouter()
   // fetch the id from the page
   const id = query.id;
+  const { error, loading, data } = useQuery(SINGLE_REQUEST, {
+		variables: { id },
+	});
+	const singleRequest = data && data.fetchOneRequest;
   return (
     <Wrapper>
       <DashboardLayout>
@@ -142,7 +178,7 @@ function deliveryRequest(props) {
             Requests
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Request 00439
+            Request {loading ? 'loading' : singleRequest._id}
           </LinkMaterial>
         </Breadcrumbs>
 
@@ -155,8 +191,18 @@ function deliveryRequest(props) {
               <div className="product">
                 <div className="image image1"></div>
               </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
+              <p className="name text">{loading
+										? 'loading'
+										: singleRequest.closet &&
+										  singleRequest.closet.items &&
+										  singleRequest.closet.items.length > 0 &&
+										  singleRequest.closet.items[0].name}</p>
+              <p className="id text">ID: 	{loading
+										? 'loading'
+										: singleRequest.closet &&
+										  singleRequest.closet.items &&
+										  singleRequest.closet.items.length > 0 &&
+										  singleRequest.closet.items[0]._id.substring(0, 7)}</p>
             </div>
             <div className="grid-items">
               <div className="product">
