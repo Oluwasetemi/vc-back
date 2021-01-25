@@ -1,11 +1,12 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -83,7 +84,31 @@ const Wrapper = styled.div`
   }
 `;
 
+const SINGLE_SUBSCRIPTION = gql`
+  query SINGLE_SUBSCRIPTION {
+    fetchOneSubscription(id: "5ff70bec448be7578376177d") {
+      _id
+      name
+      amount
+      services {
+        storage
+        accessories
+        shoes
+        helpMePack
+        stylist
+        vault
+        note
+      }
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
 function subscriptions(props) {
+  const { error, loading, data } = useQuery(SINGLE_SUBSCRIPTION);
+
   return (
     <Wrapper>
       <DashboardLayout>
@@ -95,12 +120,10 @@ function subscriptions(props) {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Subscriptions
           </LinkMaterial>
         </Breadcrumbs>
-
         <div className="grid">
           <div className="grid-item">
             <div className="head flex platinum">

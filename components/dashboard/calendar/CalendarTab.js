@@ -2,12 +2,18 @@ import AppBar from "@material-ui/core/AppBar";
 import Box from "@material-ui/core/Box";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SimpleTable from "../../common/SimpleTable";
-import { activeModalEventData, allModalEventData, deliveryModalEventData, laundryModalEventData, pickupModalEventData, requestModalEventData } from "../../dashboard/calendar/modalEventData";
-import { modalEventTableConstants } from "../../dashboard/calendar/modalEventTableConstants";
-
+import {
+  allModalEventData,
+  activeModalEventData,
+  deliveryModalEventData,
+  requestModalEventData,
+  laundryModalEventData,
+  pickupModalEventData,
+} from "../../dashboard/calendar/modalEventData";
+import { modalEventTableConstants } from "./modalEventTableConstants";
 
 const Wrapper = styled.div`
   .MuiAppBar-colorPrimary {
@@ -18,8 +24,9 @@ const Wrapper = styled.div`
     padding: 0 23px;
   }
   .MuiTab-root {
-    font-family: Matteo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: Matteo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+      sans-serif;
   }
   .MuiTab-wrapper {
     font-weight: 500;

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Button from "../../common/Button";
 import CalendarTab from "./CalendarTab";
 
+
 const Wrapper = styled.div`
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -46,6 +47,7 @@ const Wrapper = styled.div`
 `;
 
 export default function CalendarModal() {
+
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [open, setOpen] = React.useState(false);
 
@@ -60,7 +62,7 @@ export default function CalendarModal() {
   const body = (
     <Wrapper>
       <h2 id="title">Monday, June 2, 2020</h2>
-      <CalendarTab />
+      <CalendarTab/>
       <Link className="btn" href="/calendar/allEvents">
         <Button theme="pinkBtn">View All</Button>
       </Link>

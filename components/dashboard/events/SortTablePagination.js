@@ -187,32 +187,7 @@ export default function SortTablePagination({ rows, linkText,linkTo, paper, head
           e._id.toString().toLowerCase().includes(searchValue.toLowerCase())) ||
         (e.email &&
           e.email.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.name && e.name.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.location &&
-          e.location.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.type &&
-          e.type.toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.zipCode &&
-          e.zipCode
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.noOfItems &&
-          e.noOfItems
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.date &&
-          e.date
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.createdAt &&
-          e.createdAt
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase()))
+        (e.name && e.name.toLowerCase().includes(searchValue.toLowerCase()))
       );
     });
     setFilterData(filteredDatas);
@@ -233,6 +208,11 @@ export default function SortTablePagination({ rows, linkText,linkTo, paper, head
               {filterData.map((row, index) => {
                 return (
                   <TableRow hover tabIndex={-1} key={row._id}>
+                    {row.bookingId && (
+                      <TableCell component="th" scope="row" padding="none">
+                        {row.bookingId.substring(0, 7)}
+                      </TableCell>
+                    )}
                     {row.userId && (
                       <TableCell component="th" scope="row" padding="none">
                         {row.userId}
@@ -257,9 +237,6 @@ export default function SortTablePagination({ rows, linkText,linkTo, paper, head
                     ) : (
                       <TableCell> </TableCell>
                     )}
-                    {/* { <TableCell>{row.noOfItems}</TableCell>}
-                    {  <TableCell>{row.createdAt}</TableCell>} */}
-
                     {row.location && <TableCell>{row.location}</TableCell>}
                     {row.date &&<TableCell>{row.date}</TableCell>}
                     {row.joined && <TableCell>{row.joined}</TableCell>}

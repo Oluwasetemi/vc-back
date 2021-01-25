@@ -37,15 +37,16 @@ const Wrapper = styled.div`
   }
 `;
 
-function Button({ style, theme, isLoading, children, text, title, ...rest }) {
+function Button({ style, theme, isLoading,disabled, children, text, title, ...rest }) {
   const themeClassName = theme ? `${theme}Btn` : "";
   return (
     <Wrapper>
       <button
-        disabled={isLoading}
+        disabled={disabled}
         type="button"
         className={`${themeClassName} ${theme} button`}
         title={title}
+      
         style={{
           borderRadius: "9px",
           fontSize: "14px",
@@ -72,6 +73,7 @@ function Button({ style, theme, isLoading, children, text, title, ...rest }) {
 
 Button.defaultProps = {
   isLoading: false,
+  disabled: false,
 };
 
 Button.propTypes = {

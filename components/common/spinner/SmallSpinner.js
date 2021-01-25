@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   .MuiCircularProgress-indeterminate {
     width: 15px !important;
     height: 15px !important;
-    color: ${(props) => props.theme.color.brand_02};
+    color: gray;
   }
 `;
 

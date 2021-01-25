@@ -11,6 +11,7 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
+import AmountConverter from "../../components/common/AmountConverter";
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -214,7 +215,7 @@ function paymentHistory(props) {
                   <TableRow key={item.id}>
                     <TableCell>{item.id.substring(0, 8)}</TableCell>
                     <TableCell>{item.email}</TableCell>
-                    <TableCell>${item.amount}</TableCell>
+                    <TableCell>{AmountConverter(item.amount)}</TableCell>
                     <TableCell>{item.created}</TableCell>
                     <TableCell>
                         <span className="status">{item.paymentType}</span>

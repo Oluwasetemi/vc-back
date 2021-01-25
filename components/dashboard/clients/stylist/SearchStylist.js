@@ -11,9 +11,12 @@ const Wrapper = styled.div`
     border: 1px solid #9c9b7c;
     border-radius: 10px;
     padding: 3px 15px;
-    width: 300px;
+    max-width: 30%;
+    display: flex;
+    overflow: hidden;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
       position: relative;
+      width: 300px;
       margin-left: auto;
     }
     @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {

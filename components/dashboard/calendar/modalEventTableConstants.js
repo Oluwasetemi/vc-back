@@ -8,7 +8,7 @@ export const modalEventTableConstants = () => {
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["id"]}</span>;
+        return <span>{rowData["_id"].substring(0,5)}</span>;
       },
     },
     {
@@ -20,13 +20,13 @@ export const modalEventTableConstants = () => {
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["Items"]}</span>;
+        return <span>{rowData["numberOfItems"]}</span>;
       },
     },
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["Created"]}</span>;
+        return <span>{rowData["createdAt"].substring(0,10)}</span>;
       },
     },
 

@@ -5,6 +5,7 @@ import { Paper, TableBody, TableRow, TableCell } from "@material-ui/core";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import Button from "../components/common/Button";
+import AmountConverter from "../components/common/AmountConverter";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
@@ -42,9 +43,12 @@ const Wrapper = styled.div`
     border: 1px solid #9c9b7c;
     border-radius: 10px;
     padding: 3px 15px;
-    width: 300px;
+    max-width: 30%;
+    display: flex;
+    overflow: hidden;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
       position: relative;
+      width: 300px;
       margin-left: auto;
     }
     @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
@@ -73,12 +77,12 @@ const Wrapper = styled.div`
     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
       padding-top: 20px;
     }
-   
+
     &::-webkit-scrollbar {
-      height: .4rem;
+      height: 0.4rem;
     }
-      &::-webkit-scrollbar-thumb {
-      background-color: #F26144;
+    &::-webkit-scrollbar-thumb {
+      background-color: #f26144;
       border-radius: 0.5rem;
     }
   }
@@ -130,7 +134,6 @@ const Wrapper = styled.div`
   .MuiTableRow-root.Mui-selected:hover {
     background-color: rgba(0, 0, 0, 0);
   }
- 
 
   table {
     width: 100%;
@@ -189,12 +192,13 @@ const headCells = [
   { id: "link", label: "" },
 ];
 function payments(props) {
-	const { value } = props;
+  const { value } = props;
 
   const { error, loading, data } = useQuery(ALL_PAYMENTS);
   const [records, setRecords] = useState(
     data && data.fetchAllPaymentFromStripe.results
   );
+
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -230,7 +234,7 @@ function payments(props) {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-        
+
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
             Payments
           </LinkMaterial>
@@ -239,7 +243,6 @@ function payments(props) {
           <img src={searchIcon} alt="searchIcon" />
           <input placeholder="Search" onChange={handleSearch} value={value} />
         </div>
-
         {loading ? (
           <p>loading</p>
         ) : error ? (
@@ -254,11 +257,11 @@ function payments(props) {
                     <TableCell>{item.id.substring(0, 8)}</TableCell>
                     <TableCell>{item.email}</TableCell>
                     <TableCell>{item.username}</TableCell>
-                    <TableCell>${item.amount}</TableCell>
-					<TableCell>{item.created}</TableCell>
+                    <TableCell>{AmountConverter(item.amount)}</TableCell>
+                    <TableCell>{item.created}</TableCell>
                     <TableCell>
-                        <span className="status">{item.paymentType}</span>
-                      </TableCell>
+                      <span className="status">{item.paymentType}</span>
+                    </TableCell>
                     <TableCell>
                       {" "}
                       <Link className="btn" href="/payments">
