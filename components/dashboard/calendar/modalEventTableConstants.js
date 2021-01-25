@@ -14,13 +14,13 @@ export const modalEventTableConstants = () => {
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["user"].email}</span>;
+        return <span>{rowData["User Email"]}</span>;
       },
     },
     {
       title: "",
       render: (rowData) => {
-        return <span>{rowData["numberOfItems"]} Items</span>;
+        return <span>{rowData["numberOfItems"]}</span>;
       },
     },
     {

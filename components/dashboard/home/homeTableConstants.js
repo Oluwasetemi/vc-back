@@ -8,44 +8,50 @@ export const homeTableConstants = () => {
     {
       title: "ID",
       render: (rowData) => {
-        return <span>{rowData["id"]}</span>;
+        return <span>{rowData["_id"].substring(0,7)}</span>;
       },
     },
     {
       title: "USER EMAIL",
       render: (rowData) => {
-        return <span>{rowData["User Email"]}</span>;
+        return <span>{rowData["user"].email}</span>;
       },
     },
     {
       title: "USER NAME",
       render: (rowData) => {
-        return <span>{rowData["User Name"]}</span>;
+        return <span>{rowData["user"].name}</span>;
       },
     },
     {
       title: "TYPE",
       render: (rowData) => {
-        return <span>{rowData["Type"]}</span>;
+        return <span>{rowData["type"]}</span>;
       },
     },
     {
       title: "CREATED",
       render: (rowData) => {
-        return <span>{rowData["Created"]}</span>;
+        return <span>{rowData["createdAt"].substring(0,10)}</span>;
       },
     },
     {
       title: "STATUS",
       render: (rowData) => {
-        return <span className="status">{rowData["Status"]}</span>;
+        return <span className="status">{rowData["status"]}</span>;
       },
     },
     {
       title: "",
       render: (rowData) => {
         return (
-          <Link className="btn" href="/">
+          <Link className="btn" href={{
+            pathname: `/requests/${rowData["type"].toLowerCase()}Request`,
+            query: {
+              type: ["type"],
+              id: rowData["_id"],
+            },
+          }}>
             <Button theme="pinkBtn">View</Button>
           </Link>
         );

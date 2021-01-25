@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../../../components/common/Button";
 import useTable from "../../../components/common/table/useTable";
+import searchIcon from "../../../public/assets/searchIcon.svg";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+
+`;
 const headCells = [
   { id: "user._id", label: "USER ID" },
   { id: "user.name", label: "USER NAME" },
@@ -15,9 +18,10 @@ const headCells = [
   { id: "type", label: "TYPE" },
   { id: "link", label: "" },
 ];
-function AllEvents({ error, loading, data }) {
-  const [records, setRecords] = useState(data && data.fetchAllRequest.data);
+function AllEvents({ error, loading, data }, ...props) {
+  const { value } = props;
 
+  const [records, setRecords] = useState(data && data.fetchAllRequest.data);
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -30,14 +34,30 @@ function AllEvents({ error, loading, data }) {
     recordsAfterPagingAndSorting,
   } = useTable(records, headCells, filterFn);
 
+  const handleSearch = (e) => {
+    let target = e.target;
+    setFilterFn({
+      fn: (items) => {
+        if (target.value == "") return items;
+        else
+          return items.filter((x) =>
+            x._id.toLowerCase().includes(target.value) || x.type.toLowerCase().includes(target.value)
+          );
+      },
+    });
+  };
   return (
     <Wrapper>
-      {loading ? (
+    <div className="searchbar">
+          <img src={searchIcon} alt="searchIcon" />
+          <input placeholder="Search" onChange={handleSearch} value={value} />
+        </div>
+        <div className="paper">
+        {loading ? (
         <p>loading</p>
       ) : error ? (
         <p>Fetching failed</p>
-      ) : data ? (
-        <div className="paper">
+      ) : data ? (<>
           <TblContainer>
             <TblHead />
             <TableBody>
@@ -72,11 +92,12 @@ function AllEvents({ error, loading, data }) {
               ))}
             </TableBody>
           </TblContainer>
-          <TblPagination />
+          <TblPagination /></>
+          ) : (
+            ""
+          )}
         </div>
-      ) : (
-        ""
-      )}
+      
     </Wrapper>
   );
 }

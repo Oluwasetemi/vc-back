@@ -10,6 +10,40 @@ import DashboardLayout from "@components/layout/DashboardLayout";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
+import {AllEvents} from '../components/dashboard/events/AllEvents'
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
+
+const ALL_REQUEST = gql`
+  query ALL_REQUEST {
+    fetchAllRequest(first: 4, sort: descending, type: All) {
+		total
+		data {
+		  _id
+		  numberOfItems
+		  type
+		  pickupLocation {
+      _id
+      location
+		  }
+		  user {
+      _id
+      name
+      email
+			currentSubscriptionPlan {
+			  _id
+			}
+		  }
+		  bookingId
+		  datetimePicked
+		  contactPhoneNumber
+		  status
+		  createdAt
+		  updatedAt
+		}
+	  }
+  }
+`;
 
 const Wrapper = styled.div`
 .bread-crumbs{
@@ -59,6 +93,7 @@ line-height: 32px;
   }
 `;
 function Dashboard(props) {
+  const { error, loading, data } = useQuery(ALL_REQUEST);
   return (
     <Wrapper>
       <DashboardLayout>
@@ -141,9 +176,14 @@ function Dashboard(props) {
                   View All
                 </Link>
 			  </div>
+        {loading ? (
+          <p>loading</p>
+        ) : error ? (
+          <p>Fetching failed</p>
+        ) : data ? (
 
-        <SimpleTable cols={homeTableConstants()} data={smallHomeTableData}/>
-
+        <SimpleTable cols={homeTableConstants()} data={data.fetchAllRequest.data}/>
+        ):'NO DATA'}
 			  </div>
         </section>
       </DashboardLayout>

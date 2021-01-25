@@ -16,7 +16,7 @@ const headCells = [
   { id: "type", label: "TYPE" },
   { id: "link", label: "" },
 ];
-function AllRequest({error, loading, data}, ...props) {
+function ActiveRequest({error, loading, data}, ...props) {
   const { value } = props;
 
 	const [records, setRecords] = useState(
@@ -34,8 +34,6 @@ function AllRequest({error, loading, data}, ...props) {
 		TblPagination,
 		recordsAfterPagingAndSorting,
 	  } = useTable(records, headCells, filterFn);
-  
-    
     const handleSearch = (e) => {
       let target = e.target;
       setFilterFn({
@@ -63,7 +61,8 @@ function AllRequest({error, loading, data}, ...props) {
             <TblContainer>
               <TblHead />
               <TableBody>
-                {recordsAfterPagingAndSorting().map((item) => (
+                {recordsAfterPagingAndSorting().map((item) => {
+					return item.status === "Active" && (
                   <TableRow key={item._id}>
                     <TableCell>{item.user._id.substring(0, 8)}</TableCell>
                     <TableCell>{item.user.name}</TableCell>
@@ -85,18 +84,19 @@ function AllRequest({error, loading, data}, ...props) {
                     </TableCell> 
                    
                   </TableRow>
-                ))}
+				  ) 
+                })}
               </TableBody>
             </TblContainer>
             <TblPagination />
           </div>
         ) : (
-          ""
+          "no data"
         )}
     </>
   );
 }
 
-AllRequest.propTypes = {};
+ActiveRequest.propTypes = {};
 
-export {AllRequest};
+export {ActiveRequest};

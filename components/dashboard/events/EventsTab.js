@@ -6,46 +6,16 @@ import React from "react";
 import styled from "styled-components";
 import {
   activeEventsData,
-  allEventsData,
   laundryEventsData,
-  pickupStorageEventsData,
 } from "./EventsTableData";
 import RequestTab from "./RequestTab";
 import SortTablePagination from "./SortTablePagination";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import {AllEvents} from '../events/AllEvents'
-
-const ALL_REQUEST = gql`
-  query ALL_REQUEST {
-    fetchAllRequest(first: 12, sort: descending, type: All) {
-		total
-		data {
-		  _id
-		  numberOfItems
-		  type
-		  pickupLocation {
-      _id
-      location
-		  }
-		  user {
-      _id
-      name
-      email
-			currentSubscriptionPlan {
-			  _id
-			}
-		  }
-		  bookingId
-		  datetimePicked
-		  contactPhoneNumber
-		  status
-		  createdAt
-		  updatedAt
-		}
-	  }
-  }
-`;
+import {DeliveryRequest} from '../events/request/DeliveryRequest'
+import {PickupRequest} from '../events/request/PickupRequest'
+import {ActiveRequest} from '../events/request/ActiveRequest'
 
 const Wrapper = styled.div`
   .MuiAppBar-colorPrimary {
@@ -93,6 +63,38 @@ const Wrapper = styled.div`
   .no-bg {
     background-color: transparent !important;
     box-shadow: none !important;
+  }
+  .searchbar {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    background: #ffffff;
+    border: 1px solid #9c9b7c;
+    border-radius: 10px;
+    padding: 3px 15px;
+    max-width: 30%;
+    display: flex;
+    overflow: hidden;
+    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+      position: relative;
+      width: 300px;
+      margin-left: auto;
+    }
+    @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+      width: fit-content;
+    }
+
+    &:focus-within {
+      border: 1px solid #f26144;
+    }
+    input {
+      outline: none;
+      border: none;
+      font-size: 14px;
+      line-height: 24px;
+      font-family: "Matteo";
+      padding-left: 8px;
+    }
   }
   .paper {
     background: #FFFFFF;
@@ -190,6 +192,37 @@ border-radius: 10px;
   }
 `;
 
+const ALL_REQUEST = gql`
+  query ALL_REQUEST {
+    fetchAllRequest(first: 12, sort: descending, type: All) {
+		total
+		data {
+		  _id
+		  numberOfItems
+		  type
+		  pickupLocation {
+      _id
+      location
+		  }
+		  user {
+      _id
+      name
+      email
+			currentSubscriptionPlan {
+			  _id
+			}
+		  }
+		  bookingId
+		  datetimePicked
+		  contactPhoneNumber
+		  status
+		  createdAt
+		  updatedAt
+		}
+	  }
+  }
+`;
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
@@ -248,28 +281,24 @@ export default function EventsTab() {
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <SortTablePagination
-          paper="paper"
-          rows={activeEventsData}
-          headCells={headCells}
-        />
+      {loading ? (
+        <p>loading</p>
+      ) : error ? (
+        <p>Fetching failed</p>
+      ) : data ? (
+      <ActiveRequest error={error} loading={loading} data= {data}/>
+      ):"no data"}
       </TabPanel>
       <TabPanel value={value} index={2}>
         <RequestTab error={error} loading={loading} data= {data}/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <SortTablePagination
-          paper="paper"
-          rows={activeEventsData}
-          headCells={headCells}
-        />
+      <DeliveryRequest error={error} loading={loading} data= {data}/>
+
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <SortTablePagination
-          paper="paper"
-          rows={pickupStorageEventsData}
-          headCells={headCells3}
-        />
+      <PickupRequest error={error} loading={loading} data= {data}/>
+
       </TabPanel>
       <TabPanel value={value} index={5}>
         <SortTablePagination

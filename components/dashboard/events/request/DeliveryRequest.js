@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Button from "../../../../components/common/Button";
 import useTable from "../../../../components/common/table/useTable";
+import searchIcon from "../../../../public/assets/searchIcon.svg";
 
 const headCells = [
   { id: "_id", label: "USER ID" },
@@ -13,7 +14,8 @@ const headCells = [
   { id: "type", label: "TYPE" },
   { id: "link", label: "" },
 ];
-function DeliveryRequest({ error, loading, data }) {
+function DeliveryRequest({ error, loading, data} , ...props) {
+  const { value } = props;
   const [records, setRecords] = useState(data && data.fetchAllRequest.data);
 
   const [filterFn, setFilterFn] = useState({
@@ -28,8 +30,24 @@ function DeliveryRequest({ error, loading, data }) {
     recordsAfterPagingAndSorting,
   } = useTable(records, headCells, filterFn);
 
+  const handleSearch = (e) => {
+    let target = e.target;
+    setFilterFn({
+      fn: (items) => {
+        if (target.value == "") return items;
+        else
+          return items.filter((x) =>
+            x._id.toLowerCase().includes(target.value) || x.createdAt.toLowerCase().includes(target.value)
+          );
+      },
+    });
+  };
   return (
     <>
+    <div className="searchbar">
+          <img src={searchIcon} alt="searchIcon" />
+          <input placeholder="Search" onChange={handleSearch} value={value} />
+        </div>
       {loading ? (
         <p>loading</p>
       ) : error ? (
@@ -40,7 +58,7 @@ function DeliveryRequest({ error, loading, data }) {
             <TblHead />
             <TableBody>
               {recordsAfterPagingAndSorting().map((item) => {
-                return item.type === "Delivery" ? (
+                return item.type === "Delivery" && (
                   <TableRow key={item._id}>
                     <TableCell>{item._id.substring(0, 8)}</TableCell>
                     <TableCell>{item.user.name}</TableCell>
@@ -68,16 +86,14 @@ function DeliveryRequest({ error, loading, data }) {
                       </Link>
                     </TableCell>
                   </TableRow>
-                ) : (
-                  ""
-                );
+                ) 
               })}
             </TableBody>
           </TblContainer>
           <TblPagination />
         </div>
       ) : (
-        ""
+        "no-data"
       )}
     </>
   );

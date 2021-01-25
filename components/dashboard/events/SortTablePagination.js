@@ -187,32 +187,7 @@ export default function SortTablePagination({ rows, linkText,linkTo, paper, head
           e._id.toString().toLowerCase().includes(searchValue.toLowerCase())) ||
         (e.email &&
           e.email.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.name && e.name.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.location &&
-          e.location.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.type &&
-          e.type.toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.zipCode &&
-          e.zipCode
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.noOfItems &&
-          e.noOfItems
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.date &&
-          e.date
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase())) ||
-        (e.createdAt &&
-          e.createdAt
-            .toString()
-            .toLowerCase()
-            .includes(searchValue.toLowerCase()))
+        (e.name && e.name.toLowerCase().includes(searchValue.toLowerCase()))
       );
     });
     setFilterData(filteredDatas);

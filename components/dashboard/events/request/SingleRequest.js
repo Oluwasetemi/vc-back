@@ -59,6 +59,7 @@ function SingleRequest(props) {
             </div>
           </>
         }
+        initials="JT"
         userId={data.fetchOneRequest.user._id.substring(0, 7)}
         userName={data.fetchOneRequest.user.email}
         fullDetail={

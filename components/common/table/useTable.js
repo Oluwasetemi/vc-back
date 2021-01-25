@@ -11,7 +11,7 @@ import React, { useState } from "react";
 export default function useTable(records, headCells, filterFn) {
   const pages = [5, 10, 25];
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(pages[page]);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
   const [order, setOrder] = useState();
   const [orderBy, setOrderBy] = useState();
 
@@ -67,9 +67,9 @@ export default function useTable(records, headCells, filterFn) {
       page={page}
       rowsPerPageOptions={pages}
       rowsPerPage={rowsPerPage}
-      count={records.length}
+      count={records && records.length}
       onChangePage={handleChangePage}
-      onChangeRowsPerPage={handleChangeRowsPerPage}
+      // onChangeRowsPerPage={handleChangeRowsPerPage}
     />
   );
 

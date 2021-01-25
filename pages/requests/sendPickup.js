@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
@@ -12,13 +12,8 @@ import Box from "@material-ui/core/Box";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import UserDetailCard from "../../components/dashboard/common/UserDetailCard";
-import {
-  TextInput,
-  SelectInput,
-  Textarea,
-  CheckboxInput,
-} from "../../components/dashboard/inputs";
 
+import InventoryReportsTab from '../../components/dashboard/events/request/InventoryReportsTab'
 const Wrapper = styled.div`
   .bread-crumbs {
     margin: 30px 0 10px 0;
@@ -36,7 +31,7 @@ const Wrapper = styled.div`
     border-radius: 10px;
     padding: 21px 41px;
     position: relative;
-    z-index:2221;
+    z-index: 2221;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
       padding: 21px;
     }
@@ -63,7 +58,11 @@ const Wrapper = styled.div`
       visibility: visible;
     }
   }
-  .MuiTabs-flexContainer {
+  .ml-0 {
+    margin-left: 0 !important;
+  }
+  .MuiTabs-flexContainer,
+  .j-btw {
     justify-content: space-between;
   }
   .MuiTab-wrapper {
@@ -171,7 +170,7 @@ const Wrapper = styled.div`
       transition: 0.3s;
     }
   }
- 
+
   .grid-4 {
     display: grid;
     grid-gap: 28px;
@@ -240,52 +239,27 @@ const Wrapper = styled.div`
     color: #f26144;
     text-decoration: underline;
   }
-  .checkbox h2{
+  .checkbox h2 {
     font-weight: 600;
-font-size: 18px;
-line-height: 24px;
-color: #4B6962;
-margin: 39px 0 9px 0;
+    font-size: 18px;
+    line-height: 24px;
+    color: #4b6962;
+    margin: 39px 0 9px 0;
   }
-  .checked .MuiFormControlLabel-root{
+  .checked .MuiFormControlLabel-root {
     margin-left: 0;
+  }
+  .op-4 {
+    opacity: 0.4;
   }
 `;
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
 }
-const optionItemType = [
-  { value: "Shirt", text: "Shirt" },
-  { value: "Blouse", text: "Blouse" },
-];
-const optionItemCategory = [
-  { value: "Short Sleeve", text: "Short Sleeve" },
-  { value: "Long Sleeve", text: "Long Sleeve" },
-];
-const optionItemMaterial = [
-  { value: "Cotton", text: "Cotton" },
-  { value: "Satin", text: "Satin" },
-];
-const optionCategory = [
-  { value: "Corporate", text: "Corporate" },
-  { value: "Casual", text: "Casual" },
-];
+
 
 const sendPickup = (props) => {
-  const [itemId, setItemId] = useState("0000000");
-  const [itemType, setItemType] = useState("");
-  const [itemCategory, setItemCategory] = useState("");
-  const [itemTag, setItemTag] = useState("1234567");
-  const [itemFeature, setItemFeature] = useState("");
-  const [itemMaterial, setItemMaterial] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [itemColor, setItemColor] = useState("Blue");
-  const [category, setCategory] = useState("");
-  const [itemBrand, setItemBrand] = useState("LV");
-  const [itemCondition, setItemCondition] = useState(
-    "Describe the condition of the item"
-  );
 
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -302,10 +276,14 @@ const sendPickup = (props) => {
           <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
             Home
           </LinkMaterial>
-          <LinkMaterial className="crumbs"  color="inherit" href="/calendar">
+          <LinkMaterial className="crumbs" color="inherit" href="/calendar">
             Calendar
           </LinkMaterial>
-          <LinkMaterial  className="crumbs"  color="inherit" href="/calendar/allEvents">
+          <LinkMaterial
+            className="crumbs"
+            color="inherit"
+            href="/calendar/allEvents"
+          >
             Requests
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
@@ -321,7 +299,9 @@ const sendPickup = (props) => {
                 <Link href="/requests/startPickup">
                   <p className="accept pink"> Back</p>
                 </Link>
-                <p className="accept red" onClick={() => setValue(1)}>Send out Pickup</p>
+                <p className="accept red" onClick={() => setValue(1)}>
+                  Send out Pickup
+                </p>
               </div>
             </div>
           </TabPanel>
@@ -334,7 +314,9 @@ const sendPickup = (props) => {
                   Reschedule
                 </p>
 
-                <p className="accept red" onClick={() => setValue(2)}>Confirm Pickup</p>
+                <p className="accept red" onClick={() => setValue(2)}>
+                  Confirm Pickup
+                </p>
               </div>
             </div>
           </TabPanel>
@@ -342,12 +324,9 @@ const sendPickup = (props) => {
             <div className="flex paper-top-head wrap">
               <p className="date">Pickup</p>
               <div className="buttons flex wrap">
-                <p className="accept pink" onClick={() => setValue(1)}>
-                  {" "}
-                  Back
-                </p>
+                <p className="accept pink op-4"> Back</p>
 
-                <p className="accept red" onClick={() => setValue(3)}>Proceed</p>
+                <p className="accept red op-4">Proceed</p>
               </div>
             </div>
           </TabPanel>
@@ -355,25 +334,9 @@ const sendPickup = (props) => {
             <div className="flex paper-top-head wrap">
               <p className="date">Pickup</p>
               <div className="buttons flex wrap">
-                <p className="accept pink" onClick={() => setValue(2)}>
-                  {" "}
-                  Back
-                </p>
+                <p className="accept pink op-4"> Back</p>
 
-                <p className="accept red" onClick={() => setValue(4)}>Proceed</p>
-              </div>
-            </div>
-          </TabPanel>
-          <TabPanel value={value} index={4}>
-            <div className="flex paper-top-head wrap">
-              <p className="date">Pickup</p>
-              <div className="buttons flex wrap">
-                <p className="accept pink" onClick={() => setValue(3)}>
-                  {" "}
-                  Back
-                </p>
-
-                <p className="accept red">Proceed</p>
+                <p className="accept red op-4">Proceed</p>
               </div>
             </div>
           </TabPanel>
@@ -406,19 +369,11 @@ const sendPickup = (props) => {
                     </React.Fragment>
                   }
                 />
+
                 <Tab
                   label={
                     <React.Fragment>
                       <div className="tab-indicator flex">3</div>
-
-                      <span>Tag for Storage</span>
-                    </React.Fragment>
-                  }
-                />
-                <Tab
-                  label={
-                    <React.Fragment>
-                      <div className="tab-indicator flex">4</div>
 
                       <span>Inventory & Reports</span>
                     </React.Fragment>
@@ -428,7 +383,7 @@ const sendPickup = (props) => {
                 <Tab
                   label={
                     <React.Fragment>
-                      <div className="tab-indicator flex">5</div>
+                      <div className="tab-indicator flex">4</div>
 
                       <span>Laundry & Storage</span>
                     </React.Fragment>
@@ -445,383 +400,145 @@ const sendPickup = (props) => {
         </Paper>
 
         <TabPanel className="tabpanel2" value={value} index={1}>
-          <UserDetailCard fullDetail={<> <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Items to deliver</p>
-                      <p className="text bold">5</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">On Demand</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Location</p>
-                      <p className="text bold">12 Bounty Lane, DC</p>
-                    </div>
+          <UserDetailCard
+            fullDetail={
+              <>
+                {" "}
+                <div className="rhs">
+                  <div className="list grid first">
+                    <p className="text">Items to deliver</p>
+                    <p className="text bold">5</p>
                   </div>
-                  <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Delivery Date</p>
-                      <p className="text bold">5/10/2020</p>
-                    </div>
-                    <div className="list grid">
+                  <div className="list grid">
+                    <p className="text">Type</p>
+                    <p className="text bold">On Demand</p>
+                  </div>
+                  <div className="list grid">
+                    <p className="text">Location</p>
+                    <p className="text bold">12 Bounty Lane, DC</p>
+                  </div>
+                </div>
+                <div className="rhs">
+                  <div className="list grid first">
+                    <p className="text">Delivery Date</p>
+                    <p className="text bold">5/10/2020</p>
+                  </div>
+                  <div className="list grid">
                     <p className="text">Phone Number</p>
-        <p className="text bold">0888800000000</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Subscription</p>
-                      <p className="text bold">Plus+</p>
-                    </div>
-                  </div></>} buttons={<Link href="/clients/client">
-                  <p className="pink">View Client</p></Link>} 
-            weight="date mb-70" text="Items are being picked up from the client."
+                    <p className="text bold">0888800000000</p>
+                  </div>
+                  <div className="list grid">
+                    <p className="text">Subscription</p>
+                    <p className="text bold">Plus+</p>
+                  </div>
+                </div>
+              </>
+            }
+            buttons={
+              <Link href="/clients/client">
+                <p className="pink ml-0">View Client</p>
+              </Link>
+            }
+            userName='Joseph Thornberry'
+            userId='1234'
+            weight="date mb-70"
+            text="Items are being picked up from the client."
           />
         </TabPanel>
 
         <TabPanel className="tabpanel2" value={value} index={2}>
-          <UserDetailCard fullDetail={<> <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Items to deliver</p>
-                      <p className="text bold">5</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">On Demand</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Location</p>
-                      <p className="text bold">12 Bounty Lane, DC</p>
-                    </div>
-                  </div>
-                  <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Delivery Date</p>
-                      <p className="text bold">5/10/2020</p>
-                    </div>
-                    <div className="list grid">
-                    <p className="text">Phone Number</p>
-        <p className="text bold">0888800000000</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Subscription</p>
-                      <p className="text bold">Plus+</p>
-                    </div>
-                  </div></>} buttons={<Link href="/clients/client">
-                  <p className="pink">View Client</p></Link>} 
-            weight="date mb-70" text="Items are being picked up from the client."
-          />
+        <UserDetailCard
+          fullDetail={
+            <>
+              {" "}
+              <div className="rhs">
+                <div className="list grid first">
+                  <p className="text">Items to deliver</p>
+                  <p className="text bold">5</p>
+                </div>
+                <div className="list grid">
+                  <p className="text">Type</p>
+                  <p className="text bold">On Demand</p>
+                </div>
+                <div className="list grid">
+                  <p className="text">Location</p>
+                  <p className="text bold">12 Bounty Lane, DC</p>
+                </div>
+              </div>
+              <div className="rhs">
+                <div className="list grid first">
+                  <p className="text">Delivery Date</p>
+                  <p className="text bold">5/10/2020</p>
+                </div>
+                <div className="list grid">
+                  <p className="text">Phone Number</p>
+                  <p className="text bold">0888800000000</p>
+                </div>
+                <div className="list grid">
+                  <p className="text">Subscription</p>
+                  <p className="text bold">Plus+</p>
+                </div>
+              </div>
+            </>
+          }
+          buttons={
+            <Link href="/clients/client">
+              <p className="pink ml-0">View Client</p>
+            </Link>
+          }
+          userName="Joseph Thornberry"
+          userId="1234"
+          weight="date mb-70"
+          text="Items are being picked up from the client."
+        />
 
-          <Paper className="item-detail paper">
-            <p className="date">Tag each item with an ID and type</p>
-            <div className="item-id grid-4 grid">
-              <div className="gray-paper">
-                <TextInput
-                  label="Enter Item ID"
-                  value={itemId}
-                  onChange={setItemId}
-                />
-                <SelectInput
-                  label="Select Item Type"
-                  options={optionItemType}
-                  value={itemType}
-                  onChange={setItemType}
-                  margin="mtb"
-                />
-                <SelectInput
-                  label="Category"
-                  options={optionItemCategory}
-                  value={itemCategory}
-                  onChange={setItemCategory}
-                />
-              </div>
-              <div className="gray-paper">
-                <TextInput
-                  label="Enter Item ID"
-                  value={itemId}
-                  onChange={setItemId}
-                />
-                <SelectInput
-                  label="Select Item Type"
-                  options={optionItemType}
-                  value={itemType}
-                  onChange={setItemType}
-                  margin="mtb"
-                />
-                <SelectInput
-                  label="Category"
-                  options={optionItemCategory}
-                  value={itemCategory}
-                  onChange={setItemCategory}
-                />
-              </div>
-              <div className="gray-paper">
-                <TextInput
-                  label="Enter Item ID"
-                  value={itemId}
-                  onChange={setItemId}
-                />
-                <SelectInput
-                  label="Select Item Type"
-                  options={optionItemType}
-                  value={itemType}
-                  onChange={setItemType}
-                  margin="mtb"
-                />
-                <SelectInput
-                  label="Category"
-                  options={optionItemCategory}
-                  value={itemCategory}
-                  onChange={setItemCategory}
-                />
-              </div>
-              <div className="gray-paper">
-                <TextInput
-                  label="Enter Item ID"
-                  value={itemId}
-                  onChange={setItemId}
-                />
-                <SelectInput
-                  label="Select Item Type"
-                  options={optionItemType}
-                  value={itemType}
-                  onChange={setItemType}
-                  margin="mtb"
-                />
-                <SelectInput
-                  label="Category"
-                  options={optionItemCategory}
-                  value={itemCategory}
-                  onChange={setItemCategory}
-                />
-              </div>
-            </div>
-          </Paper>
+          <InventoryReportsTab onClickPrev={() => setValue(1)} onClickNext={() => setValue(3)}/>
+       
         </TabPanel>
-
         <TabPanel className="tabpanel2" value={value} index={3}>
-          <UserDetailCard fullDetail={<> <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Items to deliver</p>
-                      <p className="text bold">5</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">On Demand</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Location</p>
-                      <p className="text bold">12 Bounty Lane, DC</p>
-                    </div>
+          <UserDetailCard
+            fullDetail={
+              <>
+                {" "}
+                <div className="rhs">
+                  <div className="list grid first">
+                    <p className="text">Items to deliver</p>
+                    <p className="text bold">5</p>
                   </div>
-                  <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Delivery Date</p>
-                      <p className="text bold">5/10/2020</p>
-                    </div>
-                    <div className="list grid">
-                    <p className="text">Phone Number</p>
-        <p className="text bold">0888800000000</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Subscription</p>
-                      <p className="text bold">Plus+</p>
-                    </div>
-                  </div></>} buttons={<Link href="/clients/client">
-                  <p className="pink">View Client</p></Link>} 
-            weight="date mb-70" text="Items are being picked up from the client."
-          />
-
-          <Paper className="item-detail paper">
-            <p className="date">Condition & Inventory Report</p>
-
-            <div className="gray-paper mt-24 ">
-              <div className=" grid grid-4 grid-4-small">
-                <div>
-                  <TextInput
-                    label="Item Tag"
-                    value={itemTag}
-                    onChange={setItemTag}
-                  />
-
-                  <SelectInput
-                    label="Item Feature"
-                    options={optionItemCategory}
-                    value={itemFeature}
-                    onChange={setItemFeature}
-                    margin="mtb"
-                  />
-                  <SelectInput
-                    label="Material"
-                    options={optionItemMaterial}
-                    value={itemMaterial}
-                    onChange={setItemMaterial}
-                  />
-                </div>
-                <div>
-                  <TextInput
-                    label="Item Name"
-                    type="text"
-                    placeholder="Enter Name"
-                    value={itemName}
-                    onChange={setItemName}
-                  />
-                  <TextInput
-                    label="Item Color"
-                    type="text"
-                    value={itemColor}
-                    onChange={setItemColor}
-                    margin="mtb"
-                  />
-                  <SelectInput
-                    label="Category"
-                    options={optionCategory}
-                    value={category}
-                    onChange={setCategory}
-                  />
-                </div>
-                <div>
-                  <SelectInput
-                    label="Select Item Type"
-                    options={optionItemType}
-                    value={itemType}
-                    onChange={setItemType}
-                  />
-                  <TextInput
-                    label="Brand"
-                    type="text"
-                    value={itemBrand}
-                    onChange={setItemBrand}
-                    margin="mtb"
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    label="Item Condition"
-                    value={itemCondition}
-                    onChange={setItemCondition}
-                  />
-                </div>
-              </div>
-
-              <div className="checkbox">
-                <h2>Where is the next destination for this item?</h2>
-                <div className="flex">
-                <CheckboxInput label='To Vault'/>
-                <CheckboxInput label='To Storage'/>
-                <CheckboxInput label='To Laundry'/>
-                </div>
-              </div>
-            </div>
-            <div className="gray-paper mt-24 ">
-              <div className=" grid grid-4 grid-4-small">
-                <div>
-                  <TextInput
-                    label="Item Tag"
-                    value={itemTag}
-                    onChange={setItemTag}
-                  />
-
-                  <SelectInput
-                    label="Item Feature"
-                    options={optionItemCategory}
-                    value={itemFeature}
-                    onChange={setItemFeature}
-                    margin="mtb"
-                  />
-                  <SelectInput
-                    label="Material"
-                    options={optionItemMaterial}
-                    value={itemMaterial}
-                    onChange={setItemMaterial}
-                  />
-                </div>
-                <div>
-                  <TextInput
-                    label="Item Name"
-                    type="text"
-                    placeholder="Enter Name"
-                    value={itemName}
-                    onChange={setItemName}
-                  />
-                  <TextInput
-                    label="Item Color"
-                    type="text"
-                    value={itemColor}
-                    onChange={setItemColor}
-                    margin="mtb"
-                  />
-                  <SelectInput
-                    label="Category"
-                    options={optionCategory}
-                    value={category}
-                    onChange={setCategory}
-                  />
-                </div>
-                <div>
-                  <SelectInput
-                    label="Select Item Type"
-                    options={optionItemType}
-                    value={itemType}
-                    onChange={setItemType}
-                  />
-                  <TextInput
-                    label="Brand"
-                    type="text"
-                    value={itemBrand}
-                    onChange={setItemBrand}
-                    margin="mtb"
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    label="Item Condition"
-                    value={itemCondition}
-                    onChange={setItemCondition}
-                  />
-                </div>
-              </div>
-              <div className="checkbox">
-                <h2>Where is the next destination for this item?</h2>
-                <div className="flex">
-                <CheckboxInput label='To Vault'/>
-                <CheckboxInput label='To Storage'/>
-                <CheckboxInput label='To Laundry'/>
-                </div>
-              </div>
-            </div>
-          </Paper>
-        </TabPanel>
-        <TabPanel className="tabpanel2" value={value} index={4}>
-          <UserDetailCard fullDetail={<> <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Items to deliver</p>
-                      <p className="text bold">5</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Type</p>
-                      <p className="text bold">On Demand</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Location</p>
-                      <p className="text bold">12 Bounty Lane, DC</p>
-                    </div>
+                  <div className="list grid">
+                    <p className="text">Type</p>
+                    <p className="text bold">On Demand</p>
                   </div>
-                  <div className="rhs">
-                    <div className="list grid first">
-                      <p className="text">Delivery Date</p>
-                      <p className="text bold">5/10/2020</p>
-                    </div>
-                    <div className="list grid">
+                  <div className="list grid">
+                    <p className="text">Location</p>
+                    <p className="text bold">12 Bounty Lane, DC</p>
+                  </div>
+                </div>
+                <div className="rhs">
+                  <div className="list grid first">
+                    <p className="text">Delivery Date</p>
+                    <p className="text bold">5/10/2020</p>
+                  </div>
+                  <div className="list grid">
                     <p className="text">Phone Number</p>
-        <p className="text bold">0888800000000</p>
-                    </div>
-                    <div className="list grid">
-                      <p className="text">Subscription</p>
-                      <p className="text bold">Plus+</p>
-                    </div>
-                  </div></>} buttons={<Link href="/clients/client">
-                  <p className="pink">View Client</p></Link>} 
-            weight="date mb-70" text="Items are being picked up from the client."
+                    <p className="text bold">0888800000000</p>
+                  </div>
+                  <div className="list grid">
+                    <p className="text">Subscription</p>
+                    <p className="text bold">Plus+</p>
+                  </div>
+                </div>
+              </>
+            }
+            buttons={
+              <Link href="/clients/client">
+                <p className="pink ml-0">View Client</p>
+              </Link>
+            }
+            userName='Joseph Thornberry'
+            userId='1234'
+            weight="date mb-70"
+            text="Items are being picked up from the client."
           />
 
           <Paper className="paper storage-laundry">

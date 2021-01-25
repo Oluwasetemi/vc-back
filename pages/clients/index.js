@@ -31,9 +31,12 @@ const Wrapper = styled.div`
     border: 1px solid #9c9b7c;
     border-radius: 10px;
     padding: 3px 15px;
-    width: 300px;
+    max-width: 30%;
+    display: flex;
+    overflow: hidden;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
       position: relative;
+      width: 300px;
       margin-left: auto;
     }
     @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
@@ -246,7 +249,7 @@ function Clients(props) {
               <TableBody>
                 {recordsAfterPagingAndSorting().map((item) => (
                   <TableRow key={item._id}>
-                    <TableCell>{item._id.substr(_id.length - 5)}</TableCell>
+                    <TableCell>{item._id.substring(0, 7)}</TableCell>
                     <TableCell>{item.email}</TableCell>
                     <TableCell>{item.name}</TableCell>
                     {item.noOfItems != null ? (

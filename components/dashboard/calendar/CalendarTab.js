@@ -5,9 +5,15 @@ import Tabs from "@material-ui/core/Tabs";
 import React, { useState } from "react";
 import styled from "styled-components";
 import SimpleTable from "../../common/SimpleTable";
-import { activeModalEventData, deliveryModalEventData, laundryModalEventData, pickupModalEventData } from "../../dashboard/calendar/modalEventData";
+import {
+  allModalEventData,
+  activeModalEventData,
+  deliveryModalEventData,
+  requestModalEventData,
+  laundryModalEventData,
+  pickupModalEventData,
+} from "../../dashboard/calendar/modalEventData";
 import { modalEventTableConstants } from "./modalEventTableConstants";
-
 
 const Wrapper = styled.div`
   .MuiAppBar-colorPrimary {
@@ -18,8 +24,9 @@ const Wrapper = styled.div`
     padding: 0 23px;
   }
   .MuiTab-root {
-    font-family: Matteo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: Matteo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+      sans-serif;
   }
   .MuiTab-wrapper {
     font-weight: 500;
@@ -54,13 +61,11 @@ const Wrapper = styled.div`
   }
 `;
 
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
 }
-export default function CalendarTab({data}) {
-
+export default function CalendarTab() {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -69,9 +74,9 @@ export default function CalendarTab({data}) {
     <Wrapper>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange}>
-          <Tab label={`All (${data.fetchAllRequest.data.length})`} />
+          <Tab label={`All (${allModalEventData.length})`} />
           <Tab label={`Active (${activeModalEventData.length})`} />
-          <Tab label={`Requests (${data.fetchAllRequest.data.length})`} />
+          <Tab label={`Requests (${requestModalEventData.length})`} />
           <Tab label={`Deliveries (${deliveryModalEventData.length})`} />
           <Tab label={`Pickups (${pickupModalEventData.length})`} />
           <Tab label={`Laundry (${laundryModalEventData.length})`} />
@@ -81,35 +86,35 @@ export default function CalendarTab({data}) {
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={data.fetchAllRequest.data}
+          data={allModalEventData}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={data.fetchAllRequest.data}
+          data={activeModalEventData}
         />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={data.fetchAllRequest.data}
+          data={requestModalEventData}
         />
       </TabPanel>
       <TabPanel value={value} index={3}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={data.fetchAllRequest.data}
+          data={deliveryModalEventData}
         />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <SimpleTable
           shadow="no-shadow"
           cols={modalEventTableConstants()}
-          data={data.fetchAllRequest.data}
+          data={pickupModalEventData}
         />
       </TabPanel>
       <TabPanel value={value} index={5}>
