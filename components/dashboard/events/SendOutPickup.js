@@ -17,14 +17,14 @@ const Wrapper = styled.div`
 `;
 
 const ACCEPT_PICKUP_REQUEST = gql`
-	mutation ACCEPT_PICKUP_REQUEST($id: ID, $bookingId: String) {
-		acceptPickupRequest(id: $id, bookingId: $bookingId) {
+	mutation ACCEPT_PICKUP_REQUEST($id: ID) {
+		sendOutPickup(id: $id) {
 			message
 		}
 	}
 `;
 
-export default function AcceptPickRequest({ id, bookingId }) {
+export default function SendOutPickup({ id }) {
 	const router = useRouter();
 	const [acceptPickup, { loading, error }] = useMutation(
 		ACCEPT_PICKUP_REQUEST,
