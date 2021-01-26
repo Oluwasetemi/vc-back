@@ -14,9 +14,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en-US">
-        <Head>{this.props.styleTags}
-        
-        </Head>
+        <Head>{this.props.styleTags}</Head>
         <body>
           <Main />
           <NextScript />

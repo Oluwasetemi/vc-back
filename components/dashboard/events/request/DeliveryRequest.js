@@ -55,6 +55,7 @@ const DELIVERY_REQUEST = gql`
   }
   `;
 function DeliveryRequest(props) {
+  const [value, setValue] = useState("");
 
 	const { error, loading, data } = useQuery(DELIVERY_REQUEST);
   const [records] = useState(data && data.fetchAllRequest.data);
@@ -85,12 +86,30 @@ function DeliveryRequest(props) {
 
   } = useTable(records, headCells);
 
+  //search function
+  function search(records) {
+    return (
+      records &&
+      records.filter((record) => 
+      record.user.name.toLowerCase().indexOf(value) > -1 ||
+      record.numberOfItems.toString().toLowerCase().indexOf(value) > -1||
+      record.zipcode && record.zipcode.toString().toLowerCase().indexOf(value) > -1 ||
+		  record.createdAt.toString().toLowerCase().indexOf(value) > -1
+		  )
+    );
+  }
+  const filteredData = search(currentRecords);
+
   return (
     <Wrapper>
-    {/* <div className="searchbar">
+     <div className="searchbar">
           <img src={searchIcon} alt="searchIcon" />
-          <input placeholder="Search" onChange={handleSearch} value={value} />
-        </div> */}
+          <input
+            placeholder="Search"
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
+        </div>
       {loading ? (
         <p>loading</p>
       ) : error ? (
@@ -100,7 +119,7 @@ function DeliveryRequest(props) {
           <TblContainer>
             <TblHead />
             <TableBody>
-              {currentRecords && currentRecords.map((item) => (
+              {filteredData && filteredData.map((item) => (
                
                   <TableRow key={item._id}>
                     <TableCell>{item._id.substring(0, 8)}</TableCell>

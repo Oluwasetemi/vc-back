@@ -18,7 +18,8 @@ const headCells = [
   { id: "link", label: "" },
 ];
 function ActiveRequest({error, loading, data}, ...props) {
-  
+  const [value, setValue] = useState("");
+
 	const [records] = useState(
 		data && data.fetchAllRequest.data
 	  );
@@ -48,12 +49,28 @@ function ActiveRequest({error, loading, data}, ...props) {
     pageNumbers.push(i);
   }
 
+   //search function
+   function search(records) {
+    return (
+      records &&
+      records.filter((record) => 
+      record.numberOfItems.toString().toLowerCase().indexOf(value) > -1 ||
+      record.user.name.toLowerCase().indexOf(value) > -1
+      )
+    );
+  }
+  const filteredData = search(currentRecords);
+
   return (
     <>
-      {/* <div className="searchbar">
+    <div className="searchbar">
           <img src={searchIcon} alt="searchIcon" />
-          <input placeholder="Search" onChange={handleSearch} value={value} />
-        </div> */}
+          <input
+            placeholder="Search"
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
+        </div>
            {loading ? (
           <p>loading</p>
         ) : error ? (
@@ -63,7 +80,7 @@ function ActiveRequest({error, loading, data}, ...props) {
             <TblContainer>
               <TblHead />
               <TableBody>
-                {currentRecords.map((item) => {
+                {filteredData.map((item) => {
 					return item.status === "Active" && (
                   <TableRow key={item._id}>
                     <TableCell>{item.user._id.substring(0, 8)}</TableCell>

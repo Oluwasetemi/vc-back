@@ -176,7 +176,8 @@ const headCells = [
 	{ id: 'link', label: '' },
 ];
 function Clients(props) {
-	const { value } = props;
+	const [value, setValue] = useState("");
+
 	const { error, loading, data } = useQuery(ALL_USERS);
 
 	const [records] = useState(data && data.users);
@@ -208,6 +209,20 @@ function Clients(props) {
 	function titleCase(str) {
 		return str.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase());
 	}
+
+	//search function
+	function search(records) {
+		return (
+		  records &&
+		  records.filter((record) => 
+		  record.email.toLowerCase().indexOf(value) > -1 ||
+		  record._id.toLowerCase().indexOf(value) > -1||
+		  record.createdAt && record.createdAt.toString().toLowerCase().indexOf(value) > -1
+		  )
+		);
+	  }
+	  const filteredData = search(currentRecords);
+	
 	return (
 		<Wrapper>
 			<DashboardLayout>
@@ -225,10 +240,14 @@ function Clients(props) {
 					</LinkMaterial>
 				</Breadcrumbs>
 
-				{/* <div className="searchbar">
-					<img src={searchIcon} alt="searchIcon" />
-					<input placeholder="Search" onChange={handleSearch} value={value} />
-				</div> */}
+				<div className="searchbar">
+          <img src={searchIcon} alt="searchIcon" />
+          <input
+            placeholder="Search"
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
+        </div>
 				{loading ? (
 					<p>loading</p>
 				) : error ? (
@@ -238,7 +257,7 @@ function Clients(props) {
 						<TblContainer>
 							<TblHead />
 							<TableBody>
-								{currentRecords.map(item => (
+								{filteredData.map(item => (
 									<TableRow key={item._id}>
 										<TableCell>{item._id.substring(0, 7)}</TableCell>
 										<TableCell>{item.email}</TableCell>

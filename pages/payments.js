@@ -130,15 +130,15 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     margin: 30px 0;
-    img{
+    img {
       cursor: pointer;
     }
   }
-  .page{
+  .page {
     margin: 0 30px;
-    color: #2F3930;
+    color: #2f3930;
     font-size: 14px;
-line-height: 24px;
+    line-height: 24px;
   }
   .MuiTableRow-root.Mui-selected,
   .MuiTableRow-root.Mui-selected:hover {
@@ -181,30 +181,50 @@ const headCells = [
   { id: "link", label: "" },
 ];
 function payments(props) {
+  const [value, setValue] = useState("");
   const { error, loading, data } = useQuery(ALL_PAYMENTS);
   const [records] = useState(data && data.fetchAllPaymentFromStripe.results);
-
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-   const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(10);
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentRecords =
-    data && data.fetchAllPaymentFromStripe.results.slice(indexOfFirstPost, indexOfLastPost);
+    data &&
+    data.fetchAllPaymentFromStripe.results.slice(
+      indexOfFirstPost,
+      indexOfLastPost
+    );
 
   // Change page
   const pageNumbers = [];
 
   for (
     let i = 1;
-    i <= Math.ceil(data && data.fetchAllPaymentFromStripe.results.length / postsPerPage);
+    i <=
+    Math.ceil(
+      data && data.fetchAllPaymentFromStripe.results.length / postsPerPage
+    );
     i++
   ) {
     pageNumbers.push(i);
   }
 
   const { TblContainer, TblHead } = useTable(records, headCells);
+
+  //search function
+  function search(records) {
+    return (
+      records &&
+      records.filter((record) => 
+      record.email.toLowerCase().indexOf(value) > -1 ||
+      record.username.toLowerCase().indexOf(value) > -1||
+      record.created.toString().toLowerCase().indexOf(value) > -1
+      )
+    );
+  }
+  const filteredData = search(currentRecords);
 
   return (
     <Wrapper>
@@ -223,10 +243,14 @@ function payments(props) {
           </LinkMaterial>
         </Breadcrumbs>
 
-        {/* <div className="searchbar">
+        <div className="searchbar">
           <img src={searchIcon} alt="searchIcon" />
-          <input placeholder="Search" onChange={handleSearch} value={value} />
-        </div> */}
+          <input
+            placeholder="Search"
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
+        </div>
         {loading ? (
           <p>loading</p>
         ) : error ? (
@@ -236,7 +260,7 @@ function payments(props) {
             <TblContainer>
               <TblHead />
               <TableBody>
-                {currentRecords.map((item) => (
+                {filteredData.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell>{item.id.substring(0, 8)}</TableCell>
                     <TableCell>{item.email}</TableCell>
@@ -261,22 +285,24 @@ function payments(props) {
           "no data"
         )}
         <div className="flex pagination">
-          <img src={prev} alt="prev"
+          <img
+            src={prev}
+            alt="prev"
             onClick={() =>
               currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1)
-            }/
-          >
-            
+            }
+          />
 
           <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
-          <img src={next} alt="next"
+          <img
+            src={next}
+            alt="next"
             onClick={() =>
               currentPage < pageNumbers.length
                 ? setCurrentPage(currentPage + 1)
                 : currentPage
-            }/
-          >
-            
+            }
+          />
         </div>
       </DashboardLayout>
     </Wrapper>

@@ -25,6 +25,7 @@ const headCells = [
 ];
 function AllRequest({error, loading, data}, ...props) {
 
+  const [value, setValue] = useState("");
 
 	const [records] = useState(
 		data && data.fetchAllRequest.data
@@ -58,12 +59,29 @@ function AllRequest({error, loading, data}, ...props) {
     pageNumbers.push(i);
   }
 
+  //search function
+  function search(records) {
+    return (
+      records &&
+      records.filter((record) => 
+      record.user.name.toLowerCase().indexOf(value) > -1 ||
+      record.createdAt.toLowerCase().indexOf(value) > -1||
+      record.type.toLowerCase().indexOf(value) > -1
+      )
+    );
+  }
+  const filteredData = search(currentRecords);
+
   return (
     <Wrapper>
-      {/* <div className="searchbar">
+      <div className="searchbar">
           <img src={searchIcon} alt="searchIcon" />
-          <input placeholder="Search" onChange={handleSearch} value={value} />
-        </div> */}
+          <input
+            placeholder="Search"
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
+        </div>
            {loading ? (
           <p>loading</p>
         ) : error ? (
@@ -73,7 +91,7 @@ function AllRequest({error, loading, data}, ...props) {
             <TblContainer>
               <TblHead />
               <TableBody>
-                {currentRecords.map((item) => (
+                {filteredData.map((item) => (
                   <TableRow key={item._id}>
                     <TableCell>{item.user._id.substring(0, 8)}</TableCell>
                     <TableCell>{item.user.name}</TableCell>
