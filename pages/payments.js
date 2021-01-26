@@ -13,7 +13,8 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
 import searchIcon from "../public/assets/searchIcon.svg";
-
+import prev from "../public/assets/PreviousPageButton.svg";
+import next from "../public/assets/NextPageButton.svg";
 const Wrapper = styled.div`
   .bread-crumbs {
     margin: 30px 0 10px 0;
@@ -125,10 +126,19 @@ const Wrapper = styled.div`
   tbody .MuiTableRow-root > th {
     padding-left: 30px;
   }
-  .MuiTablePagination-root {
+  .pagination {
     display: flex;
     justify-content: center;
     margin: 30px 0;
+    img {
+      cursor: pointer;
+    }
+  }
+  .page {
+    margin: 0 30px;
+    color: #2f3930;
+    font-size: 14px;
+    line-height: 24px;
   }
   .MuiTableRow-root.Mui-selected,
   .MuiTableRow-root.Mui-selected:hover {
@@ -140,31 +150,10 @@ const Wrapper = styled.div`
     border-collapse: collapse;
     min-width: 850px;
   }
-  .MuiTablePagination-root .MuiTablePagination-caption {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding-left: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiToolbar-gutters,
-  .MuiTablePagination-root .MuiIconButton-root {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-actions {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin-left: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-input {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin: 0 15px 0 0px;
-    }
-  }
 `;
 const ALL_PAYMENTS = gql`
   query ALL_PAYMENTS {
-    fetchAllPaymentFromStripe(first: 10) {
+    fetchAllPaymentFromStripe {
       perPage
       end
       start
@@ -192,37 +181,51 @@ const headCells = [
   { id: "link", label: "" },
 ];
 function payments(props) {
-  const { value } = props;
-
+  const [value, setValue] = useState("");
   const { error, loading, data } = useQuery(ALL_PAYMENTS);
-  const [records, setRecords] = useState(
-    data && data.fetchAllPaymentFromStripe.results
-  );
+  const [records] = useState(data && data.fetchAllPaymentFromStripe.results);
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentRecords =
+    data &&
+    data.fetchAllPaymentFromStripe.results.slice(
+      indexOfFirstPost,
+      indexOfLastPost
+    );
 
-  const [filterFn, setFilterFn] = useState({
-    fn: (items) => {
-      return items;
-    },
-  });
-  const {
-    TblContainer,
-    TblHead,
-    TblPagination,
-    recordsAfterPagingAndSorting,
-  } = useTable(records, headCells, filterFn);
+  // Change page
+  const pageNumbers = [];
 
-  const handleSearch = (e) => {
-    let target = e.target;
-    setFilterFn({
-      fn: (items) => {
-        if (target.value == "") return items;
-        else
-          return items.filter((x) =>
-            x.email.toLowerCase().includes(target.value)
-          );
-      },
-    });
-  };
+  for (
+    let i = 1;
+    i <=
+    Math.ceil(
+      data && data.fetchAllPaymentFromStripe.results.length / postsPerPage
+    );
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
+
+  const { TblContainer, TblHead } = useTable(records, headCells);
+
+  //search function
+  function search(records) {
+    return (
+      records &&
+      records.filter((record) => 
+      record.email.toLowerCase().indexOf(value) > -1 ||
+      record.username.toLowerCase().indexOf(value) > -1||
+      record.created.toString().toLowerCase().indexOf(value) > -1
+      )
+    );
+  }
+  const filteredData = search(currentRecords);
+
   return (
     <Wrapper>
       <DashboardLayout>
@@ -239,9 +242,14 @@ function payments(props) {
             Payments
           </LinkMaterial>
         </Breadcrumbs>
+
         <div className="searchbar">
           <img src={searchIcon} alt="searchIcon" />
-          <input placeholder="Search" onChange={handleSearch} value={value} />
+          <input
+            placeholder="Search"
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
         </div>
         {loading ? (
           <p>loading</p>
@@ -252,7 +260,7 @@ function payments(props) {
             <TblContainer>
               <TblHead />
               <TableBody>
-                {recordsAfterPagingAndSorting().map((item) => (
+                {filteredData.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell>{item.id.substring(0, 8)}</TableCell>
                     <TableCell>{item.email}</TableCell>
@@ -272,11 +280,30 @@ function payments(props) {
                 ))}
               </TableBody>
             </TblContainer>
-            <TblPagination />
           </Paper>
         ) : (
-          ""
+          "no data"
         )}
+        <div className="flex pagination">
+          <img
+            src={prev}
+            alt="prev"
+            onClick={() =>
+              currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1)
+            }
+          />
+
+          <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
+          <img
+            src={next}
+            alt="next"
+            onClick={() =>
+              currentPage < pageNumbers.length
+                ? setCurrentPage(currentPage + 1)
+                : currentPage
+            }
+          />
+        </div>
       </DashboardLayout>
     </Wrapper>
   );

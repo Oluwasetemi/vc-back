@@ -52,26 +52,9 @@ export default function useTable(records, headCells, filterFn) {
     );
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
 
-  const TblPagination = () => (
-    <TablePagination
-      component="div"
-      page={page}
-      rowsPerPageOptions={pages}
-      rowsPerPage={rowsPerPage}
-      count={records && records.length}
-      onChangePage={handleChangePage}
-      // onChangeRowsPerPage={handleChangeRowsPerPage}
-    />
-  );
+
 
   function stableSort(array, comparator) {
     const stabilizedThis = array && array.map((el, index) => [el, index]);
@@ -103,13 +86,12 @@ export default function useTable(records, headCells, filterFn) {
     return stableSort(
       filterFn.fn(records),
       getComparator(order, orderBy)
-    ).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
+    )
   };
 
   return {
     TblContainer,
     TblHead,
-    TblPagination,
     recordsAfterPagingAndSorting,
   };
 }

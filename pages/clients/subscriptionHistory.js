@@ -12,6 +12,8 @@ import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import Button from "../../components/common/Button";
 import AmountConverter from "../../components/common/AmountConverter";
+import prev from "../../public/assets/PreviousPageButton.svg";
+import next from "../../public/assets/NextPageButton.svg";
 
 const Wrapper = styled.div`
   .bread-crumbs {
@@ -79,7 +81,8 @@ const Wrapper = styled.div`
     font-weight: normal;
   }
   .MuiTableCell-root,
-  .MuiTablePagination-caption {
+  .MuiTablePagination-caption
+{
     font-size: 14px;
     line-height: 24px;
     color: #2f3930;
@@ -93,10 +96,19 @@ const Wrapper = styled.div`
   tbody .MuiTableRow-root > th {
     padding-left: 30px;
   }
-  .MuiTablePagination-root {
+  .pagination {
     display: flex;
     justify-content: center;
     margin: 30px 0;
+    img{
+      cursor: pointer;
+    }
+  }
+  .page{
+    margin: 0 30px;
+    color: #2F3930;
+    font-size: 14px;
+line-height: 24px;
   }
   .MuiTableRow-root.Mui-selected,
   .MuiTableRow-root.Mui-selected:hover {
@@ -108,27 +120,7 @@ const Wrapper = styled.div`
     border-collapse: collapse;
     min-width: 850px;
   }
-  .MuiTablePagination-root .MuiTablePagination-caption {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding-left: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiToolbar-gutters,
-  .MuiTablePagination-root .MuiIconButton-root {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-actions {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin-left: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-input {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin: 0 15px 0 0px;
-    }
-  }
+ 
 `;
 const ALL_SUBSCRIPTION = gql`
   query ALL_SUBSCRIPTION {
@@ -160,20 +152,34 @@ const headCells = [
 ];
 function subscriptionHistory(props) {
   const { error, loading, data } = useQuery(ALL_SUBSCRIPTION);
-  const [records, setRecords] = useState(data && data.fetchAllSubscription);
+  const [records] = useState(data && data.fetchAllSubscription);
   // console.log(data&& data.fetchAllSubscription)
 
-  const [filterFn, setFilterFn] = useState({
-    fn: (items) => {
-      return items;
-    },
-  });
+   //pagination
+   const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
+   // Get current posts
+   const indexOfLastPost = currentPage * postsPerPage;
+   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+   const currentRecords =
+     data && data.fetchAllSubscription.slice(indexOfFirstPost, indexOfLastPost);
+ 
+   // Change page
+   const pageNumbers = [];
+ 
+   for (
+     let i = 1;
+     i <= Math.ceil(data && data.fetchAllSubscription.length / postsPerPage);
+     i++
+   ) {
+     pageNumbers.push(i);
+   }
+ 
   const {
     TblContainer,
     TblHead,
-    TblPagination,
-    recordsAfterPagingAndSorting,
-  } = useTable(records, headCells, filterFn);
+
+  } = useTable(records, headCells);
 
 
   return (
@@ -212,7 +218,7 @@ function subscriptionHistory(props) {
             <TblContainer>
               <TblHead />
               <TableBody>
-                {recordsAfterPagingAndSorting().map((item) => (
+                {currentRecords.map((item) => (
                   <TableRow key={item.name}>
                     {item.ref != null ? (
                       <TableCell>{item.ref}</TableCell>
@@ -236,11 +242,29 @@ function subscriptionHistory(props) {
                 ))}
               </TableBody>
             </TblContainer>
-            <TblPagination />
+             
           </Paper>
         ) : (
-          ""
+          "No data"
         )}
+         <div className="flex pagination">
+          <img src={prev} alt="prev"
+            onClick={() =>
+              currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1)
+            }/
+          >
+            
+
+          <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
+          <img src={next} alt="next"
+            onClick={() =>
+              currentPage < pageNumbers.length
+                ? setCurrentPage(currentPage + 1)
+                : currentPage
+            }/
+          >
+            
+        </div>
       </DashboardLayout>
     </Wrapper>
   );

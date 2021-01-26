@@ -4,19 +4,17 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import LinkMaterial from '@material-ui/core/Link';
 import SimpleTable from "@components/common/SimpleTable";
 import { homeTableConstants } from '@components/dashboard/home/homeTableConstants';
-import { smallHomeTableData } from '@components/dashboard/home/homeTableData';
 import SmallCardPaper from "@components/dashboard/home/SmallCardPaper";
 import DashboardLayout from "@components/layout/DashboardLayout";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
-import {AllEvents} from '../components/dashboard/events/AllEvents'
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
 const ALL_REQUEST = gql`
   query ALL_REQUEST {
-    fetchAllRequest(first: 4, sort: descending, type: All) {
+    fetchAllRequest(first: 3, sort: descending, type: All) {
 		total
 		data {
 		  _id
