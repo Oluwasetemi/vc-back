@@ -5,7 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import React from "react";
 import styled from "styled-components";
 import {
-  activeEventsData,
+
   laundryEventsData,
 } from "./EventsTableData";
 import RequestTab from "./RequestTab";
@@ -16,6 +16,7 @@ import {AllEvents} from '../events/AllEvents'
 import {DeliveryRequest} from '../events/request/DeliveryRequest'
 import {PickupRequest} from '../events/request/PickupRequest'
 import {ActiveRequest} from '../events/request/ActiveRequest'
+
 
 const Wrapper = styled.div`
   .MuiAppBar-colorPrimary {
@@ -154,10 +155,19 @@ border-radius: 10px;
   tbody .MuiTableRow-root > th {
     padding-left: 30px;
   }
-  .MuiTablePagination-root {
+  .pagination {
     display: flex;
     justify-content: center;
     margin: 30px 0;
+    img{
+      cursor: pointer;
+    }
+  }
+  .page{
+    margin: 0 30px;
+    color: #2F3930;
+    font-size: 14px;
+line-height: 24px;
   }
   .MuiTableRow-root.Mui-selected,
   .MuiTableRow-root.Mui-selected:hover {
@@ -169,32 +179,12 @@ border-radius: 10px;
     border-collapse: collapse;
     min-width: 850px;
   }
-  .MuiTablePagination-root .MuiTablePagination-caption {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding-left: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiToolbar-gutters,
-  .MuiTablePagination-root .MuiIconButton-root {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-actions {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin-left: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-input {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin: 0 15px 0 0px;
-    }
-  }
+ 
 `;
 
 const ALL_REQUEST = gql`
   query ALL_REQUEST {
-    fetchAllRequest(first: 12, sort: descending, type: All) {
+    fetchAllRequest(sort: descending, type: All) {
 		total
 		data {
 		  _id
@@ -230,27 +220,8 @@ function TabPanel(props) {
 export default function EventsTab() {
 
   const { error, loading, data } = useQuery(ALL_REQUEST);
-  const headCells = [
-    { id: "userId", label: "USER ID" },
-    { id: "userEmail", label: "USER EMAIL" },
-    { id: "zipCode", label: "ZIP CODE" },
-    { id: "noOfItems", label: "NO OF ITEMS" },
-    { id: "", label: "" },
-    { id: "date", label: "DATE" },
-    { id: "type", label: "TYPE" },
-    { id: "link", label: "" },
-  ];
-  const headCells3 = [
-    { id: "userId", label: "USER ID" },
-    { id: "userEmail", label: "USER EMAIL" },
-    { id: "zipCode", label: "ZIP CODE" },
-    { id: "noOfItems", label: "NO OF ITEMS" },
-    { id: "", label: "" },
-    { id: "location", label: "LOCATION" },
-    { id: "date", label: "PICKUP DATE" },
-    { id: "type", label: "STORAGE" },
-    { id: "link", label: "" },
-  ];
+
+
   const headCells4 = [
     { id: "userId", label: "USER ID" },
     { id: "userEmail", label: "USER EMAIL" },
@@ -297,7 +268,7 @@ export default function EventsTab() {
 
       </TabPanel>
       <TabPanel value={value} index={4}>
-      <PickupRequest error={error} loading={loading} data= {data}/>
+      <PickupRequest />
 
       </TabPanel>
       <TabPanel value={value} index={5}>

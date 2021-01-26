@@ -11,6 +11,8 @@ import Button from '../../components/common/Button';
 import useTable from '../../components/common/table/useTable';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import searchIcon from '../../public/assets/searchIcon.svg';
+import prev from "../../public/assets/PreviousPageButton.svg";
+import next from "../../public/assets/NextPageButton.svg";
 
 const Wrapper = styled.div`
 	.bread-crumbs {
@@ -113,11 +115,20 @@ const Wrapper = styled.div`
 	tbody .MuiTableRow-root > th {
 		padding-left: 30px;
 	}
-	.MuiTablePagination-root {
+	.pagination {
 		display: flex;
 		justify-content: center;
 		margin: 30px 0;
-	}
+		img{
+		  cursor: pointer;
+		}
+	  }
+	  .page{
+		margin: 0 30px;
+		color: #2F3930;
+		font-size: 14px;
+	line-height: 24px;
+	  }
 	.MuiTableRow-root.Mui-selected,
 	.MuiTableRow-root.Mui-selected:hover {
 		background-color: rgba(0, 0, 0, 0);
@@ -128,27 +139,7 @@ const Wrapper = styled.div`
 		border-collapse: collapse;
 		min-width: 850px;
 	}
-	.MuiTablePagination-root .MuiTablePagination-caption {
-		@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
-			padding-left: 0;
-		}
-	}
-	.MuiTablePagination-root .MuiToolbar-gutters,
-	.MuiTablePagination-root .MuiIconButton-root {
-		@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
-			padding: 0;
-		}
-	}
-	.MuiTablePagination-root .MuiTablePagination-actions {
-		@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
-			margin-left: 0;
-		}
-	}
-	.MuiTablePagination-root .MuiTablePagination-input {
-		@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
-			margin: 0 15px 0 0px;
-		}
-	}
+
 `;
 const ALL_USERS = gql`
 	query ALL_USERS {
@@ -188,31 +179,32 @@ function Clients(props) {
 	const { value } = props;
 	const { error, loading, data } = useQuery(ALL_USERS);
 
-	const [records, setRecords] = useState(data && data.users);
-	const [filterFn, setFilterFn] = useState({
-		fn: items => items,
-	});
+	const [records] = useState(data && data.users);
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+   const [postsPerPage] = useState(10);
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentRecords =
+    data && data.users.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const pageNumbers = [];
+
+  for (
+    let i = 1;
+    i <= Math.ceil(data && data.users.length / postsPerPage);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
 
 	const {
 		TblContainer,
 		TblHead,
-		TblPagination,
-		recordsAfterPagingAndSorting,
-	} = useTable(records, headCells, filterFn);
+	} = useTable(records, headCells);
 
-	const handleSearch = e => {
-		const { target } = e;
-		setFilterFn({
-			fn: items => {
-				if (target.value == '') return items;
-				return items.filter(
-					x =>
-						x.email.toLowerCase().includes(target.value) ||
-						x.type.toLowerCase().includes(target.value),
-				);
-			},
-		});
-	};
 	function titleCase(str) {
 		return str.toLowerCase().replace(/\b(\w)/g, s => s.toUpperCase());
 	}
@@ -233,10 +225,10 @@ function Clients(props) {
 					</LinkMaterial>
 				</Breadcrumbs>
 
-				<div className="searchbar">
+				{/* <div className="searchbar">
 					<img src={searchIcon} alt="searchIcon" />
 					<input placeholder="Search" onChange={handleSearch} value={value} />
-				</div>
+				</div> */}
 				{loading ? (
 					<p>loading</p>
 				) : error ? (
@@ -246,7 +238,7 @@ function Clients(props) {
 						<TblContainer>
 							<TblHead />
 							<TableBody>
-								{recordsAfterPagingAndSorting().map(item => (
+								{currentRecords.map(item => (
 									<TableRow key={item._id}>
 										<TableCell>{item._id.substring(0, 7)}</TableCell>
 										<TableCell>{item.email}</TableCell>
@@ -283,12 +275,31 @@ function Clients(props) {
 								))}
 							</TableBody>
 						</TblContainer>
-						<TblPagination />
+						 
 					</Paper>
 				) : (
-					''
+					'No data'
 				)}
+			<div className="flex pagination">
+          <img src={prev} alt="prev"
+            onClick={() =>
+              currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1)
+            }/
+          >
+            
+
+          <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
+          <img src={next} alt="next"
+            onClick={() =>
+              currentPage < pageNumbers.length
+                ? setCurrentPage(currentPage + 1)
+                : currentPage
+            }/
+          >
+            
+        </div>
 			</DashboardLayout>
+			
 		</Wrapper>
 	);
 }

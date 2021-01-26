@@ -100,7 +100,8 @@ const Wrapper = styled.div`
     font-weight: normal;
   }
   .MuiTableCell-root,
-  .MuiTablePagination-caption {
+  .MuiTablePagination-caption
+{
     font-size: 14px;
     line-height: 24px;
     color: #2f3930;
@@ -114,10 +115,19 @@ const Wrapper = styled.div`
   tbody .MuiTableRow-root > th {
     padding-left: 30px;
   }
-  .MuiTablePagination-root {
+  .pagination {
     display: flex;
     justify-content: center;
-    margin: 30px 0;
+    padding: 0 0 30px 0;
+    img{
+      cursor: pointer;
+    }
+  }
+  .page{
+    margin: 0 30px;
+    color: #2F3930;
+    font-size: 14px;
+line-height: 24px;
   }
   .MuiTableRow-root.Mui-selected,
   .MuiTableRow-root.Mui-selected:hover {
@@ -129,38 +139,13 @@ const Wrapper = styled.div`
     border-collapse: collapse;
     min-width: 850px;
   }
-  .MuiTablePagination-root .MuiTablePagination-caption {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding-left: 0;
-    }
+  .MuiAppBar-colorPrimary {
+    background-color: transparent !important;
   }
-  .MuiTablePagination-root .MuiToolbar-gutters,
-  .MuiTablePagination-root .MuiIconButton-root {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      padding: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-actions {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin-left: 0;
-    }
-  }
-  .MuiTablePagination-root .MuiTablePagination-input {
-    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-      margin: 0 15px 0 0px;
-    }
-  }
+ 
 `;
 
-const headCells = [
-  { id: "_id", label: "USER ID" },
-  { id: "user._id", label: "USER NAME" },
-  { id: "zipcode", label: "ZIP CODE" },
-  { id: "numberOfItems", label: "NO OF ITEMS" },
-  { id: "createdAt", label: "DATE" },
-  { id: "type", label: "TYPE" },
-  { id: "link", label: "" },
-];
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
@@ -199,7 +184,7 @@ export default function RequestTab({ error, loading, data }) {
           <AllRequest error={error} loading={loading} data={data} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <PickupRequest error={error} loading={loading} data={data} />
+          <PickupRequest />
         </TabPanel>
         <TabPanel value={value} index={2}>
           <DeliveryRequest error={error} loading={loading} data={data} />{" "}

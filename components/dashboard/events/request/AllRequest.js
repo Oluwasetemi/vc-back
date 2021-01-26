@@ -5,8 +5,15 @@ import Link from "next/link";
 import Button from "../../../../components/common/Button";
 import PropTypes from "prop-types";
 import searchIcon from "../../../../public/assets/searchIcon.svg";
+import prev from "../../../../public/assets/PreviousPageButton.svg";
+import next from "../../../../public/assets/NextPageButton.svg";
+import styled from "styled-components";
 
-
+const Wrapper = styled.div`
+.paper{
+  box-shadow: none !important;
+}
+`
 const headCells = [
 	{ id: "user._id", label: "USER ID" },
 	{ id: "user.name", label: "USER NAME" },
@@ -17,43 +24,46 @@ const headCells = [
   { id: "link", label: "" },
 ];
 function AllRequest({error, loading, data}, ...props) {
-  const { value } = props;
 
-	const [records, setRecords] = useState(
+
+	const [records] = useState(
 		data && data.fetchAllRequest.data
 	  );
 
-	  const [filterFn, setFilterFn] = useState({
-		fn: (items) => {
-		  return items;
-		},
-	  });
+
 	  const {
 		TblContainer,
 		TblHead,
-		TblPagination,
-		recordsAfterPagingAndSorting,
-	  } = useTable(records, headCells, filterFn);
+
+	  } = useTable(records, headCells);
   
     
-    const handleSearch = (e) => {
-      let target = e.target;
-      setFilterFn({
-        fn: (items) => {
-          if (target.value == "") return items;
-          else
-            return items.filter((x) =>
-              x._id.toLowerCase().includes(target.value) || x.type.toLowerCase().includes(target.value)
-            );
-        },
-      });
-    };
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+   const [postsPerPage] = useState(10);
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentRecords =
+    data && data.fetchAllRequest.data.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const pageNumbers = [];
+
+  for (
+    let i = 1;
+    i <= Math.ceil(data && data.fetchAllRequest.data.length / postsPerPage);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <>
-      <div className="searchbar">
+    <Wrapper>
+      {/* <div className="searchbar">
           <img src={searchIcon} alt="searchIcon" />
           <input placeholder="Search" onChange={handleSearch} value={value} />
-        </div>
+        </div> */}
            {loading ? (
           <p>loading</p>
         ) : error ? (
@@ -63,7 +73,7 @@ function AllRequest({error, loading, data}, ...props) {
             <TblContainer>
               <TblHead />
               <TableBody>
-                {recordsAfterPagingAndSorting().map((item) => (
+                {currentRecords.map((item) => (
                   <TableRow key={item._id}>
                     <TableCell>{item.user._id.substring(0, 8)}</TableCell>
                     <TableCell>{item.user.name}</TableCell>
@@ -88,12 +98,30 @@ function AllRequest({error, loading, data}, ...props) {
                 ))}
               </TableBody>
             </TblContainer>
-            <TblPagination />
+             
           </div>
         ) : (
-          ""
+          "no data"
         )}
-    </>
+         <div className="flex pagination">
+          <img src={prev} alt="prev"
+            onClick={() =>
+              currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1)
+            }/
+          >
+            
+
+          <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
+          <img src={next} alt="next"
+            onClick={() =>
+              currentPage < pageNumbers.length
+                ? setCurrentPage(currentPage + 1)
+                : currentPage
+            }/
+          >
+            
+        </div>
+    </Wrapper>
   );
 }
 
