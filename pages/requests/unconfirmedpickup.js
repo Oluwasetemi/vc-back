@@ -34,6 +34,8 @@ const SINGLE_REQUEST = gql`
 			}
 			user {
 				_id
+				name
+				email
 				currentSubscriptionPlan {
 					_id
 					amount
@@ -47,6 +49,7 @@ const SINGLE_REQUEST = gql`
 			datetimePicked
 			contactPhoneNumber
 			status
+			type
 			createdAt
 			updatedAt
 		}
@@ -83,8 +86,8 @@ const pickupRequest = props => {
 					>
 						Requests
 					</LinkMaterial>
-					<LinkMaterial className="crumbs" color="textPrimary" href="#">
-					Request {loading ? 'loading' : singleRequest._id}
+					<LinkMaterial className="crumbs" color="textPrimary">
+						Request {loading ? 'loading' : singleRequest._id}
 					</LinkMaterial>
 				</Breadcrumbs>
 

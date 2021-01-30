@@ -2,13 +2,14 @@ import { useQuery } from '@apollo/client';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import gql from 'graphql-tag';
+import { format } from 'date-fns';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import UserDetailCard from '../../components/dashboard/common/UserDetailCard';
 import DashboardLayout from '../../components/layout/DashboardLayout';
+import { SINGLE_REQUEST } from './unconfirmedpickup';
 
 const Wrapper = styled.div`
 	.bread-crumbs {
@@ -23,41 +24,10 @@ const Wrapper = styled.div`
 	}
 `;
 
-const SINGLE_REQUEST = gql`
-	query SINGLE_REQUEST($id: ID!) {
-		fetchOneRequest(id: $id) {
-			_id
-			numberOfItems
-			type
-			pickupLocation {
-				_id
-				location
-			}
-			user {
-				_id
-				email
-				currentSubscriptionPlan {
-					_id
-					name
-					amount
-					services {
-						storage
-					}
-				}
-			}
-			bookingId
-			datetimePicked
-			contactPhoneNumber
-			status
-			createdAt
-			updatedAt
-		}
-	}
-`;
-function startPickup(props) {
+function startPickupPage(props) {
 	const { query } = useRouter();
 	// fetch the id from the page
-	const { id } = query;
+	const { id, type, status } = query;
 	const { error, loading, data } = useQuery(SINGLE_REQUEST, {
 		variables: { id },
 	});
@@ -89,11 +59,28 @@ function startPickup(props) {
 				</Breadcrumbs>
 
 				<UserDetailCard
-					userName={singleRequest && singleRequest.user.email}
-					userId={singleRequest && singleRequest.user._id}
+					userName={
+						loading ? 'loading' : error ? 'no data' : singleRequest.user.email
+					}
+					userId={
+						loading
+							? 'loading'
+							: error
+							? 'no data'
+							: singleRequest.user._id.substring(0, 7)
+					}
 					top={
 						<>
-							<p className="date">Monday, June 2, 2020</p>
+							<p className="date">
+								{loading
+									? 'loading'
+									: error
+									? 'no data'
+									: format(
+											new Date(singleRequest && singleRequest.datetimePicked),
+											'PPPP',
+									  )}
+							</p>
 							<div className="buttons flex wrap">
 								<p className="cancel pink">Cancel</p>
 								<p
@@ -103,7 +90,10 @@ function startPickup(props) {
 									Reschedule
 								</p>
 								<Link
-									href={{ pathname: '/requests/sendPickup', query: { id } }}
+									href={{
+										pathname: `/requests/send${type}`,
+										query: { id, type, status },
+									}}
 								>
 									<p className="accept red">Start Pickup</p>
 								</Link>
@@ -117,19 +107,31 @@ function startPickup(props) {
 								<div className="list grid first">
 									<p className="text">Items to deliver</p>
 									<p className="text bold">
-										{singleRequest && singleRequest.numberOfItems}
+										{loading
+											? 'loading'
+											: error
+											? 'no data'
+											: singleRequest.numberOfItems}
 									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Type</p>
 									<p className="text bold">
-										{singleRequest && singleRequest.type}
+										{loading
+											? 'loading'
+											: error
+											? 'no data'
+											: singleRequest.type}
 									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Location</p>
 									<p className="text bold">
-										{singleRequest && singleRequest.pickupLocation.location}
+										{loading
+											? 'loading'
+											: error
+											? 'no data'
+											: singleRequest.pickupLocation.location}
 									</p>
 								</div>
 							</div>
@@ -137,21 +139,31 @@ function startPickup(props) {
 								<div className="list grid first">
 									<p className="text">Delivery Date</p>
 									<p className="text bold">
-										{singleRequest &&
-											singleRequest.datetimePicked.substring(0, 10)}
+										{loading
+											? 'loading'
+											: error
+											? 'no data'
+											: singleRequest.datetimePicked.substring(0, 10)}
 									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Phone Number</p>
 									<p className="text bold">
-										{singleRequest && singleRequest.contactPhoneNumber}
+										{loading
+											? 'loading'
+											: error
+											? 'no data'
+											: singleRequest.contactPhoneNumber}
 									</p>
 								</div>
 								<div className="list grid">
 									<p className="text">Subscription</p>
 									<p className="text bold">
-										{singleRequest &&
-											singleRequest.user.currentSubscriptionPlan.name}
+										{loading
+											? 'loading'
+											: error
+											? 'no data'
+											: singleRequest.user.currentSubscriptionPlan.name}
 									</p>
 								</div>
 							</div>
@@ -161,21 +173,34 @@ function startPickup(props) {
 						<Link
 							href={{
 								pathname: '/clients/client',
-								query: { id: `${singleRequest && singleRequest.user._id}` },
+								query: {
+									id: `${
+										loading
+											? 'loading'
+											: error
+											? 'no data'
+											: singleRequest.user._id
+									}`,
+								},
 							}}
 						>
 							<p className="pink">View Client</p>
 						</Link>
 					}
 					weight="value"
-					text={`User has requested to checkout ${singleRequest &&
-						singleRequest.numberOfItems} items from their closet`}
+					text={`User has requested to checkout ${
+						loading
+							? 'loading'
+							: error
+							? 'no data'
+							: singleRequest.numberOfItems
+					} items from their closet`}
 				/>
 			</DashboardLayout>
 		</Wrapper>
 	);
 }
 
-startPickup.propTypes = {};
+startPickupPage.propTypes = {};
 
-export default startPickup;
+export default startPickupPage;

@@ -18,20 +18,19 @@ const Wrapper = styled.div`
 
 const ACCEPT_PICKUP_REQUEST = gql`
 	mutation ACCEPT_PICKUP_REQUEST($id: ID, $bookingId: String) {
-		acceptPickupRequest(id: $id, bookingId: $bookingId) {
-			message
+		acceptRequest(id: $id, bookingId: $bookingId) {
+			status
+			type
 		}
 	}
 `;
 
-export default function AcceptPickRequest({ id, bookingId }) {
+export default function AcceptPickRequest({ id, bookingId, type, status }) {
 	const router = useRouter();
-	const [acceptPickup, { loading, error }] = useMutation(
+	const [acceptRequest, { loading, error }] = useMutation(
 		ACCEPT_PICKUP_REQUEST,
-		{
-			variables: { id, bookingId },
-		},
 	);
+	// console.log(data);
 	return (
 		<Wrapper>
 			<button
@@ -39,13 +38,16 @@ export default function AcceptPickRequest({ id, bookingId }) {
 				onClick={async () => {
 					try {
 						// call the acceptPickup mutation
-						const res = await acceptPickup();
+						const res = await acceptRequest({
+							variables: { id, bookingId },
+						});
 
-						console.log(res);
+						const { status: newStatus } = res.data.acceptRequest;
+						// send out notification
 						alert('successful');
 						router.push({
-							pathname: '/requests/startPickup',
-							query: { id },
+							pathname: `/requests/${newStatus.toLowerCase()}${type}`,
+							query: { id, type, status: newStatus.toLowerCase() },
 						});
 					} catch (error) {
 						alert(error.message);
