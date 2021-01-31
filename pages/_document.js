@@ -14,7 +14,17 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en-US">
-        <Head>{this.props.styleTags}</Head>
+        <Head>
+          {this.props.styleTags}
+          <script
+            type="text/javascript"
+            src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+          ></script>
+          <script
+            type="text/javascript"
+            src="//cdn.timekit.io/booking-js/v2/booking.min.js"
+          ></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
