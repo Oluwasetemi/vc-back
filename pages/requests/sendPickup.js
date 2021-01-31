@@ -15,7 +15,7 @@ import UserDetailCard from '../../components/dashboard/common/UserDetailCard';
 import InventoryReportsTab from '../../components/dashboard/events/request/InventoryReportsTab';
 import SendOutPickup from '../../components/dashboard/events/SendOutPickup';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-import { SINGLE_REQUEST } from './pickupRequest';
+import { SINGLE_REQUEST } from './unconfirmedpickup';
 
 const Wrapper = styled.div`
 	.bread-crumbs {
@@ -256,7 +256,8 @@ function TabPanel(props) {
 const sendPickup = props => {
 	const { query } = useRouter();
 	// fetch the id from the page
-	const { id } = query;
+	const { id, type, status } = query;
+	console.log(id, type, status);
 	const { error, loading, data } = useQuery(SINGLE_REQUEST, {
 		variables: { id },
 	});
@@ -296,7 +297,12 @@ const sendPickup = props => {
 						<div className="flex paper-top-head wrap">
 							<p className="date">Pickup</p>
 							<div className="buttons flex wrap">
-								<Link href="/requests/startPickup">
+								<Link
+									href={{
+										pathname: `/requests/${status}${type}`,
+										query: { id, type, status },
+									}}
+								>
 									<p className="accept pink"> Back</p>
 								</Link>
 								<SendOutPickup id={id} move={() => setValue(1)} />
@@ -322,7 +328,10 @@ const sendPickup = props => {
 						<div className="flex paper-top-head wrap">
 							<p className="date">Pickup</p>
 							<div className="buttons flex wrap">
-								<p className="accept pink op-4"> Back</p>
+								<p className="accept pink op-4" onClick={() => setValue(1)}>
+									{' '}
+									Back
+								</p>
 
 								<p className="accept red op-4">Proceed</p>
 							</div>
@@ -453,12 +462,19 @@ const sendPickup = props => {
 							</>
 						}
 						buttons={
-							<Link href="/clients/client">
+							<Link
+								href={{
+									pathname: '/clients/client',
+									query: { id: singleRequest && singleRequest.user._id },
+								}}
+							>
 								<p className="pink ml-0">View Client</p>
 							</Link>
 						}
-						userName="Joseph Thornberry"
-						userId="1234"
+						userName={loading ? 'loading' : singleRequest.user.name}
+						userId={
+							loading ? 'loading' : singleRequest.user._id.substring(0, 7)
+						}
 						weight="date mb-70"
 						text="Items are being picked up from the client."
 					/>
@@ -472,40 +488,65 @@ const sendPickup = props => {
 								<div className="rhs">
 									<div className="list grid first">
 										<p className="text">Items to deliver</p>
-										<p className="text bold">5</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.numberOfItems}
+										</p>
 									</div>
 									<div className="list grid">
-										<p className="text">Type</p>
-										<p className="text bold">On Demand</p>
+										<p className="text">Status</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.status}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Location</p>
-										<p className="text bold">12 Bounty Lane, DC</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.pickupLocation.location}
+										</p>
 									</div>
 								</div>
 								<div className="rhs">
 									<div className="list grid first">
 										<p className="text">Delivery Date</p>
-										<p className="text bold">5/10/2020</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.datetimePicked.substring(0, 10)}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Phone Number</p>
-										<p className="text bold">0888800000000</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.contactPhoneNumber}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Subscription</p>
-										<p className="text bold">Plus+</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.user.currentSubscriptionPlan.name}
+										</p>
 									</div>
 								</div>
 							</>
 						}
 						buttons={
-							<Link href="/clients/client">
+							<Link
+								href={{
+									pathname: '/clients/client',
+									query: { id: singleRequest && singleRequest.user._id },
+								}}
+							>
 								<p className="pink ml-0">View Client</p>
 							</Link>
 						}
-						userName="Joseph Thornberry"
-						userId="1234"
+						userName={loading ? 'loading' : singleRequest.user.name}
+						userId={
+							loading ? 'loading' : singleRequest.user._id.substring(0, 7)
+						}
 						weight="date mb-70"
 						text="Items are being picked up from the client."
 					/>
@@ -523,40 +564,65 @@ const sendPickup = props => {
 								<div className="rhs">
 									<div className="list grid first">
 										<p className="text">Items to deliver</p>
-										<p className="text bold">5</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.numberOfItems}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Type</p>
-										<p className="text bold">On Demand</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.type}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Location</p>
-										<p className="text bold">12 Bounty Lane, DC</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.pickupLocation.location}
+										</p>
 									</div>
 								</div>
 								<div className="rhs">
 									<div className="list grid first">
 										<p className="text">Delivery Date</p>
-										<p className="text bold">5/10/2020</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.datetimePicked.substring(0, 10)}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Phone Number</p>
-										<p className="text bold">0888800000000</p>
+										<p className="text bold">
+											{loading ? 'loading' : singleRequest.contactPhoneNumber}
+										</p>
 									</div>
 									<div className="list grid">
 										<p className="text">Subscription</p>
-										<p className="text bold">Plus+</p>
+										<p className="text bold">
+											{loading
+												? 'loading'
+												: singleRequest.user.currentSubscriptionPlan.name}
+										</p>
 									</div>
 								</div>
 							</>
 						}
 						buttons={
-							<Link href="/clients/client">
+							<Link
+								href={{
+									pathname: '/clients/client',
+									query: { id: singleRequest && singleRequest.user._id },
+								}}
+							>
 								<p className="pink ml-0">View Client</p>
 							</Link>
 						}
-						userName="Joseph Thornberry"
-						userId="1234"
+						userName={loading ? 'loading' : singleRequest.user.name}
+						userId={
+							loading ? 'loading' : singleRequest.user._id.substring(0, 7)
+						}
 						weight="date mb-70"
 						text="Items are being picked up from the client."
 					/>

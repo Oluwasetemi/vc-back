@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const SEND_OUT_PICKUP_REQUEST = gql`
 	mutation SEND_OUT_PICKUP_REQUEST($id: ID) {
-		sendOutPickup(id: $id) {
+		sendOutRequest(id: $id) {
 			message
 		}
 	}
@@ -28,9 +28,6 @@ export default function SendOutPickup({ id, move }) {
 	const router = useRouter();
 	const [sendOutPickup, { loading, error }] = useMutation(
 		SEND_OUT_PICKUP_REQUEST,
-		{
-			variables: { id },
-		},
 	);
 	return (
 		<Wrapper>
@@ -39,7 +36,9 @@ export default function SendOutPickup({ id, move }) {
 				onClick={async () => {
 					try {
 						// call the acceptPickup mutation
-						const res = await sendOutPickup();
+						const res = await sendOutPickup({
+							variables: { id },
+						});
 
 						console.log(res);
 						alert('Pick sent out successfully');

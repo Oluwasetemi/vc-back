@@ -1,6 +1,8 @@
 import { useQuery } from '@apollo/client';
+import { format } from 'date-fns';
 import gql from 'graphql-tag';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import UserDetailCard from '../../common/UserDetailCard';
 import AcceptPickRequest from '../AcceptPickRequest';
@@ -38,7 +40,9 @@ const SINGLE_REQUEST = gql`
 `;
 
 function SingleRequest(props) {
-	const { id } = props;
+	const { query } = useRouter();
+	console.log(query);
+	const { id, status, type } = query;
 	// console.log(id)
 	const { error, loading, data } = useQuery(SINGLE_REQUEST, {
 		variables: { id },
@@ -54,7 +58,10 @@ function SingleRequest(props) {
 			<UserDetailCard
 				top={
 					<>
-						<p className="date">Monday, June 2, 2020</p>
+						<p className="date">
+							{format(new Date(data.fetchOneRequest.datetimePicked), 'PPPP') ||
+								'Request Date'}
+						</p>
 						<div className="buttons flex wrap">
 							<p
 								className="reschedule pink"
@@ -64,6 +71,8 @@ function SingleRequest(props) {
 							</p>
 							<AcceptPickRequest
 								id={id}
+								type={type}
+								status={data.fetchOneRequest.status.toLowerCase()}
 								bookingId={data.fetchOneRequest.bookingId}
 							/>
 						</div>

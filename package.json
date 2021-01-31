@@ -16,10 +16,13 @@
     "@material-ui/core": "^4.11.1",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "apollo-link-ws": "^1.0.20",
     "apollo-upload-client": "^14.1.3",
     "clsx": "^1.1.1",
+    "date-fns": "^2.16.1",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "graphql-ws": "^4.1.2",
     "next": "^10.0.3",
     "next-fonts": "^1.5.1",
     "next-images": "^1.6.2",
@@ -30,7 +33,8 @@
     "react-apollo": "^3.1.5",
     "react-dom": "17.0.1",
     "react-router-dom": "^5.2.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "subscriptions-transport-ws": "^0.9.18"
   },
   "description": "[![Netlify Status](https://api.netlify.com/api/v1/badges/ed50f56e-4fc2-4c98-8b66-1e5074c6f3d3/deploy-status)](https://app.netlify.com/sites/next-starter/deploys)",
   "main": "index.js",

@@ -11,6 +11,8 @@ import homeIcon from "../public/assets/homeIcon.svg";
 import paymentsIcon from "../public/assets/paymentsIcon.svg";
 import subscriptionsIcon from "../public/assets/subscriptionsIcon.svg";
 import supportIcon from "../public/assets/supportIcon.svg";
+import Link from 'next/link';
+
 
 const Wrapper = styled.div`
   .MuiTypography-body1 {
@@ -38,6 +40,7 @@ const Wrapper = styled.div`
   }
 `;
 
+
 export function ListItems() {
   function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
@@ -45,9 +48,11 @@ export function ListItems() {
   const router = useRouter();
   return (
     <Wrapper>
+      
       <List>
+        <Link  href="/dashboard">
         <ListItemLink
-          href="/dashboard"
+         
           className={router.pathname === "/dashboard" ? "active" : ""}
         >
           <ListItemIcon>
@@ -55,9 +60,11 @@ export function ListItems() {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItemLink>
+        </Link>
 
+        <Link     href="/calendar">
         <ListItemLink
-          href="/calendar"
+      
           className={
             (router.pathname === "/calendar" ? "active" : "") ||
             (router.pathname === "/calendar/allEvents" ? "active" : "") ||
@@ -73,9 +80,11 @@ export function ListItems() {
           </ListItemIcon>
           <ListItemText primary="Calendar" />
         </ListItemLink>
+        </Link>
 
-        <ListItemLink
-          href="/clients"
+       <Link  href="/clients">
+       <ListItemLink
+         
           className={
             (router.pathname === "/clients" ? "active" : "") ||
             (router.pathname === "/clients/client" ? "active" : "") ||
@@ -108,33 +117,36 @@ export function ListItems() {
           </ListItemIcon>
           <ListItemText primary="Clients" />
         </ListItemLink>
-
-        <ListItemLink
-          href="/payments"
+</Link>
+       <Link href="/payments">
+       <ListItemLink
+          
           className={router.pathname === "/payments" ? "active" : ""}
         >
           <ListItemIcon>
             <img src={paymentsIcon} alt="paymentsIcon" />
           </ListItemIcon>
           <ListItemText primary="Payments" />
-        </ListItemLink>
+        </ListItemLink></Link>
 
+        <Link   href="/subscriptions">
         <ListItemLink
-          href="/subscriptions"
+        
           className={router.pathname === "/subscriptions" ? "active" : ""}
         >
           <ListItemIcon>
             <img src={subscriptionsIcon} alt="subscriptionsIcon" />
           </ListItemIcon>
           <ListItemText primary="Subscriptions" />
-        </ListItemLink>
+        </ListItemLink></Link>
 
-        <ListItemLink href="/support" className={router.pathname === "/support" ? "active" : ""}>
+       <Link href="/support">
+       <ListItemLink  className={router.pathname === "/support" ? "active" : ""}>
           <ListItemIcon>
             <img src={supportIcon} alt="supportIcon" />
           </ListItemIcon>
           <ListItemText primary="Support" />
-        </ListItemLink>
+        </ListItemLink></Link>
       </List>
     </Wrapper>
   );

@@ -1,13 +1,10 @@
 import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
-import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
-import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
+import Link from 'next/link';
 import Toolbar from "@material-ui/core/Toolbar";
 import MenuIcon from "@material-ui/icons/Menu";
-import clsx from "clsx";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
@@ -29,6 +26,9 @@ const Wrapper = styled.div`
     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
       // top: 55px;
     }
+  }
+  #brand {
+    cursor:pointer;
   }
   .MuiTypography-body1 {
     font-family: Matteo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -126,8 +126,8 @@ export default function DashboardLayout({ children }) {
             <MenuIcon className="redIcon" />
           </IconButton>
 
-          <Link href="/">
-            <img src={brand} alt="brand" />
+          <Link href="/" >
+            <img id='brand' src={brand} alt="brand" />
           </Link>
           <div className="navbar-rhs flex">
             <img src={notifyIcon} alt="notifyIcon" />

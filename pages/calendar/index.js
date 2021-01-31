@@ -24,30 +24,46 @@ const Wrapper = styled.div`
   }
 `;
 
+class Calendar extends React.Component {
+  componentDidMount() {
+    var widget = new TimekitBooking();
+    widget.init({
+      app_key: "live_widget_key_yYXHsUurvCUctNYflzGDMqEJo6mol0Yo",
+      project_id: "352a29be-9ec4-4875-ac87-cb5fb3a2fe62",
+      fullcalendar: {
+        defaultView: "month",
+      },
+    });
+  }
+  render() {
+    return (
+      <Wrapper>
+        <DashboardLayout>
+          <Breadcrumbs
+            className="bread-crumbs"
+            separator={<NavigateNextIcon fontSize="small" />}
+            aria-label="breadcrumb"
+          >
+            <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
+              Home
+            </LinkMaterial>
+            <LinkMaterial
+              className="crumbs"
+              color="textPrimary"
+              href="/calendar"
+            >
+              Calendar
+            </LinkMaterial>
+          </Breadcrumbs>
+          <CalendarModal />
 
-const Calendar = () => {
-  return (
-    <Wrapper>
-      <DashboardLayout>
-        <Breadcrumbs
-          className="bread-crumbs"
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
-            Home
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="textPrimary" href="/calendar">
-            Calendar
-          </LinkMaterial>
-        </Breadcrumbs>
-        <CalendarModal />
-
-        <Paper className="paper"></Paper>
-      </DashboardLayout>
-    </Wrapper>
-  );
-};
+          <div id="bookingjs"></div>
+          <Paper className="paper" />
+        </DashboardLayout>
+      </Wrapper>
+    );
+  }
+}
 
 Calendar.propTypes = {};
 
