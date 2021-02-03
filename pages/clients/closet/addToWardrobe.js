@@ -9,7 +9,6 @@ import shirt from "../../../public/assets/shirt.png";
 import pants from "../../../public/assets/pants.png";
 import menShoes from "../../../public/assets/men_shoes.png";
 import tie from "../../../public/assets/tie.png";
-import { CheckboxInput } from "../../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
 
@@ -67,7 +66,7 @@ const Wrapper = styled.div`
   .paper-tail {
 	margin: 30px 0 50px 0;
 	.buttons.flex{
-		align-items: baseline;
+    align-items: center;
 		min-width: 270px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			min-width: -webkit-fill-available;
@@ -165,8 +164,10 @@ const Wrapper = styled.div`
     line-height: 24px;
 	color: #2f3930;
 	margin-bottom: 10px;
+	  }
+  .info.name.text{
+font-weight: normal;
   }
-  
   .name {
     font-weight: bold;
     margin: 18px 0 10px 0;
@@ -186,7 +187,7 @@ const Wrapper = styled.div`
     margin-right: 0;
   }
 `;
-function addToWardrobe2(props) {
+function addToWardrobe3(props) {
   return (
     <Wrapper>
       <DashboardLayout>
@@ -209,132 +210,116 @@ function addToWardrobe2(props) {
             Joseph Thornberry
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-          Add to Wardrobe
+            Add to Wardrobe
           </LinkMaterial>
         </Breadcrumbs>
-        <h3 className="title">Add to Wardrobe/Vault</h3>
-       
+        <h3 className="title">Update Closet/Vault</h3>
+
         <div className="paper paper-tail">
-		<div className="flex wrap"><h1>Items</h1>
-		  <div className="buttons flex">
-		  <Link href="/clients/wardrobe/addToWardrobe1">
-                    <Button theme="pink">Back</Button>
-                  </Link>
-				  <Link href="/clients/wardrobe/addToWardrobe3">
-                    <Button theme="orange">Continue</Button>
-                  </Link>
-		  </div>
-				  </div>
-
-				  <p className="info name text">Add single or multiple items to the wardrobe</p>
-
-      <div className="scroll">
-	  <div className="grid">
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image1"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-              <p className="id text">Type: Shirt</p>
-              <p className="id text">Category: Long sleeve</p>
-              <p className="id text">Color: Black</p>
-			  <Link href="#">
-                    <Button theme="pink">View</Button>
-                  </Link>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image2"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-			  <p className="id text">Type: Shirt</p>
-              <p className="id text">Category: Long sleeve</p>
-              <p className="id text">Color: Black</p>
-			  <Link href="#">
-                    <Button theme="pink">View</Button>
-                  </Link>			  
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image3"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-			  <p className="id text">Type: Shirt</p>
-              <p className="id text">Category: Long sleeve</p>
-              <p className="id text">Color: Black</p>
-			  <Link href="#">
-                    <Button theme="pink">View</Button>
-                  </Link>			  
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image4"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-			  <p className="id text">Type: Shirt</p>
-              <p className="id text">Category: Long sleeve</p>
-              <p className="id text">Color: Black</p>
-			  <Link href="#">
-                    <Button theme="pink">View</Button>
-                  </Link>			  
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>{" "}
-                <div className="image image1"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-			  <p className="id text">Type: Shirt</p>
-              <p className="id text">Category: Long sleeve</p>
-              <p className="id text">Color: Black</p>
-			  <Link href="#">
-                    <Button theme="pink">View</Button>
-                  </Link>			  
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>{" "}
-                <div className="image image2"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-			  <p className="id text">Type: Shirt</p>
-              <p className="id text">Category: Long sleeve</p>
-              <p className="id text">Color: Black</p>
-			  <Link href="#">
-                    <Button theme="pink">View</Button>
-                  </Link>			  
+          <div className="flex wrap">
+            <h1>Items</h1>
+            <div className="buttons flex">
+              <Link href="/clients/closet/updateCloset">
+                <Button theme="pink">Back</Button>
+              </Link>
+              <Link href="/clients/addAStylist">
+                <Button theme="orange">Continue</Button>
+              </Link>
             </div>
           </div>
-	  </div>
+
+          <p className="info name text">
+            Complete Adding these Items to your closet
+          </p>
+
+          <div className="scroll">
+            <div className="grid">
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image3"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image4"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                                    <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                                    <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
- 
       </DashboardLayout>
     </Wrapper>
   );
 }
 
-addToWardrobe2.propTypes = {};
+addToWardrobe3.propTypes = {};
 
-export default addToWardrobe2;
+export default addToWardrobe3;

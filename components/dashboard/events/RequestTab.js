@@ -21,6 +21,12 @@ const Wrapper = styled.div`
 		.MuiAppBar-colorPrimary {
 			margin-bottom: 0;
 		}
+		.searchbar {
+			@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+				margin: 10px auto;
+				max-width: 90%;
+			}
+		}
 	}
 	.MuiAppBar-colorPrimary {
 		color: #2f3930;

@@ -1,61 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import alt from "../../../public/assets/String-initials.png";
-import camera from "../../../public/assets/camera.svg";
+import camera from "../../../public/assets/photo.svg";
 
 const Wrapper = styled.div`
-input{
-	display:none;
-}
-.dp {
-    width: 70px;
-    height: 70px;
-    background-color: #9c9b7c;
-    border-radius: 50%;
-    justify-content: center;
-    background-color: #9c9b7c;
-	position: relative;
-	cursor: pointer;
-	.picture{
-		max-width: 100%;
-	}
+  input {
+    display: none;
   }
-  .absolute{
-	bottom: -8px;
-	right: 0;
-	cursor: pointer;
-	  position: absolute;
+  .image {
+    background-size: cover;
   }
-`
-class UploadImage extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      file: alt
-    }
-    this.handleChange = this.handleChange.bind(this)
-  }
-  handleChange(event) {
-    this.setState({
-      file: URL.createObjectURL(event.target.files[0])
-    })
-  }
-  render() {
-    return (
-      <Wrapper>
-		  
-		<input accept="image/*"  id="icon-button-file" type="file" type="file" onChange={this.handleChange}/>
+`;
+function UploadImage() {
+  const [image, setImage] = useState({ file: "" });
+  const handleChange = (e) => {
+    setImage({
+      file: URL.createObjectURL(e.target.files[0]),
+    });
+  };
+
+  return (
+    <Wrapper>
+      <input
+        accept="image/*"
+        id="icon-button-file"
+        type="file"
+        type="file"
+        onChange={handleChange}
+      />
       <label htmlFor="icon-button-file">
-        <div className="dp flex" color="primary" aria-label="upload picture" component="span">
-		<img className="picture"  src={this.state.file}/>
-		<img className="absolute" src={camera} onChange={this.handleChange}/>
-
+        <div className="product" aria-label="upload picture" component="span">
+          <div className="checked absolute">
+            {" "}
+            <img src={camera} onChange={handleChange} />
+          </div>
+          <div
+            className="image"
+            style={{ backgroundImage: `url(${image.file})` }}
+          ></div>
         </div>
-     
       </label>
-
-      </Wrapper>
-    );
-  }
+    </Wrapper>
+  );
 }
-export{UploadImage}
+
+export { UploadImage };

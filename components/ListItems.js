@@ -97,14 +97,11 @@ export function ListItems() {
             (router.pathname === "/clients/editOutfit" ? "active" : "") ||
             (router.pathname === "/clients/reviewOutfit" ? "active" : "") ||
             (router.pathname === "/clients/outfitCreated" ? "active" : "") ||
-            (router.pathname === "/clients/wardrobe" ? "active" : "") ||
-            (router.pathname === "/clients/wardrobe/addToWardrobe1"
+            (router.pathname === "/clients/closet" ? "active" : "") ||
+            (router.pathname === "/clients/closet/updateCloset"
               ? "active"
               : "") ||
-            (router.pathname === "/clients/wardrobe/addToWardrobe2"
-              ? "active"
-              : "") ||
-            (router.pathname === "/clients/wardrobe/addToWardrobe3"
+            (router.pathname === "/clients/closet/addToWardrobe"
               ? "active"
               : "") ||
             (router.pathname === "/clients/addAStylist" ? "active" : "") ||

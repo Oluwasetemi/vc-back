@@ -53,7 +53,6 @@ const Wrapper = styled.div`
   .pink {
     color: #f26144;
     background-color: #fff1de;
-    margin-bottom: 10px;
     &:hover {
       color: #fff1de;
       background-color: #f26144;
