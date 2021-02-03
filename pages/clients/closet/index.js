@@ -327,8 +327,7 @@ function index(props) {
               <div className="grid-items">
                 <div className="product">
                   <div className="checked absolute">
-                  <CheckboxInput/>
-
+                    <CheckboxInput checked={true} />
                   </div>
                   <div className="image image1"></div>
                 </div>
@@ -360,7 +359,7 @@ function index(props) {
               <div className="grid-items">
                 <div className="product">
                   <div className="checked absolute">
-                    <CheckboxInput />{" "}
+                    <CheckboxInput checked={true} />
                   </div>
                   <div className="image image3"></div>
                 </div>
@@ -376,7 +375,7 @@ function index(props) {
               <div className="grid-items">
                 <div className="product">
                   <div className="checked absolute">
-                    <CheckboxInput />{" "}
+                    <CheckboxInput checked={true} />
                   </div>
                   <div className="image image4"></div>
                 </div>
@@ -408,7 +407,7 @@ function index(props) {
               <div className="grid-items">
                 <div className="product">
                   <div className="checked absolute">
-                    <CheckboxInput />{" "}
+                    <CheckboxInput checked={true} />
                   </div>{" "}
                   <div className="image image2"></div>
                 </div>
