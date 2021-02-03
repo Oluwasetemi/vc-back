@@ -9,12 +9,9 @@ import shirt from "../../public/assets/shirt.png";
 import pants from "../../public/assets/pants.png";
 import menShoes from "../../public/assets/men_shoes.png";
 import tie from "../../public/assets/tie.png";
-import {   TextInput
-} from "../../components/dashboard/inputs";
+import { TextInput } from "../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
-
-
 
 const Wrapper = styled.div`
 
@@ -144,7 +141,7 @@ const Wrapper = styled.div`
 
 `;
 function outfitCreated(props) {
-	const [outfitName, setOutfitName] = useState("");
+  const [outfitName, setOutfitName] = useState("");
 
   return (
     <Wrapper>
@@ -167,7 +164,7 @@ function outfitCreated(props) {
           >
             Joseph Thornberry
           </LinkMaterial>
-		  <LinkMaterial
+          <LinkMaterial
             className="crumbs"
             color="inherit"
             href="/clients/editOutfit"
@@ -175,55 +172,40 @@ function outfitCreated(props) {
             Outfit
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-		  Outfit Created
+            Outfit Created
           </LinkMaterial>
         </Breadcrumbs>
         <h3 className="title">Outfit Created!</h3>
-    
-
 
         <div className="paper paper-tail">
-		<h1>Sweet Summer</h1>
-		 
-				 
-				
-		 
-      <div className="scroll">
-	  <div className="grid">
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image1"></div>
+          <h1>Sweet Summer</h1>
+
+          <div className="scroll">
+            <div className="grid">
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-               
-                <div className="image image2"></div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              
-                
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                               <div className="image image3"></div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="image image3"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
               </div>
-              <p className="name text">Plain black shirt</p>
-              
-                
             </div>
-          
           </div>
-	  </div>
-	  <Link href="/clients/wardrobe">
-                    <Button theme="orange">Okay</Button>
-                  </Link>
+          <Link href="/clients/closet">
+            <Button theme="orange">Okay</Button>
+          </Link>
         </div>
- 
       </DashboardLayout>
     </Wrapper>
   );

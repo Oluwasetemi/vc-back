@@ -34,6 +34,7 @@ const Wrapper = styled.div`
 			border: 0;
 			color: #fff;
 			padding: 7px 35px;
+			background-color: #D6D8D3;
 		}
 		.pinkBtn {
 			padding: 7px 35px;
@@ -76,9 +77,7 @@ const optionCategory = [
 ];
 
 function InventoryReportsTab({ onClickPrev, onClickNext }) {
-	const [itemId, setItemId] = useState('0000000');
 	const [itemType, setItemType] = useState('');
-	const [itemCategory, setItemCategory] = useState('');
 	const [itemTag, setItemTag] = useState('1234567');
 	const [itemFeature, setItemFeature] = useState('');
 	const [itemMaterial, setItemMaterial] = useState('');
@@ -96,7 +95,7 @@ function InventoryReportsTab({ onClickPrev, onClickNext }) {
 	};
 	return (
 		<Wrapper>
-			<TabPanel value={value} index={0}>
+			 <TabPanel value={value} index={0}>
 				<Paper className="item-detail paper">
 					<div className="flex j-btw">
 						<p className="date">Condition & Inventory Report</p>
@@ -218,8 +217,8 @@ function InventoryReportsTab({ onClickPrev, onClickNext }) {
 				</div>
 			</TabPanel>
 
-			<TabPanel value={value} index={1}>
-				<Paper className="item-detail paper">
+			<TabPanel value={value} index={1}> */}
+				{/* <Paper className="item-detail paper">
 					<div className="flex j-btw">
 						<p className="date">Condition & Inventory Report</p>
 						<p className="date">20/20 Items</p>
@@ -335,7 +334,7 @@ function InventoryReportsTab({ onClickPrev, onClickNext }) {
 						/>
 					</Tabs>
 				</div>
-			</TabPanel>
+			</TabPanel> 
 		</Wrapper>
 	);
 }

@@ -5,7 +5,7 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
-import { TextInput, Textarea , UploadImage,TagInput } from "../../components/dashboard/inputs";
+import { TextInput, Textarea , UploadDp,TagInput } from "../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
 
@@ -86,7 +86,6 @@ const Wrapper = styled.div`
 	.pink {
 		color: #f26144;
 		background-color: #fff1de;
-		margin-bottom: 10px;
 		font-weight: 600;
 		border-radius: 10px;
 		padding: 7px 12px;
@@ -114,7 +113,18 @@ letter-spacing: 0.5px;
 	  }
   }
   
- 
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     file: null,
+  //   };
+  //   this.handleChange = this.handleChange.bind(this);
+  // }
+  // handleChange(event) {
+  //   this.setState({
+  //     file: URL.createObjectURL(event.target.files[0]),
+  //   });
+  // }
 `;
 function addAStylist(props) {
   const [fullName, setFullName] = useState("");
@@ -149,7 +159,7 @@ function addAStylist(props) {
             </div>
           <div className=" grid wrap">
 		  
-<UploadImage/>
+<UploadDp/>
            <div className="flex wrap start">
            <div className="text-input w-30 mr-40">
               <TextInput

@@ -369,8 +369,8 @@ function client(props) {
 					}
 					buttons={
 						<>
-							<Link href="/clients/client">
-								<p className="pink">Add to Closet</p>
+							<Link href="/clients/closet">
+								<p className="pink">Update Closet (10)</p>
 							</Link>
 							<Link href="/clients/subscriptionHistory">
 								<p className="pink">Subscription History</p>
