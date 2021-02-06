@@ -1,17 +1,15 @@
-import React from "react";
+import React from 'react';
 
 function AmountConverter(amount) {
-  const options = {
-    style: "currency",
-    currency: "NGN",
-    minimumFractionDigits: 2,
-  };
-  // if its a whole, dollar amount, leave off the .00
-  if (amount % 100 === 0) options.minimumFractionDigits = 0;
-  const formatter = new Intl.NumberFormat("en-NG", options);
-  return <span>{formatter.format(amount / 100)}</span>;
+	const options = {
+		style: 'currency',
+		currency: 'USD',
+		minimumFractionDigits: 2,
+	};
+	// if its a whole, dollar amount, leave off the .00
+	if (amount % 100 === 0) options.minimumFractionDigits = 0;
+	const formatter = new Intl.NumberFormat('en-US', options);
+	return <span>{formatter.format(amount / 100)}</span>;
 }
-
-
 
 export default AmountConverter;
