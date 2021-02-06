@@ -87,6 +87,9 @@ const Wrapper = styled.div`
 	}
 	  }
   }
+  .mt-10{
+    margin-top: 10px;
+  }
   .paper-tail{
 	  .text-input{
 		max-width: 20%;
@@ -96,7 +99,8 @@ const Wrapper = styled.div`
 		  }
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			max-width: 80%;		  }
-	  }
+    }
+    
 	.pink {
 		color: #f26144;
 		background-color: #fff1de;
@@ -223,15 +227,15 @@ function reviewOutfit(props) {
           <div className="flex wrap">
             <h1>Outfit</h1>
             <div className="buttons flex">
-              <Link href="/clients/editOutfit">
+              <Link href="/clients/editoutfit">
                 <Button theme="pink">Back</Button>
               </Link>
-              <Link href="/clients/outfitCreated">
+              <Link href="/clients/outfitcreated">
                 <Button theme="orange">Finish</Button>
               </Link>
             </div>
           </div>
-          <div className="text-input">
+          <form className="text-input mt-10">
             <TextInput
               label="Enter Outfit Name"
               value={outfitName}
@@ -239,7 +243,7 @@ function reviewOutfit(props) {
               type="text"
               placeholder="Outfit Name"
             />
-          </div>
+          </form>
 
           <div className="scroll">
             <div className="grid">

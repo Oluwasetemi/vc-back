@@ -227,7 +227,7 @@ function updateCloset(props) {
               <Link href="/clients/closet">
                 <Button theme="pink">Back</Button>
               </Link>
-              <Link href="/clients/closet/addToWardrobe">
+              <Link href="/clients/closet/addtowardrobe">
                 <Button className="disabled">Continue</Button>
               </Link>
             </div>

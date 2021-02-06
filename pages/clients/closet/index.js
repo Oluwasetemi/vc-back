@@ -312,7 +312,7 @@ function index(props) {
               <Link href="/clients/outfitCreated">
                 <Button theme="pink">Back</Button>
               </Link>
-              <Link href="/clients/closet/updateCloset">
+              <Link href="/clients/closet/updatecloset">
                 <Button theme="orange">Continue</Button>
               </Link>
             </div>

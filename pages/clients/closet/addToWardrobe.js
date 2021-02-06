@@ -219,10 +219,10 @@ function addToWardrobe3(props) {
           <div className="flex wrap">
             <h1>Items</h1>
             <div className="buttons flex">
-              <Link href="/clients/closet/updateCloset">
+              <Link href="/clients/closet/updatecloset">
                 <Button theme="pink">Back</Button>
               </Link>
-              <Link href="/clients/addAStylist">
+              <Link href="/clients/addastylist">
                 <Button theme="orange">Continue</Button>
               </Link>
             </div>

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function SingleItem({ item, userId }) {
+export default function SingleItem({ item, userId,button }) {
 	return (
 		<div className="grid-items">
 			<Link
@@ -17,6 +17,7 @@ export default function SingleItem({ item, userId }) {
 			</Link>
 			<p className="name text">{item.name}</p>
 			<p className="id text">ID: {item._id.slice(-6)}</p>
+			{button}
 		</div>
 	);
 }
@@ -28,5 +29,6 @@ SingleItem.propTypes = {
 		}),
 		name: PropTypes.any,
 	}),
-	userId: PropTypes.String
+	userId: PropTypes.String,
+	button: PropTypes.any,
 };

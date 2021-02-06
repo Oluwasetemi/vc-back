@@ -26,7 +26,7 @@ export default function SingleItemFull() {
 		variables: { id, userId },
 	});
 	return (
-		<Paper className="paper">
+		<Paper className="paper mt-50">
 			<h1 id="tag">
 				{loading ? 'loading' : error ? 'no data' : data.fetchOneItemUser.name}
 			</h1>

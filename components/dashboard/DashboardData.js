@@ -36,7 +36,7 @@ export default function DashboardData() {
 				}
 				info="Requests for approval"
 				link={
-					<Link href="/calendar/allEvents">
+					<Link href="/calendar/allevents">
 						<Button theme="pink">View</Button>
 					</Link>
 				}
@@ -84,7 +84,7 @@ export default function DashboardData() {
 				}
 				info="Items to catalogue"
 				link={
-					<Link href="/calendar/allEvents">
+					<Link href="/calendar/allevents">
 						<Button theme="pink">View</Button>
 					</Link>
 				}
@@ -100,7 +100,7 @@ export default function DashboardData() {
 				}
 				info="Items to catalogue"
 				link={
-					<Link href="/calendar/allEvents">
+					<Link href="/calendar/allevents">
 						<Button theme="pink">View</Button>
 					</Link>
 				}

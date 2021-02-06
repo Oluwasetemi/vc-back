@@ -111,7 +111,7 @@ function Clients(props) {
 						Home
 					</LinkMaterial>
 
-					<LinkMaterial color="textPrimary" href="/calendar/allEvents">
+					<LinkMaterial color="textPrimary" href="/calendar/allevents">
 						Clients
 					</LinkMaterial>
 				</Breadcrumbs>

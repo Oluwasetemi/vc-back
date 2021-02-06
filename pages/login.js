@@ -87,7 +87,7 @@ function login(props) {
                 <div className="label-name flex">
                   <span>Password</span>
                   <span className="orange-link">
-                    <Link href="/requestPasswordReset">Forgot Your Password?</Link>
+                    <Link href="/requestpasswordreset">Forgot Your Password?</Link>
                   </span>
                 </div>
               }
