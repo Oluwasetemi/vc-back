@@ -46,6 +46,7 @@ const Wrapper = styled.div`
 			border: 0;
 			color: #fff;
 			padding: 7px 35px;
+			background-color: #D6D8D3;
 		}
 		.pinkBtn {
 			padding: 7px 35px;
@@ -410,8 +411,12 @@ function InventoryReportsTab({ onClickPrev, onClickNext, id }) {
 
 	return (
 		<Wrapper>
+<<<<<<< HEAD
 			{/* based on the numberOfItems from the request create TabPanel */}
 			{/* <TabPanel value={value} index={0}>
+=======
+			 <TabPanel value={value} index={0}>
+>>>>>>> e02e2194ce0659e7d3379c95f690791591feb2c0
 				<Paper className="item-detail paper">
 					<div className="flex j-btw">
 						<p className="date">Condition & Inventory Report</p>
@@ -535,8 +540,8 @@ function InventoryReportsTab({ onClickPrev, onClickNext, id }) {
 				</div>
 			</TabPanel>
 
-			<TabPanel value={value} index={1}>
-				<Paper className="item-detail paper">
+			<TabPanel value={value} index={1}> */}
+				{/* <Paper className="item-detail paper">
 					<div className="flex j-btw">
 						<p className="date">Condition & Inventory Report</p>
 						<p className="date">20/20 Items</p>
@@ -652,6 +657,7 @@ function InventoryReportsTab({ onClickPrev, onClickNext, id }) {
 						/>
 					</Tabs>
 				</div>
+<<<<<<< HEAD
 			</TabPanel> */}
 			{Array.from(
 				{ length: singleRequest && singleRequest.numberOfItems },
@@ -667,6 +673,9 @@ function InventoryReportsTab({ onClickPrev, onClickNext, id }) {
 					index={index}
 				/>
 			))}
+=======
+			</TabPanel>
+>>>>>>> e02e2194ce0659e7d3379c95f690791591feb2c0
 		</Wrapper>
 	);
 }

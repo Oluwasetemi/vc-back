@@ -83,7 +83,6 @@ const Wrapper = styled.div`
 	.pink {
 		color: #f26144;
 		background-color: #fff1de;
-		margin-bottom: 10px;
 		font-weight: 600;
 		border-radius: 10px;
 		padding: 7px 12px;

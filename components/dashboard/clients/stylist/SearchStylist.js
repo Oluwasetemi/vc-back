@@ -16,11 +16,13 @@ const Wrapper = styled.div`
 		overflow: hidden;
 		@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
 			position: relative;
-			width: 300px;
+			max-width: 50%;
+			margin-bottom: 10px;
 			margin-left: auto;
+			right: 0;
 		}
 		@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
-			width: fit-content;
+			max-width: 100%;
 		}
 		&:focus-within {
 			border: 1px solid #f26144;

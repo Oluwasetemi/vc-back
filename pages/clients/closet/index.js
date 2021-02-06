@@ -5,10 +5,6 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import DashboardLayout from "../../../components/layout/DashboardLayout";
 import LinkMaterial from "@material-ui/core/Link";
-import shirt from "../../../public/assets/shirt.png";
-import pants from "../../../public/assets/pants.png";
-import menShoes from "../../../public/assets/men_shoes.png";
-import tie from "../../../public/assets/tie.png";
 import { CheckboxInput } from "../../../components/dashboard/inputs";
 import Button from "@components/common/Button";
 import Link from "next/link";
@@ -135,7 +131,15 @@ const Wrapper = styled.div`
   }
   .paper-tail {
 	margin: 30px 0 50px 0;
-	
+  
+  .buttons.flex{
+    align-items: center;
+		min-width: 320px;
+		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+      min-width: 185px;
+      flex-wrap:wrap;
+    }
+  }
   }
   
   .paper-tail h1 {
@@ -144,6 +148,9 @@ const Wrapper = styled.div`
     line-height: 24px;
     color: #2f3930;
   }
+  .paper-tail .info{
+    margin-top: 17px;
+    }
   .paper-tail .scroll{
 	max-width: 100%;
 	overflow-x: scroll;
@@ -176,6 +183,11 @@ const Wrapper = styled.div`
 		margin-left: auto;
 	  }
   }
+  .grid-items .button{
+    padding: .4rem 2.5rem;
+    margin-top: 15px;
+  }
+
   .grid-items .product {
     background-color: #f3f0f0;
     padding: 38px 5px;
@@ -204,18 +216,7 @@ const Wrapper = styled.div`
     background-position: center;
   }
 
-  .grid-items .image1 {
-    background-image: url(${shirt});
-  }
-  .grid-items .image2 {
-    background-image: url(${pants});
-  }
-  .grid-items .image3 {
-    background-image: url(${menShoes});
-  }
-  .grid-items .image4 {
-    background-image: url(${tie});
-  }
+
   .grid-items .text {
     font-size: 16px;
     line-height: 24px;
@@ -238,6 +239,10 @@ const Wrapper = styled.div`
   }
 `;
 function index(props) {
+  const [checked, setChecked] = React.useState(false);
+  const handleCheckboxChange = (event) => {
+    setChecked({ checked: event.target.checked });
+  };
   return (
     <Wrapper>
       <DashboardLayout>
@@ -260,10 +265,10 @@ function index(props) {
             Joseph Thornberry
           </LinkMaterial>
           <LinkMaterial className="crumbs" color="textPrimary" href="#">
-          Add to Wardrobe
+            Update Closet
           </LinkMaterial>
         </Breadcrumbs>
-        <h3 className="title">Add to Wardrobe/Vault</h3>
+        <h3 className="title">Update Closet/Vault</h3>
         <div className="paper flex user-details wrap ">
           <div className="lhs flex">
             <div className="dp flex">
@@ -301,76 +306,123 @@ function index(props) {
         </div>
 
         <div className="paper paper-tail">
-          <div className="flex"><h1>Items</h1>
-		  <Link href="/clients/wardrobe/addToWardrobe1">
-                    <Button theme="orange">Continue</Button>
-                  </Link></div>
-      <div className="scroll">
-	  <div className="grid">
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image1"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image2"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image3"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>
-                <div className="image image4"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>{" "}
-                <div className="image image1"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
-            </div>
-            <div className="grid-items">
-              <div className="product">
-                <div className="checked absolute">
-                  <CheckboxInput/>
-                </div>{" "}
-                <div className="image image2"></div>
-              </div>
-              <p className="name text">Plain black shirt</p>
-              <p className="id text">ID: 2342323</p>
+          <div className="flex wrap">
+            <h1>Items</h1>
+            <div className="buttons flex ">
+              <Link href="/clients/outfitCreated">
+                <Button theme="pink">Back</Button>
+              </Link>
+              <Link href="/clients/closet/updateCloset">
+                <Button theme="orange">Continue</Button>
+              </Link>
             </div>
           </div>
-	  </div>
+          <p className="info name text">
+            This user has tagged items yet to add to wardrobe. Check off the
+            items you want to add below.
+          </p>
+
+          <div className="scroll">
+            <div className="grid">
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput checked={true} />
+                  </div>
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />{" "}
+                  </div>
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput checked={true} />
+                  </div>
+                  <div className="image image3"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput checked={true} />
+                  </div>
+                  <div className="image image4"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput />{" "}
+                  </div>{" "}
+                  <div className="image image1"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+              <div className="grid-items">
+                <div className="product">
+                  <div className="checked absolute">
+                    <CheckboxInput checked={true} />
+                  </div>{" "}
+                  <div className="image image2"></div>
+                </div>
+                <p className="name text">Plain black shirt</p>
+                <p className="id text">ID: 2342323</p>
+                <p className="id text">Type: Shirt</p>
+                <p className="id text">Category: Long sleeve</p>
+                <p className="id text">Color: Black</p>
+                <Link href="#">
+                  <Button theme="pink">View</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
- 
       </DashboardLayout>
     </Wrapper>
   );

@@ -201,7 +201,7 @@ function client(props) {
 					buttons={
 						<>
 							<Link href={{ pathname: '/clients/client', query: { id } }}>
-								<p className="pink">Add to Closet</p>
+								<p className="pink">Update to Closet</p>
 							</Link>
 							<Link
 								href={{
