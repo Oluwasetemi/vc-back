@@ -18,6 +18,17 @@ const Wrapper = styled.div`
         background-color: #f26144;
         transition: 0.4s;
     }
+    .peachBtn {
+        border: 1px solid #FFDBA8;
+        color: #F26144;
+        background-color: #FFDBA8;
+    }
+
+    .peachBtn:hover {
+        color: #FFDBA8;
+        background-color: #F26144;
+        transition: 0.4s;
+    }
     .orangeBtn {
         border: 1px solid #f26144;
         color: #ffffff;
