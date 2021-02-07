@@ -79,7 +79,7 @@ const pickupRequest = (props) => {
                     <LinkMaterial className="crumbs" color="inherit" href="/calendar">
                         Calendar
                     </LinkMaterial>
-                    <LinkMaterial className="crumbs" color="inherit" href="/calendar/allEvents">
+                    <LinkMaterial className="crumbs" color="inherit" href="/calendar/allevents">
                         Requests
                     </LinkMaterial>
                     <LinkMaterial className="crumbs" color="textPrimary">

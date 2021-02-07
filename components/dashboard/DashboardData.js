@@ -30,7 +30,7 @@ export default function DashboardData() {
                 value={loading ? 'loading' : error ? 'Data Fetch Failed' : fetchDashboard.request}
                 info="Requests for approval"
                 link={
-                    <Link href="/calendar/allEvents">
+                    <Link href="/calendar/allevents">
                         <Button theme="pink">View</Button>
                     </Link>
                 }
@@ -40,7 +40,7 @@ export default function DashboardData() {
                 value={loading ? 'loading' : error ? 'Data Fetch Failed' : fetchDashboard.delivery}
                 info="Items to deliver"
                 link={
-                    <Link href="/requests/deliveryRequest">
+                    <Link href="/requests/deliveryrequest">
                         <Button theme="pink">View</Button>
                     </Link>
                 }
@@ -50,7 +50,7 @@ export default function DashboardData() {
                 value={loading ? 'loading' : error ? 'Data Fetch Failed' : fetchDashboard.pickup}
                 info="Items for pickup"
                 link={
-                    <Link href="/requests/pickupRequest">
+                    <Link href="/requests/pickuprequest">
                         <Button theme="pink">View</Button>
                     </Link>
                 }
@@ -60,7 +60,7 @@ export default function DashboardData() {
                 value={loading ? 'loading' : error ? 'Data Fetch Failed' : fetchDashboard.laundry}
                 info="Items to catalogue"
                 link={
-                    <Link href="/calendar/allEvents">
+                    <Link href="/calendar/allevents">
                         <Button theme="pink">View</Button>
                     </Link>
                 }
@@ -70,7 +70,7 @@ export default function DashboardData() {
                 value={loading ? 'loading' : error ? 'Data Fetch Failed' : fetchDashboard.stylistRequest}
                 info="Items to catalogue"
                 link={
-                    <Link href="/calendar/allEvents">
+                    <Link href="/calendar/allevents">
                         <Button theme="pink">View</Button>
                     </Link>
                 }

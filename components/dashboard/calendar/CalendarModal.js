@@ -63,7 +63,7 @@ export default function CalendarModal() {
     <Wrapper>
       <h2 id="title">Monday, June 2, 2020</h2>
       <CalendarTab/>
-      <Link className="btn" href="/calendar/allEvents">
+      <Link className="btn" href="/calendar/allevents">
         <Button theme="pinkBtn">View All</Button>
       </Link>
     </Wrapper>
@@ -80,7 +80,7 @@ export default function CalendarModal() {
         aria-labelledby="title"
         aria-describedby="description"
       >
-        
+
         {body}
       </Modal>
     </div>

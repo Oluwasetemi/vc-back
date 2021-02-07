@@ -41,7 +41,7 @@ const SINGLE_REQUEST = gql`
 
 function SingleRequest(props) {
     const { query } = useRouter();
-    console.log(query);
+    // console.log(query);
     const { id, status, type } = query;
     // console.log(id)
     const { error, loading, data } = useQuery(SINGLE_REQUEST, {
@@ -130,3 +130,4 @@ function SingleRequest(props) {
 SingleRequest.propTypes = {};
 
 export default SingleRequest;
+export { SINGLE_REQUEST };

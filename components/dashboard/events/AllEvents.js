@@ -1,5 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import next from '../../../public/assets/NextPageButton.svg';
@@ -120,6 +122,17 @@ function AllEvents({ error, loading, data }, ...props) {
     );
 }
 
-AllEvents.propTypes = {};
+AllEvents.propTypes = {
+    data: PropTypes.shape({
+        fetchAllRequest: PropTypes.shape({
+            data: PropTypes.shape({
+                length: PropTypes.any,
+                slice: PropTypes.func,
+            }),
+        }),
+    }),
+    error: PropTypes.any,
+    loading: PropTypes.any,
+};
 
 export { AllEvents };

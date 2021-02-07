@@ -24,7 +24,7 @@ export const modalEventTableConstants = () => [
     {
         title: '',
         render: (rowData) => (
-            <Link className="btn" href="/calendar/allEvents">
+            <Link className="btn" href="/calendar/allevents">
                 <Button theme="pinkBtn">View</Button>
             </Link>
         ),

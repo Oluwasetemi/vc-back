@@ -106,10 +106,10 @@ const Wrapper = styled.div`
 		font-weight: 600;
 		border-radius: 10px;
 		padding: 7px 12px;
-font-size: 14px;
-line-height: 16px;
-text-align: center;
-letter-spacing: 0.5px;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        letter-spacing: 0.5px;
 		&:hover {
 		  color: #fff1de;
 		  background-color: #f26144;
