@@ -40,7 +40,7 @@ export default function ItemsVaultAndOutfit({ user }) {
                     </Tabs>
                     {value === 1 && (
                         <TabPanel value={value} index={1}>
-                            <Link href="/clients/editOutfit">
+                            <Link href={{ pathname: '/clients/editoutfit', query: { userid: user._id } }}>
                                 <Button theme="orange">Edit</Button>
                             </Link>
                         </TabPanel>
