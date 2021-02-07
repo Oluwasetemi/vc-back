@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 	}
 `;
 
-function Textarea({ value, onChange, label, name, placeholder }) {
+function Textarea({ value, onChange, label, name,rows, placeholder }) {
 	// const handleChange = event => {
 	// 	onChange(event.target.value);
 	// };
@@ -36,7 +36,7 @@ function Textarea({ value, onChange, label, name, placeholder }) {
 			<div>
 				<h6 className="input_label">{label}</h6>
 				<textarea
-					rows="8"
+					rows={rows}
 					value={value}
 					onChange={onChange}
 					name={name}
@@ -46,7 +46,9 @@ function Textarea({ value, onChange, label, name, placeholder }) {
 		</Wrapper>
 	);
 }
-
+Textarea.defaultProps={
+	rows: 8
+}
 Textarea.propTypes = {
 	label: PropTypes.string.isRequired,
 	placeholder: PropTypes.string.isRequired,

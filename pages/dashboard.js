@@ -142,7 +142,7 @@ function Dashboard(props) {
 						<DashboardData />
 						<div className="flex">
 							<p className="table-title">Activity •</p>
-							<Link href="/calendar/allEvents">View All</Link>
+							<Link href="/calendar/allevents">View All</Link>
 						</div>
 						{loading ? (
 							<p>loading</p>

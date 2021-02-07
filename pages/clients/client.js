@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import Items from '@components/dashboard/clients/ItemsVaultAndOutfit';
-import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -82,10 +81,7 @@ const SINGLE_USER = gql`
 	}
 `;
 
-function TabPanel(props) {
-	const { children, value, index, ...other } = props;
-	return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
-}
+
 function client(props) {
 	const { query } = useRouter();
 	// fetch the id from the page
@@ -95,10 +91,7 @@ function client(props) {
 	});
 	const userById = data && data.userById;
 
-	const [value, setValue] = React.useState(0);
-	const handleChange = (event, newValue) => {
-		setValue(newValue);
-	};
+
 	return (
 		<Wrapper>
 			<DashboardLayout>
@@ -201,7 +194,7 @@ function client(props) {
 					buttons={
 						<>
 							<Link href={{ pathname: '/clients/client', query: { id } }}>
-								<p className="pink">Update to Closet</p>
+								<p className="pink mb-10">Update to Closet</p>
 							</Link>
 							<Link
 								href={{
@@ -209,7 +202,7 @@ function client(props) {
 									query: { id },
 								}}
 							>
-								<p className="pink">Subscription History</p>
+								<p className="pink mb-10">Subscription History</p>
 							</Link>
 							<Link
 								href={{ pathname: '/clients/paymenthistory', query: { id } }}

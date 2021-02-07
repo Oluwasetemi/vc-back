@@ -11,6 +11,22 @@ const SendPickupStyles = styled.div`
 			font-size: 13px;
 		}
 	}
+	.mr-30{
+		margin-right: 30px;
+	}
+	.mt-10{
+		margin-top: 10px;
+	}
+	.btn-style{
+		font-family: 'Matteo';
+    font-weight: 600;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 10px;
+	}
+	.with-submit-btn{
+		justify-content: flex-end;
+	}
 	.appbar {
 		background: #fbfcfa;
 		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);

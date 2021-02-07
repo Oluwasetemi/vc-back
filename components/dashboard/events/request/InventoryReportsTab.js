@@ -1,16 +1,14 @@
 import { useMutation, useQuery } from '@apollo/client';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import useForm from '../../../../lib/useForm';
 import { SINGLE_REQUEST } from '../../../../pages/requests/unconfirmedpickup';
-import Button from '../../../common/Button';
-import { CheckboxInput, SelectInput, Textarea, TextInput } from '../../inputs';
+import { CheckboxInput, SelectInput, Textarea, TextInput, } from '../../inputs';
+import FileUpload from '../../inputs/FileUpload'
 
 const ADD_ITEM_MUTATION = gql`
 	mutation ADD_ITEM_MUTATION($input: addItemInput) {
@@ -53,24 +51,8 @@ const Wrapper = styled.div`
 		}
 	}
 
-	.subtab {
-		.accept {
-			font-size: 14px;
-			line-height: 16px;
-			padding: 7px 35px;
-			font-weight: 600;
-			border-radius: 10px;
-		}
-		.PrivateTabIndicator-colorSecondary-4 {
-			background-color: transparent;
-		}
-	}
 `;
 
-function TabPanel(props) {
-	const { children, value, index, ...other } = props;
-	return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
-}
 
 const optionItemType = [
 	{ value: 'Shirt', text: 'Shirt' },
@@ -185,11 +167,6 @@ const SingleTabPanel = ({
 		largeImage: '',
 	});
 
-	const [value, setValue] = React.useState(0);
-	const handleChangeTab = (event, newValue) => {
-		setValue(newValue);
-	};
-
 	const handleFeatureChange = val => {
 		if (val) {
 			const res = feature[val].map(each => ({ value: each, text: each }));
@@ -233,8 +210,14 @@ const SingleTabPanel = ({
 			alert(error.message);
 		}
 	};
+	const [file, setFile] = useState(null);
+	const handleFileChange= (event) =>{
+		setFile(
+		   URL.createObjectURL(event.target.files[0])
+		)
+	  }
+
 	return (
-		<TabPanel value={value} index={index}>
 			<Paper className="item-detail paper">
 				<div className="flex j-btw">
 					<p className="date">Condition & Inventory Report</p>
@@ -322,67 +305,40 @@ const SingleTabPanel = ({
 									name="brand"
 									placeholder="Enter item brand"
 								/>
-							</div>
-							<div>
 								<Textarea
 									label="Item Condition"
 									value={inputs.itemCondition}
 									onChange={handleChange}
 									name="itemCondition"
+									rows="5"
 									placeholder="Enter item condition"
 								/>
+							</div>
+							<div>
+								
+																<FileUpload onChange={handleFileChange} src={file}/>
+
 							</div>
 						</div>
 
 						<div className="checkbox">
 							<h2>Where is the next destination for this item?</h2>
 							<div className="flex wrap">
-								<CheckboxInput label="To Vault" />
-								<CheckboxInput label="To Storage" />
+								<span className='mr-30'><CheckboxInput label="To Vault" /></span>
+								<span className='mr-30'><CheckboxInput label="To Storage" /></span>
 								<CheckboxInput label="To Laundry" />
 							</div>
 						</div>
 
 						{/* submit button */}
-						<button type="submit">Add Item to Closet</button>
+						<div className="mt-10 with-submit-btn flex">
+						<button className="accept red btn-style" type="submit">Add Item to Closet</button>
+						</div>
 					</form>
 				</div>
 			</Paper>
 
-			<div className="flex j-end">
-				<Button disabled className="add-disabled ml-0">
-					Add Extra
-				</Button>
-
-				<Tabs
-					className="subtab"
-					value={value}
-					onChange={handleChangeTab}
-					aria-label="simple tabs example"
-				>
-					<Tab
-						label={
-							<>
-								<p className="accept pink" onClick={() => setValue(0)}>
-									{' '}
-									Previous Item
-								</p>
-							</>
-						}
-					/>
-					<Tab
-						label={
-							<>
-								<p className="accept red" onClick={() => setValue(1)}>
-									{' '}
-									{value === 5 ? 'Finish' : 'Next Item'}
-								</p>
-							</>
-						}
-					/>
-				</Tabs>
-			</div>
-		</TabPanel>
+		
 	);
 };
 
@@ -412,248 +368,7 @@ function InventoryReportsTab({ onClickPrev, onClickNext, id }) {
 	return (
 		<Wrapper>
 			{/* based on the numberOfItems from the request create TabPanel */}
-			{/* <TabPanel value={value} index={0}>
-				<Paper className="item-detail paper">
-					<div className="flex j-btw">
-						<p className="date">Condition & Inventory Report</p>
-						<p className="date">
-							{itemAdded}/{singleRequest && singleRequest.numberOfItems} Items
-						</p>
-					</div>
-
-					<div className="gray-paper mt-24 ">
-						<div className=" grid grid-4 grid-4-small">
-							<div>
-								<TextInput
-									label="Item Tag"
-									value={itemTag}
-									onChange={setItemTag}
-								/>
-
-								<SelectInput
-									label="Item Feature"
-									options={optionItemCategory}
-									value={itemFeature}
-									onChange={setItemFeature}
-									margin="mtb"
-								/>
-								<SelectInput
-									label="Material"
-									options={optionItemMaterial}
-									value={itemMaterial}
-									onChange={setItemMaterial}
-								/>
-							</div>
-							<div>
-								<TextInput
-									label="Item Name"
-									type="text"
-									placeholder="Enter Name"
-									value={itemName}
-									onChange={setItemName}
-								/>
-								<TextInput
-									label="Item Color"
-									type="text"
-									value={itemColor}
-									onChange={setItemColor}
-									margin="mtb"
-								/>
-								<SelectInput
-									label="Category"
-									options={optionCategory}
-									value={category}
-									onChange={setCategory}
-								/>
-							</div>
-							<div>
-								<SelectInput
-									label="Select Item Type"
-									options={optionItemType}
-									value={itemType}
-									onChange={setItemType}
-								/>
-								<TextInput
-									label="Brand"
-									type="text"
-									value={itemBrand}
-									onChange={setItemBrand}
-									margin="mtb"
-								/>
-							</div>
-							<div>
-								<Textarea
-									label="Item Condition"
-									value={itemCondition}
-									onChange={setItemCondition}
-								/>
-							</div>
-						</div>
-
-						<div className="checkbox">
-							<h2>Where is the next destination for this item?</h2>
-							<div className="flex wrap">
-								<CheckboxInput label="To Vault" />
-								<CheckboxInput label="To Storage" />
-								<CheckboxInput label="To Laundry" />
-							</div>
-						</div>
-					</div>
-				</Paper>
-
-				<div className="flex j-end">
-					<Button disabled className="add-disabled ml-0">
-						Add Extra
-					</Button>
-
-					<Tabs
-						className="subtab"
-						value={value}
-						onChange={handleChange}
-						aria-label="simple tabs example"
-					>
-						<Tab
-							label={
-								<>
-									<p className="accept pink" onClick={onClickPrev}>
-										{' '}
-										Previous Item
-									</p>
-								</>
-							}
-						/>
-						<Tab
-							label={
-								<>
-									<p className="accept red" onClick={() => setValue(1)}>
-										{' '}
-										Next Item
-									</p>
-								</>
-							}
-						/>
-					</Tabs>
-				</div>
-			</TabPanel>
-
-			<TabPanel value={value} index={1}> */}
-			{/* <Paper className="item-detail paper">
-					<div className="flex j-btw">
-						<p className="date">Condition & Inventory Report</p>
-						<p className="date">20/20 Items</p>
-					</div>
-
-					<div className="gray-paper mt-24 ">
-						<div className=" grid grid-4 grid-4-small">
-							<div>
-								<TextInput
-									label="Item Tag"
-									value={itemTag}
-									onChange={setItemTag}
-								/>
-
-								<SelectInput
-									label="Item Feature"
-									options={optionItemCategory}
-									value={itemFeature}
-									onChange={setItemFeature}
-									margin="mtb"
-								/>
-								<SelectInput
-									label="Material"
-									options={optionItemMaterial}
-									value={itemMaterial}
-									onChange={setItemMaterial}
-								/>
-							</div>
-							<div>
-								<TextInput
-									label="Item Name"
-									type="text"
-									placeholder="Enter Name"
-									value={itemName}
-									onChange={setItemName}
-								/>
-								<TextInput
-									label="Item Color"
-									type="text"
-									value={itemColor}
-									onChange={setItemColor}
-									margin="mtb"
-								/>
-								<SelectInput
-									label="Category"
-									options={optionCategory}
-									value={category}
-									onChange={setCategory}
-								/>
-							</div>
-							<div>
-								<SelectInput
-									label="Select Item Type"
-									options={optionItemType}
-									value={itemType}
-									onChange={setItemType}
-								/>
-								<TextInput
-									label="Brand"
-									type="text"
-									value={itemBrand}
-									onChange={setItemBrand}
-									margin="mtb"
-								/>
-							</div>
-							<div>
-								<Textarea
-									label="Item Condition"
-									value={itemCondition}
-									onChange={setItemCondition}
-								/>
-							</div>
-						</div>
-
-						<div className="checkbox">
-							<h2>Where is the next destination for this item?</h2>
-							<div className="flex wrap">
-								<CheckboxInput label="To Vault" />
-								<CheckboxInput label="To Storage" />
-								<CheckboxInput label="To Laundry" />
-							</div>
-						</div>
-					</div>
-				</Paper>
-				<div className="flex j-end">
-					<Button theme="pinkBtn">Add Extra</Button>
-
-					<Tabs
-						className="subtab"
-						value={value}
-						onChange={handleChange}
-						aria-label="simple tabs example"
-					>
-						<Tab
-							label={
-								<>
-									<p className="accept pink" onClick={() => setValue(0)}>
-										{' '}
-										Previous Item
-									</p>
-								</>
-							}
-						/>
-						<Tab
-							label={
-								<>
-									<p className="accept red" onClick={onClickNext}>
-										{' '}
-										Next Item
-									</p>
-								</>
-							}
-						/>
-					</Tabs>
-				</div>
-			</TabPanel> */}
+		
 			{Array.from(
 				{ length: singleRequest && singleRequest.numberOfItems },
 				(_, index) => index + 1,

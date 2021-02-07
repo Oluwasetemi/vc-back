@@ -75,8 +75,9 @@ function item() {
 							? 'no data'
 							: dataOneItem.fetchOneItemUser.name}
 					</LinkMaterial>
-					<SingleItemFull id={id} />
 				</Breadcrumbs>
+				<SingleItemFull id={id} />
+
 			</DashboardLayout>
 		</Wrapper>
 	);

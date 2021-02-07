@@ -49,7 +49,7 @@ function startPickupPage(props) {
 					<LinkMaterial
 						className="crumbs"
 						color="inherit"
-						href="/calendar/allEvents"
+						href="/calendar/allevents"
 					>
 						Requests
 					</LinkMaterial>

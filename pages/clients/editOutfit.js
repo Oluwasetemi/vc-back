@@ -258,7 +258,7 @@ function editOutfit(props) {
         <div className="paper paper-tail">
           <div className="flex">
             <h1>Outfit</h1>
-            <Link href="/clients/reviewOutfit">
+            <Link href="/clients/reviewoutfit">
               <Button theme="orange">Continue</Button>
             </Link>
           </div>
