@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function SingleItem({ item, userId, button }) {
@@ -22,6 +23,7 @@ export default function SingleItem({ item, userId, button }) {
 }
 
 SingleItem.propTypes = {
+    button: PropTypes.any,
     item: PropTypes.shape({
         _id: PropTypes.shape({
             slice: PropTypes.func,
@@ -29,5 +31,4 @@ SingleItem.propTypes = {
         name: PropTypes.any,
     }),
     userId: PropTypes.String,
-    button: PropTypes.any,
 };

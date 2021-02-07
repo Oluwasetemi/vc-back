@@ -33,12 +33,12 @@ const Wrapper = styled.div`
 		max-width: 20%;
 		margin-bottom: 23px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-			max-width: 45%;		
+			max-width: 45%;
 		  }
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			max-width: 80%;		  }
     }
-    
+
    .user-details .dp {
     width: 70px;
     height: 70px;
@@ -148,6 +148,7 @@ const Wrapper = styled.div`
     line-height: 24px;
     color: #2f3930;
   }
+
   .paper-tail .scroll{
 	max-width: 100%;
 	overflow-x: scroll;

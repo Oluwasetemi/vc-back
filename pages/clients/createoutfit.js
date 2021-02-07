@@ -12,26 +12,34 @@ import DashboardLayout from '../../components/layout/DashboardLayout';
 import Wrapper from '../../components/styles/OutfitStyles';
 import { SINGLE_USER } from './client';
 
-const SingleItem = ({ name, id }) => (
+const SingleItem = ({ name, id, onChange, checked }) => (
+    // console.log
     <div className="grid-items">
         <div className="product">
             <div className="checked absolute">
-                <CheckboxInput />
+                <CheckboxInput id={id} name={id} onChange={onChange} checked={checked} />
             </div>{' '}
             <div className="image image2" />
         </div>
         <p className="name text">{name}</p>
-        <p className="id text">ID: {id}</p>
+        <p className="id text">ID: {id.slice(-7)}</p>
     </div>
 );
-
 SingleItem.propTypes = {
     id: PropTypes.any,
     name: PropTypes.any,
 };
 
-function createAnOutfit(props) {
-    const [outfitName, setOutfitName] = useState('');
+function CreateAnOutfit(props) {
+    const [outfitName, setOutfitName] = useState({ name: '', items: [] });
+
+    const [checkBoxState, setCheckBoxState] = React.useState({});
+    const handleChangeName = (event) => {
+        const { target } = event;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const { name } = target;
+        setCheckBoxState({ ...checkBoxState, [name]: value });
+    };
 
     const { query } = useRouter();
     const { id, userid } = query;
@@ -39,6 +47,15 @@ function createAnOutfit(props) {
         variables: { id: userid },
     });
     // console.log(data);
+    const handleChange = (e) => {
+        console.log(checkBoxState);
+        console.log(outfitName.items);
+        setOutfitName({
+            name: e.target.value,
+            items: Array.isArray(outfitName.items) ? outfitName.items.push(checkBoxState) : [],
+        });
+    };
+
     return (
         <Wrapper>
             <DashboardLayout>
@@ -119,33 +136,47 @@ function createAnOutfit(props) {
                             <Button theme="orange">Create an outfit</Button>
                         </Link>
                     </div>
-                    <form className="text-input mt-10">
-                        <TextInput
-                            label="Enter Outfit Name"
-                            value={outfitName}
-                            onChange={setOutfitName}
-                            type="text"
-                            placeholder="Outfit Name"
-                        />
-                    </form>
-                    <div className="scroll">
-                        <div className="grid">
-                            {data && data.userById.closet === null ? (
-                                <p>No items in the user closet</p>
-                            ) : (
-                                data &&
-                                data.userById.closet.items.map((item) => (
-                                    <SingleItem name={item.name} id={item._id.slice(-7)} key={item._id} />
-                                ))
-                            )}
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            console.log('working');
+                        }}
+                    >
+                        <div className="text-input mt-10">
+                            <TextInput
+                                label="Enter Outfit Name"
+                                name="outfit"
+                                value={outfitName.outfit}
+                                onChange={handleChange}
+                                type="text"
+                                placeholder="Outfit Name"
+                            />
                         </div>
-                    </div>
+                        <div className="scroll">
+                            <div className="grid">
+                                {data && data.userById.closet === null ? (
+                                    <p>No items in the user closet</p>
+                                ) : (
+                                    data &&
+                                    data.userById.closet.items.map((item) => (
+                                        <SingleItem
+                                            name={item.name}
+                                            id={item._id}
+                                            key={item._id}
+                                            onChange={handleChangeName}
+                                            checked={checkBoxState[item._id]}
+                                        />
+                                    ))
+                                )}
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </DashboardLayout>
         </Wrapper>
     );
 }
 
-createAnOutfit.propTypes = {};
+CreateAnOutfit.propTypes = {};
 
-export default createAnOutfit;
+export default CreateAnOutfit;
