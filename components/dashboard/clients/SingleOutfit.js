@@ -8,7 +8,7 @@ export default function SingleOutfit({ outfit }) {
         <div className="gray-paper-client">
             <div className="flex mb-26">
                 <p className="season season1">{outfit.category}</p>{' '}
-                <Link href={{ pathname: '/clients/editoutfit', query: { id: outfit._id } }}>
+                <Link href={{ pathname: '/clients/editoutfit', query: { id: outfit._id, userid: outfit.user._id } }}>
                     <span className="edit-outfit">Edit Outfit</span>
                 </Link>
             </div>

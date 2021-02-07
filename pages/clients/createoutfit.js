@@ -1,29 +1,32 @@
-import { useQuery } from "@apollo/client";
-import Button from "@components/common/Button";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import LinkMaterial from "@material-ui/core/Link";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { CheckboxInput, TextInput } from "../../components/dashboard/inputs";
-import DashboardLayout from "../../components/layout/DashboardLayout";
-import Wrapper from "../../components/styles/OutfitStyles";
-import { SINGLE_USER } from "./client";
+import { gql, useMutation, useQuery } from '@apollo/client';
+import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { CheckboxInput, TextInput } from '../../components/dashboard/inputs';
+import DashboardLayout from '../../components/layout/DashboardLayout';
+import Wrapper from '../../components/styles/OutfitStyles';
+import { SINGLE_USER } from './client';
+
+const CREATE_OUTFIT = gql`
+    mutation CREATE_OUTFIT($items: [String], $name: String, $userId: String) {
+        createOutfit(items: $items, name: $name, userId: $userId) {
+            message
+        }
+    }
+`;
 
 const SingleItem = ({ name, id, onChange, checked }) => (
     // console.log
     <div className="grid-items">
         <div className="product">
             <div className="checked absolute">
-                <CheckboxInput
-                    id={id}
-                    name={id}
-                    onChange={onChange}
-                    checked={checked}
-                />
-            </div>{" "}
+                <CheckboxInput id={id} name={id} onChange={onChange} checked={checked} />
+            </div>{' '}
             <div className="image image2" />
         </div>
         <p className="name text">{name}</p>
@@ -31,36 +34,71 @@ const SingleItem = ({ name, id, onChange, checked }) => (
     </div>
 );
 SingleItem.propTypes = {
-    id: PropTypes.any,
+    checked: PropTypes.any,
+    id: PropTypes.shape({
+        slice: PropTypes.func,
+    }),
     name: PropTypes.any,
+    onChange: PropTypes.any,
 };
 
 function CreateAnOutfit(props) {
-    const [outfitName, setOutfitName] = useState({ name: "", items: [] });
-
-    const [checkBoxState, setCheckBoxState] = React.useState({});
-    const handleChangeName = (event) => {
-        const { target } = event;
-        const value =
-            target.type === "checkbox" ? target.checked : target.value;
-        const { name } = target;
-        setCheckBoxState({ ...checkBoxState, [name]: value });
-    };
-
     const { query } = useRouter();
-    const { id, userid } = query;
+    const { userid } = query;
     const { data, loading, error } = useQuery(SINGLE_USER, {
         variables: { id: userid },
     });
     // console.log(data);
+
+    const [outfitName, setOutfitName] = useState({ name: '', items: [], userId: userid });
+
+    const [checkBoxState, setCheckBoxState] = React.useState({});
+
+    const handleChangeName = (event) => {
+        const { target } = event;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const { name } = target;
+        setCheckBoxState({ ...checkBoxState, [name]: value });
+    };
+
     const handleChange = (e) => {
-        // console.log(checkBoxState);
         setOutfitName({
             name: e.target.value,
             // items: Array.isArray(outfitName.items) ? outfitName.items.push(checkBoxState) : [],
         });
         // const itemArray = outfitName.items;
     };
+
+    React.useEffect(() => {
+        const arr = Object.entries(checkBoxState)
+            .filter((k) => {
+                if (k[1] === true) {
+                    return k[0];
+                }
+            })
+            .map((v) => v[0]);
+
+        setOutfitName({
+            name: outfitName.name,
+            items: arr,
+            userId: userid,
+        });
+        // return () => {
+        //     setOutfitName({
+        //         name: '',
+        //         items: [],
+        //     });
+        //     setCheckBoxState({});
+        // };
+    }, [outfitName.name, checkBoxState, userid, data && data.userById]);
+
+    const [createOutfitMutation, { loading: loadingCreateOutfit, error: errorCreateOutfit }] = useMutation(
+        CREATE_OUTFIT,
+        {
+            variables: { items: outfitName.items, name: outfitName.name, userId: outfitName.userId },
+            refetchQueries: [{ query: SINGLE_USER, variables: { id: userid } }],
+        },
+    );
 
     return (
         <Wrapper>
@@ -70,18 +108,10 @@ function CreateAnOutfit(props) {
                     separator={<NavigateNextIcon fontSize="small" />}
                     aria-label="breadcrumb"
                 >
-                    <LinkMaterial
-                        className="crumbs"
-                        color="inherit"
-                        href="/dashboard"
-                    >
+                    <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
                         Home
                     </LinkMaterial>
-                    <LinkMaterial
-                        className="crumbs"
-                        color="inherit"
-                        href="/clients"
-                    >
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients">
                         Clients
                     </LinkMaterial>
 
@@ -89,15 +119,11 @@ function CreateAnOutfit(props) {
                         className="crumbs"
                         color="inherit"
                         href={{
-                            pathname: "/clients/client",
+                            pathname: '/clients/client',
                             query: { id: userid },
                         }}
                     >
-                        {loading
-                            ? "loading"
-                            : error
-                            ? "no data"
-                            : data.userById.name}
+                        {loading ? 'loading' : error ? 'no data' : data.userById.name}
                     </Link>
                     <LinkMaterial className="crumbs" color="textPrimary">
                         Create an Outfit
@@ -107,27 +133,12 @@ function CreateAnOutfit(props) {
                 <div className="paper flex user-details wrap ">
                     <div className="lhs flex">
                         <div className="dp flex">
-                            <p className="initials">
-                                {!loading && !error
-                                    ? data.userById.name.substring(0, 2)
-                                    : "JT"}
-                            </p>
+                            <p className="initials">{!loading && !error ? data.userById.name.substring(0, 2) : 'JT'}</p>
                         </div>
                         <div className="names">
-                            <p className="name">
-                                {loading
-                                    ? "loading"
-                                    : error
-                                    ? "no data"
-                                    : data.userById.name}
-                            </p>
+                            <p className="name">{loading ? 'loading' : error ? 'no data' : data.userById.name}</p>
                             <p className="id">
-                                User ID:{" "}
-                                {loading
-                                    ? "loading"
-                                    : error
-                                    ? "no data"
-                                    : data.userById._id.slice(-7)}
+                                User ID: {loading ? 'loading' : error ? 'no data' : data.userById._id.slice(-7)}
                             </p>
                         </div>
                     </div>
@@ -137,22 +148,17 @@ function CreateAnOutfit(props) {
                                 <div className="list grid first">
                                     <p className="text">Items in closet</p>
                                     <p className="text bold">
-                                        {loading
-                                            ? "loading"
-                                            : error
-                                            ? "no data"
-                                            : data.userById.currentClosetSize}
+                                        {loading ? 'loading' : error ? 'no data' : data.userById.currentClosetSize}
                                     </p>
                                 </div>
                                 <div className="list grid">
                                     <p className="text">Outfits</p>
                                     <p className="text bold">
                                         {loading
-                                            ? "loading"
+                                            ? 'loading'
                                             : error
-                                            ? "no data"
-                                            : data.userById.outfit &&
-                                              data.userById.outfit.length}
+                                            ? 'no data'
+                                            : data.userById.outfit && data.userById.outfit.length}
                                     </p>
                                 </div>
                             </div>
@@ -171,40 +177,37 @@ function CreateAnOutfit(props) {
                 </div>
 
                 <div className="paper paper-tail">
-                    <div className="flex">
-                        <h1>Items</h1>
-                        <Link href="/clients/reviewoutfit">
-                            <Button theme="orange">Create an outfit</Button>
-                        </Link>
-                    </div>
                     <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
+                        onSubmit={async (e) => {
+                            try {
+                                e.preventDefault();
 
-                            console.log(checkBoxState);
-
-                            //convert checkBoxState object to array
-                            
-                            const arr = Array.from(
-                                Object.keys(checkBoxState),
-                                (k) => [`${k}`, checkBoxState[k]]
-                            );
-                            console.log(arr);
-
-                            setOutfitName({
-                                items: Array.isArray(outfitName.items)
-                                    ? outfitName.items.push(checkBoxState)
-                                    : [],
-                            });
-                            console.log([outfitName.name, arr]);
-                            console.log(arr[0])
+                                // console.log(outfitName);
+                                // debugger;
+                                // console.log(res);
+                                const res = await createOutfitMutation();
+                                alert(res.data.createOutfit.message);
+                                setOutfitName({
+                                    name: '',
+                                    items: [],
+                                });
+                                setCheckBoxState({});
+                            } catch (error) {
+                                alert(error.message);
+                            }
                         }}
                     >
+                        <div className="flex">
+                            <h1>Items</h1>
+                            <Button type="submit" theme="orange">
+                                Create an outfit
+                            </Button>
+                        </div>
                         <div className="text-input mt-10">
                             <TextInput
                                 label="Enter Outfit Name"
                                 name="outfit"
-                                value={outfitName.outfit}
+                                value={outfitName.name}
                                 onChange={handleChange}
                                 type="text"
                                 placeholder="Outfit Name"
