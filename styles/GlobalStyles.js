@@ -3,16 +3,16 @@
 //   font-family: Matteo;
 //   src: url(${primaryFont}) ;
 // }
-import PropTypes from "prop-types";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Typography from "./Typography";
+import PropTypes from 'prop-types';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Typography from './Typography';
 
 const theme = {
-  breakpoint: {
-    lg: "1058px",
-    md: "768px",
-    sm: "480px",
-  },
+    breakpoint: {
+        lg: '1058px',
+        md: '768px',
+        sm: '480px',
+    },
 };
 const GlobalStyle = createGlobalStyle`
 
@@ -54,16 +54,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Theme = (props) => (
-  <ThemeProvider theme={theme}>
-    <div>
-      <GlobalStyle />
-      <Typography />
-      {props.children}
-    </div>
-  </ThemeProvider>
+    <ThemeProvider theme={theme}>
+        <div>
+            <GlobalStyle />
+            <Typography />
+            {props.children}
+        </div>
+    </ThemeProvider>
 );
 Theme.propTypes = {
-  children: PropTypes.any.isRequired,
+    children: PropTypes.any.isRequired,
 };
 
 export { theme };

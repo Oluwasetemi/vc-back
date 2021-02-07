@@ -1,13 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../../components/layout/DashboardLayout";
-import LinkMaterial from "@material-ui/core/Link";
-import { CheckboxInput } from "../../../components/dashboard/inputs";
-import Button from "@components/common/Button";
-import Link from "next/link";
+import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components';
+import { CheckboxInput } from '../../../components/dashboard/inputs';
+import DashboardLayout from '../../../components/layout/DashboardLayout';
 
 const Wrapper = styled.div`
 
@@ -131,7 +130,7 @@ const Wrapper = styled.div`
   }
   .paper-tail {
 	margin: 30px 0 50px 0;
-  
+
   .buttons.flex{
     align-items: center;
 		min-width: 320px;
@@ -141,7 +140,7 @@ const Wrapper = styled.div`
     }
   }
   }
-  
+
   .paper-tail h1 {
     font-weight: 600;
     font-size: 18px;
@@ -239,193 +238,188 @@ const Wrapper = styled.div`
   }
 `;
 function index(props) {
-  const [checked, setChecked] = React.useState(false);
-  const handleCheckboxChange = (event) => {
-    setChecked({ checked: event.target.checked });
-  };
-  return (
-    <Wrapper>
-      <DashboardLayout>
-        <Breadcrumbs
-          className="bread-crumbs"
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
-            Home
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="inherit" href="/clients">
-            Clients
-          </LinkMaterial>
-          <LinkMaterial
-            className="crumbs"
-            color="inherit"
-            href="/clients/client"
-          >
-            Joseph Thornberry
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Update Closet
-          </LinkMaterial>
-        </Breadcrumbs>
-        <h3 className="title">Update Closet/Vault</h3>
-        <div className="paper flex user-details wrap ">
-          <div className="lhs flex">
-            <div className="dp flex">
-              <p className="initials">JT</p>
-            </div>
-            <div className="names">
-              <p className="name">Joseph Thornberry</p>
-              <p className="id">User ID: 2342323</p>
-            </div>
-          </div>
-          <div className="lhs rhs">
-            <div className="full-detail grid">
-              <div className="rhs">
-                <div className="list grid first">
-                  <p className="text">Items in closet</p>
-                  <p className="text bold">25</p>
+    const [checked, setChecked] = React.useState(false);
+    const handleCheckboxChange = (event) => {
+        setChecked({ checked: event.target.checked });
+    };
+    return (
+        <Wrapper>
+            <DashboardLayout>
+                <Breadcrumbs
+                    className="bread-crumbs"
+                    separator={<NavigateNextIcon fontSize="small" />}
+                    aria-label="breadcrumb"
+                >
+                    <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
+                        Home
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients">
+                        Clients
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients/client">
+                        Joseph Thornberry
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="textPrimary" href="#">
+                        Update Closet
+                    </LinkMaterial>
+                </Breadcrumbs>
+                <h3 className="title">Update Closet/Vault</h3>
+                <div className="paper flex user-details wrap ">
+                    <div className="lhs flex">
+                        <div className="dp flex">
+                            <p className="initials">JT</p>
+                        </div>
+                        <div className="names">
+                            <p className="name">Joseph Thornberry</p>
+                            <p className="id">User ID: 2342323</p>
+                        </div>
+                    </div>
+                    <div className="lhs rhs">
+                        <div className="full-detail grid">
+                            <div className="rhs">
+                                <div className="list grid first">
+                                    <p className="text">Items in closet</p>
+                                    <p className="text bold">25</p>
+                                </div>
+                                <div className="list grid">
+                                    <p className="text">Outfits</p>
+                                    <p className="text bold">20</p>
+                                </div>
+                            </div>
+                            <div className="rhs">
+                                <div className="list grid first">
+                                    <p className="text">Items in Vault</p>
+                                    <p className="text bold">20</p>
+                                </div>
+                                <div className="list grid">
+                                    <p className="text">Pending for storage</p>
+                                    <p className="text bold">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="list grid">
-                  <p className="text">Outfits</p>
-                  <p className="text bold">20</p>
-                </div>
-              </div>
-              <div className="rhs">
-                <div className="list grid first">
-                  <p className="text">Items in Vault</p>
-                  <p className="text bold">20</p>
-                </div>
-                <div className="list grid">
-                  <p className="text">Pending for storage</p>
-                  <p className="text bold">0</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="paper paper-tail">
-          <div className="flex wrap">
-            <h1>Items</h1>
-            <div className="buttons flex ">
-              <Link href="/clients/outfitCreated">
-                <Button theme="pink">Back</Button>
-              </Link>
-              <Link href="/clients/closet/updatecloset">
-                <Button theme="orange">Continue</Button>
-              </Link>
-            </div>
-          </div>
-          <p className="info name text">
-            This user has tagged items yet to add to wardrobe. Check off the
-            items you want to add below.
-          </p>
+                <div className="paper paper-tail">
+                    <div className="flex wrap">
+                        <h1>Items</h1>
+                        <div className="buttons flex ">
+                            <Link href="/clients/outfitCreated">
+                                <Button theme="pink">Back</Button>
+                            </Link>
+                            <Link href="/clients/closet/updatecloset">
+                                <Button theme="orange">Continue</Button>
+                            </Link>
+                        </div>
+                    </div>
+                    <p className="info name text">
+                        This user has tagged items yet to add to wardrobe. Check off the items you want to add below.
+                    </p>
 
-          <div className="scroll">
-            <div className="grid">
-              <div className="grid-items">
-                <div className="product">
-                  <div className="checked absolute">
-                    <CheckboxInput checked={true} />
-                  </div>
-                  <div className="image image1"></div>
+                    <div className="scroll">
+                        <div className="grid">
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="checked absolute">
+                                        <CheckboxInput checked />
+                                    </div>
+                                    <div className="image image1" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="checked absolute">
+                                        <CheckboxInput />{' '}
+                                    </div>
+                                    <div className="image image2" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="checked absolute">
+                                        <CheckboxInput checked />
+                                    </div>
+                                    <div className="image image3" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="checked absolute">
+                                        <CheckboxInput checked />
+                                    </div>
+                                    <div className="image image4" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="checked absolute">
+                                        <CheckboxInput />{' '}
+                                    </div>{' '}
+                                    <div className="image image1" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="checked absolute">
+                                        <CheckboxInput checked />
+                                    </div>{' '}
+                                    <div className="image image2" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="checked absolute">
-                    <CheckboxInput />{" "}
-                  </div>
-                  <div className="image image2"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="checked absolute">
-                    <CheckboxInput checked={true} />
-                  </div>
-                  <div className="image image3"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="checked absolute">
-                    <CheckboxInput checked={true} />
-                  </div>
-                  <div className="image image4"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="checked absolute">
-                    <CheckboxInput />{" "}
-                  </div>{" "}
-                  <div className="image image1"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="checked absolute">
-                    <CheckboxInput checked={true} />
-                  </div>{" "}
-                  <div className="image image2"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </DashboardLayout>
-    </Wrapper>
-  );
+            </DashboardLayout>
+        </Wrapper>
+    );
 }
 
 index.propTypes = {};

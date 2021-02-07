@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../../components/layout/DashboardLayout";
-import LinkMaterial from "@material-ui/core/Link";
-import shirt from "../../../public/assets/shirt.png";
-import pants from "../../../public/assets/pants.png";
-import menShoes from "../../../public/assets/men_shoes.png";
-import tie from "../../../public/assets/tie.png";
-import { UploadImage } from "../../../components/dashboard/inputs";
-import Button from "@components/common/Button";
-import Link from "next/link";
+import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components';
+import { UploadImage } from '../../../components/dashboard/inputs';
+import DashboardLayout from '../../../components/layout/DashboardLayout';
+import menShoes from '../../../public/assets/men_shoes.png';
+import pants from '../../../public/assets/pants.png';
+import shirt from '../../../public/assets/shirt.png';
+import tie from '../../../public/assets/tie.png';
 
 const Wrapper = styled.div`
 
@@ -72,9 +71,9 @@ const Wrapper = styled.div`
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			min-width: -webkit-fill-available;
 		}
-	}	 
+	}
   }
- 
+
   .paper-tail h1 {
     font-weight: 600;
     font-size: 18px;
@@ -159,14 +158,14 @@ const Wrapper = styled.div`
   .grid-items .image4 {
     background-image: url(${tie});
   }
-  
+
   .text {
     font-size: 16px;
     line-height: 24px;
 	color: #2f3930;
 	margin-bottom: 10px;
   }
-  
+
   .name {
     font-weight: bold;
     margin: 18px 0 10px 0;
@@ -193,130 +192,124 @@ const Wrapper = styled.div`
   }
 `;
 function updateCloset(props) {
-  return (
-    <Wrapper>
-      <DashboardLayout>
-        <Breadcrumbs
-          className="bread-crumbs"
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
-            Home
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="inherit" href="/clients">
-            Clients
-          </LinkMaterial>
-          <LinkMaterial
-            className="crumbs"
-            color="inherit"
-            href="/clients/client"
-          >
-            Joseph Thornberry
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Add to Wardrobe
-          </LinkMaterial>
-        </Breadcrumbs>
-        <h3 className="title">Update Closet/Vault</h3>
+    return (
+        <Wrapper>
+            <DashboardLayout>
+                <Breadcrumbs
+                    className="bread-crumbs"
+                    separator={<NavigateNextIcon fontSize="small" />}
+                    aria-label="breadcrumb"
+                >
+                    <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
+                        Home
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients">
+                        Clients
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients/client">
+                        Joseph Thornberry
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="textPrimary" href="#">
+                        Add to Wardrobe
+                    </LinkMaterial>
+                </Breadcrumbs>
+                <h3 className="title">Update Closet/Vault</h3>
 
-        <div className="paper paper-tail">
-          <div className="flex wrap">
-            <h1>Items</h1>
-            <div className="buttons flex">
-              <Link href="/clients/closet">
-                <Button theme="pink">Back</Button>
-              </Link>
-              <Link href="/clients/closet/addtowardrobe">
-                <Button className="disabled">Continue</Button>
-              </Link>
-            </div>
-          </div>
+                <div className="paper paper-tail">
+                    <div className="flex wrap">
+                        <h1>Items</h1>
+                        <div className="buttons flex">
+                            <Link href="/clients/closet">
+                                <Button theme="pink">Back</Button>
+                            </Link>
+                            <Link href="/clients/closet/addtowardrobe">
+                                <Button className="disabled">Continue</Button>
+                            </Link>
+                        </div>
+                    </div>
 
-          <p className="info name text">
-            Add single or multiple items to the wardrobe
-          </p>
+                    <p className="info name text">Add single or multiple items to the wardrobe</p>
 
-          <div className="scroll">
-            <div className="grid">
-              <div className="grid-items">
-                <UploadImage />
+                    <div className="scroll">
+                        <div className="grid">
+                            <div className="grid-items">
+                                <UploadImage />
 
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <UploadImage />
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <UploadImage />
 
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <UploadImage />
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <UploadImage />
 
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <UploadImage />
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <UploadImage />
 
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <UploadImage />
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <UploadImage />
 
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-              <div className="grid-items">
-                <UploadImage />
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                            <div className="grid-items">
+                                <UploadImage />
 
-                <p className="name text">Plain black shirt</p>
-                <p className="id text">ID: 2342323</p>
-                <p className="id text">Type: Shirt</p>
-                <p className="id text">Category: Long sleeve</p>
-                <p className="id text">Color: Black</p>
-                <Link href="#">
-                  <Button theme="pink">View</Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </DashboardLayout>
-    </Wrapper>
-  );
+                                <p className="name text">Plain black shirt</p>
+                                <p className="id text">ID: 2342323</p>
+                                <p className="id text">Type: Shirt</p>
+                                <p className="id text">Category: Long sleeve</p>
+                                <p className="id text">Color: Black</p>
+                                <Link href="#">
+                                    <Button theme="pink">View</Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </DashboardLayout>
+        </Wrapper>
+    );
 }
 
 updateCloset.propTypes = {};

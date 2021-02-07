@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   .crumbs {
     font-size: 18px;
 	line-height: 30px;
-	@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		font-size: 13px;
 		}
   }
@@ -59,7 +59,7 @@ overflow-y: hidden;
     grid-gap: 28px;
     margin: 30px 0;
 	grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-	@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		min-width: auto;
 				grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
 	}
@@ -118,135 +118,131 @@ overflow-y: hidden;
 `;
 
 const SINGLE_REQUEST = gql`
-	query SINGLE_REQUEST($id: ID!) {
-		fetchOneRequest(id: $id) {
-			_id
-			numberOfItems
-			type
-			pickupLocation {
-				_id
-				location
-			}
-			user {
-				_id
-				currentSubscriptionPlan {
-					_id
-					amount
-					services {
-						storage
-					}
-				}
-			}
-			bookingId
-			datetimePicked
-			contactPhoneNumber
-			status
-			createdAt
-			updatedAt
-		}
-	}
+    query SINGLE_REQUEST($id: ID!) {
+        fetchOneRequest(id: $id) {
+            _id
+            numberOfItems
+            type
+            pickupLocation {
+                _id
+                location
+            }
+            user {
+                _id
+                currentSubscriptionPlan {
+                    _id
+                    amount
+                    services {
+                        storage
+                    }
+                }
+            }
+            bookingId
+            datetimePicked
+            contactPhoneNumber
+            status
+            createdAt
+            updatedAt
+        }
+    }
 `;
 function deliveryRequest(props) {
-	const { query } = useRouter();
-	// fetch the id from the page
-	const { id } = query;
-	const { error, loading, data } = useQuery(SINGLE_REQUEST, {
-		variables: { id },
-	});
-	const singleRequest = data && data.fetchOneRequest;
-	return (
-		<Wrapper>
-			<DashboardLayout>
-				<Breadcrumbs
-					className="bread-crumbs"
-					separator={<NavigateNextIcon fontSize="small" />}
-					aria-label="breadcrumb"
-				>
-					<LinkMaterial className="crumbs" color="inherit" href="/dashboard">
-						Home
-					</LinkMaterial>
-					<LinkMaterial className="crumbs" color="inherit" href="/calendar">
-						Calendar
-					</LinkMaterial>
-					<LinkMaterial
-						className="crumbs"
-						color="inherit"
-						href="/calendar/allevents"
-					>
-						Requests
-					</LinkMaterial>
-					<LinkMaterial className="crumbs" color="textPrimary" href="#">
-						Request {loading ? 'loading' : singleRequest._id}
-					</LinkMaterial>
-				</Breadcrumbs>
+    const { query } = useRouter();
+    // fetch the id from the page
+    const { id } = query;
+    const { error, loading, data } = useQuery(SINGLE_REQUEST, {
+        variables: { id },
+    });
+    const singleRequest = data && data.fetchOneRequest;
+    return (
+        <Wrapper>
+            <DashboardLayout>
+                <Breadcrumbs
+                    className="bread-crumbs"
+                    separator={<NavigateNextIcon fontSize="small" />}
+                    aria-label="breadcrumb"
+                >
+                    <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
+                        Home
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/calendar">
+                        Calendar
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/calendar/allevents">
+                        Requests
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="textPrimary" href="#">
+                        Request {loading ? 'loading' : singleRequest._id}
+                    </LinkMaterial>
+                </Breadcrumbs>
 
-				<SingleRequest id={id} />
+                <SingleRequest id={id} />
 
-				<Paper className="paper paper-tail">
-					<h1 id="tag">Items</h1>
-					<div className="grid">
-						<div className="grid-items">
-							<div className="product">
-								<div className="image image1" />
-							</div>
-							<p className="name text">
-								{loading
-									? 'loading'
-									: singleRequest.closet &&
-									  singleRequest.closet.items &&
-									  singleRequest.closet.items.length > 0 &&
-									  singleRequest.closet.items[0].name}
-							</p>
-							<p className="id text">
-								ID:{' '}
-								{loading
-									? 'loading'
-									: singleRequest.closet &&
-									  singleRequest.closet.items &&
-									  singleRequest.closet.items.length > 0 &&
-									  singleRequest.closet.items[0]._id.substring(0, 7)}
-							</p>
-						</div>
-						<div className="grid-items">
-							<div className="product">
-								<div className="image image2" />
-							</div>
-							<p className="name text">Plain black shirt</p>
-							<p className="id text">ID: 2342323</p>
-						</div>
-						<div className="grid-items">
-							<div className="product">
-								<div className="image image3" />
-							</div>
-							<p className="name text">Plain black shirt</p>
-							<p className="id text">ID: 2342323</p>
-						</div>
-						<div className="grid-items">
-							<div className="product">
-								<div className="image image4" />
-							</div>
-							<p className="name text">Plain black shirt</p>
-							<p className="id text">ID: 2342323</p>
-						</div>
-						<div className="grid-items">
-							<div className="product">
-								<div className="image image1" />
-							</div>
-							<p className="name text">Plain black shirt</p>
-							<p className="id text">ID: 2342323</p>
-						</div>
-						<div className="grid-items">
-							<div className="product">
-								<div className="image image2" />
-							</div>
-							<p className="name text">Plain black shirt</p>
-							<p className="id text">ID: 2342323</p>
-						</div>
-					</div>
-				</Paper>
-			</DashboardLayout>
-		</Wrapper>
-	);
+                <Paper className="paper paper-tail">
+                    <h1 id="tag">Items</h1>
+                    <div className="grid">
+                        <div className="grid-items">
+                            <div className="product">
+                                <div className="image image1" />
+                            </div>
+                            <p className="name text">
+                                {loading
+                                    ? 'loading'
+                                    : singleRequest.closet &&
+                                      singleRequest.closet.items &&
+                                      singleRequest.closet.items.length > 0 &&
+                                      singleRequest.closet.items[0].name}
+                            </p>
+                            <p className="id text">
+                                ID:{' '}
+                                {loading
+                                    ? 'loading'
+                                    : singleRequest.closet &&
+                                      singleRequest.closet.items &&
+                                      singleRequest.closet.items.length > 0 &&
+                                      singleRequest.closet.items[0]._id.substring(0, 7)}
+                            </p>
+                        </div>
+                        <div className="grid-items">
+                            <div className="product">
+                                <div className="image image2" />
+                            </div>
+                            <p className="name text">Plain black shirt</p>
+                            <p className="id text">ID: 2342323</p>
+                        </div>
+                        <div className="grid-items">
+                            <div className="product">
+                                <div className="image image3" />
+                            </div>
+                            <p className="name text">Plain black shirt</p>
+                            <p className="id text">ID: 2342323</p>
+                        </div>
+                        <div className="grid-items">
+                            <div className="product">
+                                <div className="image image4" />
+                            </div>
+                            <p className="name text">Plain black shirt</p>
+                            <p className="id text">ID: 2342323</p>
+                        </div>
+                        <div className="grid-items">
+                            <div className="product">
+                                <div className="image image1" />
+                            </div>
+                            <p className="name text">Plain black shirt</p>
+                            <p className="id text">ID: 2342323</p>
+                        </div>
+                        <div className="grid-items">
+                            <div className="product">
+                                <div className="image image2" />
+                            </div>
+                            <p className="name text">Plain black shirt</p>
+                            <p className="id text">ID: 2342323</p>
+                        </div>
+                    </div>
+                </Paper>
+            </DashboardLayout>
+        </Wrapper>
+    );
 }
 
 deliveryRequest.propTypes = {};

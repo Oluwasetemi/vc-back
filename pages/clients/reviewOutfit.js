@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../components/layout/DashboardLayout";
-import LinkMaterial from "@material-ui/core/Link";
-import shirt from "../../public/assets/shirt.png";
-import pants from "../../public/assets/pants.png";
-import menShoes from "../../public/assets/men_shoes.png";
-import tie from "../../public/assets/tie.png";
-import { TextInput } from "../../components/dashboard/inputs";
-import Button from "@components/common/Button";
-import Link from "next/link";
+import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { TextInput } from '../../components/dashboard/inputs';
+import DashboardLayout from '../../components/layout/DashboardLayout';
+import menShoes from '../../public/assets/men_shoes.png';
+import pants from '../../public/assets/pants.png';
+import shirt from '../../public/assets/shirt.png';
+import tie from '../../public/assets/tie.png';
 
 const Wrapper = styled.div`
 
@@ -50,7 +49,7 @@ const Wrapper = styled.div`
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			min-width: 185px;
 		}
-		  
+
 	}
   }
   .wrap{
@@ -95,12 +94,12 @@ const Wrapper = styled.div`
 		max-width: 20%;
 		margin-bottom: 23px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-			max-width: 45%;		
+			max-width: 45%;
 		  }
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			max-width: 80%;		  }
     }
-    
+
 	.pink {
 		color: #f26144;
 		background-color: #fff1de;
@@ -125,7 +124,7 @@ letter-spacing: 0.5px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			padding: 0.4rem 1.5rem;
 		}
-		  
+
 	  }
   }
   .grid-items .product {
@@ -187,93 +186,85 @@ letter-spacing: 0.5px;
 
 `;
 function reviewOutfit(props) {
-  const [outfitName, setOutfitName] = useState("");
+    const [outfitName, setOutfitName] = useState('');
 
-  return (
-    <Wrapper>
-      <DashboardLayout>
-        <Breadcrumbs
-          className="bread-crumbs"
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
-            Home
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="inherit" href="/clients">
-            Clients
-          </LinkMaterial>
-          <LinkMaterial
-            className="crumbs"
-            color="inherit"
-            href="/clients/client"
-          >
-            Joseph Thornberry
-          </LinkMaterial>
-          <LinkMaterial
-            className="crumbs"
-            color="inherit"
-            href="/clients/editOutfit"
-          >
-            Outfit
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Review Outfit
-          </LinkMaterial>
-        </Breadcrumbs>
-        <h3 className="title">Review Outfit</h3>
+    return (
+        <Wrapper>
+            <DashboardLayout>
+                <Breadcrumbs
+                    className="bread-crumbs"
+                    separator={<NavigateNextIcon fontSize="small" />}
+                    aria-label="breadcrumb"
+                >
+                    <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
+                        Home
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients">
+                        Clients
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients/client">
+                        Joseph Thornberry
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients/editOutfit">
+                        Outfit
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="textPrimary" href="#">
+                        Review Outfit
+                    </LinkMaterial>
+                </Breadcrumbs>
+                <h3 className="title">Review Outfit</h3>
 
-        <div className="paper paper-tail">
-          <div className="flex wrap">
-            <h1>Outfit</h1>
-            <div className="buttons flex">
-              <Link href="/clients/editoutfit">
-                <Button theme="pink">Back</Button>
-              </Link>
-              <Link href="/clients/outfitcreated">
-                <Button theme="orange">Finish</Button>
-              </Link>
-            </div>
-          </div>
-          <form className="text-input mt-10">
-            <TextInput
-              label="Enter Outfit Name"
-              value={outfitName}
-              onChange={setOutfitName}
-              type="text"
-              placeholder="Outfit Name"
-            />
-          </form>
+                <div className="paper paper-tail">
+                    <div className="flex wrap">
+                        <h1>Outfit</h1>
+                        <div className="buttons flex">
+                            <Link href="/clients/editoutfit">
+                                <Button theme="pink">Back</Button>
+                            </Link>
+                            <Link href="/clients/outfitcreated">
+                                <Button theme="orange">Finish</Button>
+                            </Link>
+                        </div>
+                    </div>
+                    <form className="text-input mt-10">
+                        <TextInput
+                            label="Enter Outfit Name"
+                            value={outfitName}
+                            onChange={setOutfitName}
+                            type="text"
+                            placeholder="Outfit Name"
+                        />
+                    </form>
 
-          <div className="scroll">
-            <div className="grid">
-              <div className="grid-items">
-                <div className="product">
-                  <div className="image image1"></div>
+                    <div className="scroll">
+                        <div className="grid">
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="image image1" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="pink"> Remove</p>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="image image2" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="pink"> Remove</p>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="image image3" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="pink"> Remove</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="pink"> Remove</p>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="image image2"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="pink"> Remove</p>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="image image3"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="pink"> Remove</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </DashboardLayout>
-    </Wrapper>
-  );
+            </DashboardLayout>
+        </Wrapper>
+    );
 }
 
 reviewOutfit.propTypes = {};

@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../components/layout/DashboardLayout";
-import LinkMaterial from "@material-ui/core/Link";
-import { TextInput, Textarea , UploadDp,TagInput } from "../../components/dashboard/inputs";
-import Button from "@components/common/Button";
-import Link from "next/link";
-
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import LinkMaterial from '@material-ui/core/Link';
+import Button from '@components/common/Button';
+import Link from 'next/link';
+import { TextInput, Textarea, UploadDp, TagInput } from '../../components/dashboard/inputs';
+import DashboardLayout from '../../components/layout/DashboardLayout';
 
 const Wrapper = styled.div`
 
@@ -127,72 +126,65 @@ letter-spacing: 0.5px;
   // }
 `;
 function addAStylist(props) {
-  const [fullName, setFullName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [stylistBio, setStylistBio] = useState("Stylist Bio");
+    const [fullName, setFullName] = useState('');
+    const [emailAddress, setEmailAddress] = useState('');
+    const [stylistBio, setStylistBio] = useState('Stylist Bio');
 
-  return (
-    <Wrapper>
-      <DashboardLayout>
-        <Breadcrumbs
-          className="bread-crumbs"
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
-            Home
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="inherit" href="/clients">
-            Clients
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Add A Stylist
-          </LinkMaterial>
-        </Breadcrumbs>
-        <h3 className="title">Add A Stylist</h3>
+    return (
+        <Wrapper>
+            <DashboardLayout>
+                <Breadcrumbs
+                    className="bread-crumbs"
+                    separator={<NavigateNextIcon fontSize="small" />}
+                    aria-label="breadcrumb"
+                >
+                    <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
+                        Home
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients">
+                        Clients
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="textPrimary" href="#">
+                        Add A Stylist
+                    </LinkMaterial>
+                </Breadcrumbs>
+                <h3 className="title">Add A Stylist</h3>
 
-        <div className="paper paper-tail">
-		<div className="flex buttoned">
-              <Link href="/clients/stylists">
-                <Button theme="orange">Save</Button>
-              </Link>
-            </div>
-          <div className=" grid wrap">
-		  
-<UploadDp/>
-           <div className="flex wrap start">
-           <div className="text-input w-30 mr-40">
-              <TextInput
-                label="Full Name"
-                value={fullName}
-                onChange={setFullName}
-                type="text"
-                placeholder="Name"
-              />
-              <TextInput
-                label="Email Address"
-                value={emailAddress}
-                onChange={setEmailAddress}
-                type="text"
-                placeholder="name@email.com"
-              />
-              <TagInput label="Strengths"
-              />
+                <div className="paper paper-tail">
+                    <div className="flex buttoned">
+                        <Link href="/clients/stylists">
+                            <Button theme="orange">Save</Button>
+                        </Link>
+                    </div>
+                    <div className=" grid wrap">
+                        <UploadDp />
+                        <div className="flex wrap start">
+                            <div className="text-input w-30 mr-40">
+                                <TextInput
+                                    label="Full Name"
+                                    value={fullName}
+                                    onChange={setFullName}
+                                    type="text"
+                                    placeholder="Name"
+                                />
+                                <TextInput
+                                    label="Email Address"
+                                    value={emailAddress}
+                                    onChange={setEmailAddress}
+                                    type="text"
+                                    placeholder="name@email.com"
+                                />
+                                <TagInput label="Strengths" />
+                            </div>
+                            <div className="w-30 mr-40">
+                                <Textarea label="Bio" value={stylistBio} onChange={setStylistBio} />
+                            </div>
                         </div>
-		<div className="w-30 mr-40">
-    <Textarea
-                    label="Bio"
-                    value={stylistBio}
-                    onChange={setStylistBio}
-                  />
-    </div>
-           </div>
-            
-          </div>
-        </div>
-      </DashboardLayout>
-    </Wrapper>
-  );
+                    </div>
+                </div>
+            </DashboardLayout>
+        </Wrapper>
+    );
 }
 
 addAStylist.propTypes = {};
