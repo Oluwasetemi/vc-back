@@ -15,6 +15,9 @@ const Wrapper = styled.div`
             font-size: 13px;
         }
     }
+    .mb-10 {
+        margin-bottom: 10px;
+    }
     .paper-client {
         box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
         border-radius: 10px;

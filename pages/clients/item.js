@@ -67,8 +67,8 @@ function item() {
                     <LinkMaterial className="crumbs" color="textPrimary">
                         {loadingOneItem ? 'loading' : errorOneItem ? 'no data' : dataOneItem.fetchOneItemUser.name}
                     </LinkMaterial>
-                    <SingleItemFull id={id} />
                 </Breadcrumbs>
+                <SingleItemFull id={id} />
             </DashboardLayout>
         </Wrapper>
     );

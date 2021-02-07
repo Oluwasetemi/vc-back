@@ -12,6 +12,9 @@ const Wrapper = styled.div`
             font-size: 13px;
         }
     }
+    .mt-50 {
+        margin-top: 50px;
+    }
     .paper {
         box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
@@ -28,8 +31,7 @@ const Wrapper = styled.div`
     .item-details {
         justify-content: space-between;
         align-items: flex-start;
-        /* max-width: 500px; */
-        gap: 130px;
+        width: 100%;
     }
     .wrap {
         flex-wrap: wrap;

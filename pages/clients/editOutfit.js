@@ -1,18 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import LinkMaterial from '@material-ui/core/Link';
 import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-import shirt from '../../public/assets/shirt.png';
-import pants from '../../public/assets/pants.png';
-import menShoes from '../../public/assets/men_shoes.png';
-import tie from '../../public/assets/tie.png';
-import vault from '../../public/assets/inVaultIcon.svg';
 import storage from '../../public/assets/inStorageIcon.svg';
+import vault from '../../public/assets/inVaultIcon.svg';
+import menShoes from '../../public/assets/men_shoes.png';
+import pants from '../../public/assets/pants.png';
+import shirt from '../../public/assets/shirt.png';
+import tie from '../../public/assets/tie.png';
 
 const Wrapper = styled.div`
 
@@ -45,9 +44,9 @@ const Wrapper = styled.div`
   }
   .paper-tail {
 	margin: 30px 0 50px 0;
-	
+
   }
-  
+
   .paper-tail h1 {
     font-weight: 600;
     font-size: 18px;
@@ -254,7 +253,7 @@ function editOutfit(props) {
                 <div className="paper paper-tail">
                     <div className="flex">
                         <h1>Outfit</h1>
-                        <Link href="/clients/reviewOutfit">
+                        <Link href="/clients/reviewoutfit">
                             <Button theme="orange">Continue</Button>
                         </Link>
                     </div>

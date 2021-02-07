@@ -26,6 +26,19 @@ const Wrapper = styled.div`
 		font-size: 20px;
 	  }
   }
+  .mt-10{
+    margin-top: 10px;
+  }
+  .text-input{
+		max-width: 20%;
+		margin-bottom: 23px;
+		@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+			max-width: 45%;		
+		  }
+		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+			max-width: 80%;		  }
+    }
+    
    .user-details .dp {
     width: 70px;
     height: 70px;

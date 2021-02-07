@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import LinkMaterial from '@material-ui/core/Link';
 import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
-import DashboardLayout from '../../../components/layout/DashboardLayout';
-import shirt from '../../../public/assets/shirt.png';
-import pants from '../../../public/assets/pants.png';
-import menShoes from '../../../public/assets/men_shoes.png';
-import tie from '../../../public/assets/tie.png';
+import React from 'react';
+import styled from 'styled-components';
 import { UploadImage } from '../../../components/dashboard/inputs';
+import DashboardLayout from '../../../components/layout/DashboardLayout';
+import menShoes from '../../../public/assets/men_shoes.png';
+import pants from '../../../public/assets/pants.png';
+import shirt from '../../../public/assets/shirt.png';
+import tie from '../../../public/assets/tie.png';
 
 const Wrapper = styled.div`
 
@@ -72,9 +71,9 @@ const Wrapper = styled.div`
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			min-width: -webkit-fill-available;
 		}
-	}	 
+	}
   }
- 
+
   .paper-tail h1 {
     font-weight: 600;
     font-size: 18px;
@@ -159,14 +158,14 @@ const Wrapper = styled.div`
   .grid-items .image4 {
     background-image: url(${tie});
   }
-  
+
   .text {
     font-size: 16px;
     line-height: 24px;
 	color: #2f3930;
 	margin-bottom: 10px;
   }
-  
+
   .name {
     font-weight: bold;
     margin: 18px 0 10px 0;
@@ -223,7 +222,7 @@ function updateCloset(props) {
                             <Link href="/clients/closet">
                                 <Button theme="pink">Back</Button>
                             </Link>
-                            <Link href="/clients/closet/addToWardrobe">
+                            <Link href="/clients/closet/addtowardrobe">
                                 <Button className="disabled">Continue</Button>
                             </Link>
                         </div>

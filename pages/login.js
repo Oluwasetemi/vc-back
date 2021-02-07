@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Link from 'next/link';
 import Button from '@components/common/Button';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { PasswordInput, TextInput } from '../components/dashboard/inputs';
 import brand from '../public/assets/brand.svg';
-import { TextInput, PasswordInput } from '../components/dashboard/inputs';
 
 const Wrapper = styled.div`
     display: flex;
@@ -85,7 +84,7 @@ function login(props) {
                                 <div className="label-name flex">
                                     <span>Password</span>
                                     <span className="orange-link">
-                                        <Link href="/requestPasswordReset">Forgot Your Password?</Link>
+                                        <Link href="/requestpasswordreset">Forgot Your Password?</Link>
                                     </span>
                                 </div>
                             }

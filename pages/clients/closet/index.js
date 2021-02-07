@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import LinkMaterial from '@material-ui/core/Link';
 import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components';
 import { CheckboxInput } from '../../../components/dashboard/inputs';
 import DashboardLayout from '../../../components/layout/DashboardLayout';
 
@@ -131,7 +130,7 @@ const Wrapper = styled.div`
   }
   .paper-tail {
 	margin: 30px 0 50px 0;
-  
+
   .buttons.flex{
     align-items: center;
 		min-width: 320px;
@@ -141,7 +140,7 @@ const Wrapper = styled.div`
     }
   }
   }
-  
+
   .paper-tail h1 {
     font-weight: 600;
     font-size: 18px;
@@ -308,7 +307,7 @@ function index(props) {
                             <Link href="/clients/outfitCreated">
                                 <Button theme="pink">Back</Button>
                             </Link>
-                            <Link href="/clients/closet/updateCloset">
+                            <Link href="/clients/closet/updatecloset">
                                 <Button theme="orange">Continue</Button>
                             </Link>
                         </div>

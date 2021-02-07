@@ -14,6 +14,7 @@ const Wrapper = styled.div`
     }
     select {
         outline: none;
+        height: 38px;
         background: #ffffff;
         border: 1px solid #d6d8d3;
         padding: 6px 8px;

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import LinkMaterial from '@material-ui/core/Link';
 import Button from '@components/common/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
-import DashboardLayout from '../../components/layout/DashboardLayout';
-import shirt from '../../public/assets/shirt.png';
-import pants from '../../public/assets/pants.png';
-import menShoes from '../../public/assets/men_shoes.png';
-import tie from '../../public/assets/tie.png';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { TextInput } from '../../components/dashboard/inputs';
+import DashboardLayout from '../../components/layout/DashboardLayout';
+import menShoes from '../../public/assets/men_shoes.png';
+import pants from '../../public/assets/pants.png';
+import shirt from '../../public/assets/shirt.png';
+import tie from '../../public/assets/tie.png';
 
 const Wrapper = styled.div`
 
@@ -50,7 +49,7 @@ const Wrapper = styled.div`
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			min-width: 185px;
 		}
-		  
+
 	}
   }
   .wrap{
@@ -87,16 +86,20 @@ const Wrapper = styled.div`
 	}
 	  }
   }
+  .mt-10{
+    margin-top: 10px;
+  }
   .paper-tail{
 	  .text-input{
 		max-width: 20%;
 		margin-bottom: 23px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
-			max-width: 45%;		
+			max-width: 45%;
 		  }
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			max-width: 80%;		  }
-	  }
+    }
+
 	.pink {
 		color: #f26144;
 		background-color: #fff1de;
@@ -121,7 +124,7 @@ letter-spacing: 0.5px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			padding: 0.4rem 1.5rem;
 		}
-		  
+
 	  }
   }
   .grid-items .product {
@@ -215,15 +218,15 @@ function reviewOutfit(props) {
                     <div className="flex wrap">
                         <h1>Outfit</h1>
                         <div className="buttons flex">
-                            <Link href="/clients/editOutfit">
+                            <Link href="/clients/editoutfit">
                                 <Button theme="pink">Back</Button>
                             </Link>
-                            <Link href="/clients/outfitCreated">
+                            <Link href="/clients/outfitcreated">
                                 <Button theme="orange">Finish</Button>
                             </Link>
                         </div>
                     </div>
-                    <div className="text-input">
+                    <form className="text-input mt-10">
                         <TextInput
                             label="Enter Outfit Name"
                             value={outfitName}
@@ -231,7 +234,7 @@ function reviewOutfit(props) {
                             type="text"
                             placeholder="Outfit Name"
                         />
-                    </div>
+                    </form>
 
                     <div className="scroll">
                         <div className="grid">

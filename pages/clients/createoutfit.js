@@ -6,8 +6,8 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React from 'react';
-import { CheckboxInput } from '../../components/dashboard/inputs';
+import React, { useState } from 'react';
+import { CheckboxInput, TextInput } from '../../components/dashboard/inputs';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import Wrapper from '../../components/styles/OutfitStyles';
 import { SINGLE_USER } from './client';
@@ -31,6 +31,8 @@ SingleItem.propTypes = {
 };
 
 function createAnOutfit(props) {
+    const [outfitName, setOutfitName] = useState('');
+
     const { query } = useRouter();
     const { id, userid } = query;
     const { data, loading, error } = useQuery(SINGLE_USER, {
@@ -113,10 +115,19 @@ function createAnOutfit(props) {
                 <div className="paper paper-tail">
                     <div className="flex">
                         <h1>Items</h1>
-                        <Link href="/clients/editoutfit">
-                            <Button theme="orange">Continue</Button>
+                        <Link href="/clients/reviewoutfit">
+                            <Button theme="orange">Create an outfit</Button>
                         </Link>
                     </div>
+                    <form className="text-input mt-10">
+                        <TextInput
+                            label="Enter Outfit Name"
+                            value={outfitName}
+                            onChange={setOutfitName}
+                            type="text"
+                            placeholder="Outfit Name"
+                        />
+                    </form>
                     <div className="scroll">
                         <div className="grid">
                             {data && data.userById.closet === null ? (

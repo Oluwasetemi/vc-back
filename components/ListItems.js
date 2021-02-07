@@ -60,7 +60,7 @@ export function ListItems() {
                     <ListItemLink
                         className={
                             (router.pathname === '/calendar' ? 'active' : '') ||
-                            (router.pathname === '/calendar/allEvents' ? 'active' : '') ||
+                            (router.pathname === '/calendar/allevents' ? 'active' : '') ||
                             (router.pathname === '/requests/pickupRequest' ? 'active' : '') ||
                             (router.pathname === '/requests/deliveryRequest' ? 'active' : '') ||
                             (router.pathname === '/requests/startPickup' ? 'active' : '') ||
@@ -87,10 +87,9 @@ export function ListItems() {
                             (router.pathname === '/clients/editoutfit' ? 'active' : '') ||
                             (router.pathname === '/clients/reviewoutfit' ? 'active' : '') ||
                             (router.pathname === '/clients/outfitcreated' ? 'active' : '') ||
-                            (router.pathname === '/clients/wardrobe' ? 'active' : '') ||
-                            (router.pathname === '/clients/wardrobe/addtowardrobe1' ? 'active' : '') ||
-                            (router.pathname === '/clients/wardrobe/addtowardrobe2' ? 'active' : '') ||
-                            (router.pathname === '/clients/wardrobe/addtowardrobe3' ? 'active' : '') ||
+                            (router.pathname === '/clients/closet' ? 'active' : '') ||
+                            (router.pathname === '/clients/closet/addtowardrobe' ? 'active' : '') ||
+                            (router.pathname === '/clients/closet/updatecloset' ? 'active' : '') ||
                             (router.pathname === '/clients/addstylist' ? 'active' : '') ||
                             (router.pathname === '/clients/stylists' ? 'active' : '') ||
                             (router.pathname === '/clients/stylists/stylist' ? 'active' : '')
