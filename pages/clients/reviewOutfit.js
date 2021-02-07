@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import DashboardLayout from "../../components/layout/DashboardLayout";
-import LinkMaterial from "@material-ui/core/Link";
-import shirt from "../../public/assets/shirt.png";
-import pants from "../../public/assets/pants.png";
-import menShoes from "../../public/assets/men_shoes.png";
-import tie from "../../public/assets/tie.png";
-import { TextInput } from "../../components/dashboard/inputs";
-import Button from "@components/common/Button";
-import Link from "next/link";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import LinkMaterial from '@material-ui/core/Link';
+import Button from '@components/common/Button';
+import Link from 'next/link';
+import DashboardLayout from '../../components/layout/DashboardLayout';
+import shirt from '../../public/assets/shirt.png';
+import pants from '../../public/assets/pants.png';
+import menShoes from '../../public/assets/men_shoes.png';
+import tie from '../../public/assets/tie.png';
+import { TextInput } from '../../components/dashboard/inputs';
 
 const Wrapper = styled.div`
 
@@ -183,93 +183,85 @@ letter-spacing: 0.5px;
 
 `;
 function reviewOutfit(props) {
-  const [outfitName, setOutfitName] = useState("");
+    const [outfitName, setOutfitName] = useState('');
 
-  return (
-    <Wrapper>
-      <DashboardLayout>
-        <Breadcrumbs
-          className="bread-crumbs"
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
-            Home
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="inherit" href="/clients">
-            Clients
-          </LinkMaterial>
-          <LinkMaterial
-            className="crumbs"
-            color="inherit"
-            href="/clients/client"
-          >
-            Joseph Thornberry
-          </LinkMaterial>
-          <LinkMaterial
-            className="crumbs"
-            color="inherit"
-            href="/clients/editOutfit"
-          >
-            Outfit
-          </LinkMaterial>
-          <LinkMaterial className="crumbs" color="textPrimary" href="#">
-            Review Outfit
-          </LinkMaterial>
-        </Breadcrumbs>
-        <h3 className="title">Review Outfit</h3>
+    return (
+        <Wrapper>
+            <DashboardLayout>
+                <Breadcrumbs
+                    className="bread-crumbs"
+                    separator={<NavigateNextIcon fontSize="small" />}
+                    aria-label="breadcrumb"
+                >
+                    <LinkMaterial className="crumbs" color="inherit" href="/dashboard">
+                        Home
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients">
+                        Clients
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients/client">
+                        Joseph Thornberry
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="inherit" href="/clients/editOutfit">
+                        Outfit
+                    </LinkMaterial>
+                    <LinkMaterial className="crumbs" color="textPrimary" href="#">
+                        Review Outfit
+                    </LinkMaterial>
+                </Breadcrumbs>
+                <h3 className="title">Review Outfit</h3>
 
-        <div className="paper paper-tail">
-          <div className="flex wrap">
-            <h1>Outfit</h1>
-            <div className="buttons flex">
-              <Link href="/clients/editOutfit">
-                <Button theme="pink">Back</Button>
-              </Link>
-              <Link href="/clients/outfitCreated">
-                <Button theme="orange">Finish</Button>
-              </Link>
-            </div>
-          </div>
-          <div className="text-input">
-            <TextInput
-              label="Enter Outfit Name"
-              value={outfitName}
-              onChange={setOutfitName}
-              type="text"
-              placeholder="Outfit Name"
-            />
-          </div>
+                <div className="paper paper-tail">
+                    <div className="flex wrap">
+                        <h1>Outfit</h1>
+                        <div className="buttons flex">
+                            <Link href="/clients/editOutfit">
+                                <Button theme="pink">Back</Button>
+                            </Link>
+                            <Link href="/clients/outfitCreated">
+                                <Button theme="orange">Finish</Button>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="text-input">
+                        <TextInput
+                            label="Enter Outfit Name"
+                            value={outfitName}
+                            onChange={setOutfitName}
+                            type="text"
+                            placeholder="Outfit Name"
+                        />
+                    </div>
 
-          <div className="scroll">
-            <div className="grid">
-              <div className="grid-items">
-                <div className="product">
-                  <div className="image image1"></div>
+                    <div className="scroll">
+                        <div className="grid">
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="image image1" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="pink"> Remove</p>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="image image2" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="pink"> Remove</p>
+                            </div>
+                            <div className="grid-items">
+                                <div className="product">
+                                    <div className="image image3" />
+                                </div>
+                                <p className="name text">Plain black shirt</p>
+                                <p className="pink"> Remove</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="pink"> Remove</p>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="image image2"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="pink"> Remove</p>
-              </div>
-              <div className="grid-items">
-                <div className="product">
-                  <div className="image image3"></div>
-                </div>
-                <p className="name text">Plain black shirt</p>
-                <p className="pink"> Remove</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </DashboardLayout>
-    </Wrapper>
-  );
+            </DashboardLayout>
+        </Wrapper>
+    );
 }
 
 reviewOutfit.propTypes = {};

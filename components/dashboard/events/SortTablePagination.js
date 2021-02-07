@@ -1,17 +1,17 @@
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import PropTypes from "prop-types";
-import React from "react";
-import styled from "styled-components";
-import searchIcon from "../../../public/assets/searchIcon.svg";
-import Link from "next/link";
-import Button from "../../common/Button";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
+import searchIcon from '../../../public/assets/searchIcon.svg';
+import Button from '../../common/Button';
 
 const SearchWraper = styled.div`
 position: absolute;
@@ -135,149 +135,149 @@ table{
 `;
 
 function EnhancedTableHead({ headCells, ...props }) {
-  return (
-    <TableHead>
-      <TableRow>
-        <TableCell padding="checkbox"></TableCell>
-        {headCells.map((headCell) => (
-          <TableCell key={headCell.id}>
-            <TableSortLabel>{headCell.label}</TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
+    return (
+        <TableHead>
+            <TableRow>
+                <TableCell padding="checkbox" />
+                {headCells.map((headCell) => (
+                    <TableCell key={headCell.id}>
+                        <TableSortLabel>{headCell.label}</TableSortLabel>
+                    </TableCell>
+                ))}
+            </TableRow>
+        </TableHead>
+    );
 }
 
 EnhancedTableHead.propTypes = {
-  headCells: PropTypes.array.isRequired,
+    headCells: PropTypes.array.isRequired,
 };
 
 const EnhancedTableToolbar = (props) => {
-  const { value, handleSearch } = props;
+    const { value, handleSearch } = props;
 
-  return (
-    <SearchWraper>
-      <img src={searchIcon} alt="searchIcon" />
-      <input placeholder="Search" onChange={handleSearch} value={value} />
-    </SearchWraper>
-  );
+    return (
+        <SearchWraper>
+            <img src={searchIcon} alt="searchIcon" />
+            <input placeholder="Search" onChange={handleSearch} value={value} />
+        </SearchWraper>
+    );
 };
 
-export default function SortTablePagination({ rows, linkText,linkTo, paper, headCells }) {
-  const [data, setData] = React.useState(rows);
-  const [filterData, setFilterData] = React.useState(rows);
-  const [searchValue, setSearchValue] = React.useState("");
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+export default function SortTablePagination({ rows, linkText, linkTo, paper, headCells }) {
+    const [data, setData] = React.useState(rows);
+    const [filterData, setFilterData] = React.useState(rows);
+    const [searchValue, setSearchValue] = React.useState('');
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
 
-  const handleSearch = (event) => {
-    let filteredDatas = [];
-    filteredDatas = data.filter((e) => {
-      return (
-        (e._id &&
-          e._id.toString().toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.email &&
-          e.email.toLowerCase().includes(searchValue.toLowerCase())) ||
-        (e.name && e.name.toLowerCase().includes(searchValue.toLowerCase()))
-      );
-    });
-    setFilterData(filteredDatas);
-    setSearchValue(event.target.value);
-  };
+    const handleSearch = (event) => {
+        let filteredDatas = [];
+        filteredDatas = data.filter(
+            (e) =>
+                (e._id && e._id.toString().toLowerCase().includes(searchValue.toLowerCase())) ||
+                (e.email && e.email.toLowerCase().includes(searchValue.toLowerCase())) ||
+                (e.name && e.name.toLowerCase().includes(searchValue.toLowerCase())),
+        );
+        setFilterData(filteredDatas);
+        setSearchValue(event.target.value);
+    };
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
-  return (
-    <Wrapper>
-      <div className={`${paper}`}>
-        <EnhancedTableToolbar handleSearch={handleSearch} value={searchValue} />
-        <TableContainer>
-          <Table>
-            <EnhancedTableHead headCells={headCells} rowCount={rows.length} />
-            <TableBody>
-              {filterData.map((row, index) => {
-                return (
-                  <TableRow hover tabIndex={-1} key={row._id}>
-                    {row.bookingId && (
-                      <TableCell component="th" scope="row" padding="none">
-                        {row.bookingId.substring(0, 7)}
-                      </TableCell>
-                    )}
-                    {row.userId && (
-                      <TableCell component="th" scope="row" padding="none">
-                        {row.userId}
-                      </TableCell>
-                    )}
-                    {row.userEmail && <TableCell>{row.userEmail}</TableCell>}
-                    {row.userName && <TableCell>{row.userName}</TableCell>}
-                    {row._id &&<TableCell component="th" scope="row" padding="none">
-                      {row._id.substring(0, 7)}
-                    </TableCell>}
-                    {row.email && <TableCell>{row.email}</TableCell>}
-                    {row.name && <TableCell>{row.name}</TableCell>}
-                    {row.zipCode && <TableCell>{row.zipCode}</TableCell>}
+    return (
+        <Wrapper>
+            <div className={`${paper}`}>
+                <EnhancedTableToolbar handleSearch={handleSearch} value={searchValue} />
+                <TableContainer>
+                    <Table>
+                        <EnhancedTableHead headCells={headCells} rowCount={rows.length} />
+                        <TableBody>
+                            {filterData.map((row, index) => (
+                                <TableRow hover tabIndex={-1} key={row._id}>
+                                    {row.bookingId && (
+                                        <TableCell component="th" scope="row" padding="none">
+                                            {row.bookingId.substring(0, 7)}
+                                        </TableCell>
+                                    )}
+                                    {row.userId && (
+                                        <TableCell component="th" scope="row" padding="none">
+                                            {row.userId}
+                                        </TableCell>
+                                    )}
+                                    {row.userEmail && <TableCell>{row.userEmail}</TableCell>}
+                                    {row.userName && <TableCell>{row.userName}</TableCell>}
+                                    {row._id && (
+                                        <TableCell component="th" scope="row" padding="none">
+                                            {row._id.substring(0, 7)}
+                                        </TableCell>
+                                    )}
+                                    {row.email && <TableCell>{row.email}</TableCell>}
+                                    {row.name && <TableCell>{row.name}</TableCell>}
+                                    {row.zipCode && <TableCell>{row.zipCode}</TableCell>}
 
-                    {row.noOfItems != null ? (
-                      <TableCell>{row.noOfItems}</TableCell>
-                    ) : (
-                      <TableCell> </TableCell>
-                    )}
-                       {row.createdAt != null ? (
-                      <TableCell>{row.createdAt}</TableCell>
-                    ) : (
-                      <TableCell> </TableCell>
-                    )}
-                    {row.location && <TableCell>{row.location}</TableCell>}
-                    {row.date &&<TableCell>{row.date}</TableCell>}
-                    {row.joined && <TableCell>{row.joined}</TableCell>}
-                    {row.type && <TableCell><span className="status">{row.type}</span></TableCell>}
-                    <TableCell>
-                    <Link className="btn" href={linkTo}>
-        <Button theme="pinkBtn">{linkText}</Button>
-      </Link>
-      </TableCell>
-                  </TableRow>
-                );
-              })}
-              {emptyRows > 0 && (
-                <TableRow>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Wrapper>
-  );
+                                    {row.noOfItems != null ? (
+                                        <TableCell>{row.noOfItems}</TableCell>
+                                    ) : (
+                                        <TableCell> </TableCell>
+                                    )}
+                                    {row.createdAt != null ? (
+                                        <TableCell>{row.createdAt}</TableCell>
+                                    ) : (
+                                        <TableCell> </TableCell>
+                                    )}
+                                    {row.location && <TableCell>{row.location}</TableCell>}
+                                    {row.date && <TableCell>{row.date}</TableCell>}
+                                    {row.joined && <TableCell>{row.joined}</TableCell>}
+                                    {row.type && (
+                                        <TableCell>
+                                            <span className="status">{row.type}</span>
+                                        </TableCell>
+                                    )}
+                                    <TableCell>
+                                        <Link className="btn" href={linkTo}>
+                                            <Button theme="pinkBtn">{linkText}</Button>
+                                        </Link>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                            {emptyRows > 0 && (
+                                <TableRow>
+                                    <TableCell colSpan={6} />
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
+            <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+        </Wrapper>
+    );
 }
-SortTablePagination.defaultProps  = {
-  linkText: "view",
-  linkTo: "/"
+SortTablePagination.defaultProps = {
+    linkText: 'view',
+    linkTo: '/',
 };
 SortTablePagination.propTypes = {
-  rows: PropTypes.array.isRequired,
-  headCells: PropTypes.array.isRequired,
-  paper: PropTypes.string,
-  linkTo: PropTypes.string,
-  linkText:PropTypes.string,
+    rows: PropTypes.array.isRequired,
+    headCells: PropTypes.array.isRequired,
+    paper: PropTypes.string,
+    linkTo: PropTypes.string,
+    linkText: PropTypes.string,
 };

@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   }
   .paper-top-head .buttons{
     align-items: end;
-	  @media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	  @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		  display: block ;
 	  }
   }
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     text-align: center;
 	  margin-left: 14px;
-	  @media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	  @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		margin-top: 14px;
 		margin-left: 0;
 	  }
@@ -93,7 +93,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
 }
 .paper-top-tail .user-details>.lhs{
-	@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		flex-wrap: wrap;
 	  }
 }
@@ -115,7 +115,7 @@ const Wrapper = styled.div`
   .paper-top-tail .user-details .lhs {
  margin-bottom:30px;
  align-items: flex-start;
- @media screen and (max-width: ${props => props.theme.breakpoint.md}) {
+ @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
 	width: 100%;
   }
 
@@ -125,7 +125,7 @@ const Wrapper = styled.div`
     line-height: 24px;
     color: #2f3930;
     	max-width: 32%;
-		  @media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+		  @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		max-width: 100%;
 	  }
   }
@@ -133,7 +133,7 @@ const Wrapper = styled.div`
     grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   margin-top: 24px;
-	@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
@@ -158,53 +158,44 @@ const Wrapper = styled.div`
     border-top: 1px solid #d6d8d3;
   }
 `;
-function UserDetailCard({
-	top,
-	text,
-	weight,
-	fullDetail,
-	userId,
-	userName,
-	buttons,
-	initials,
-}) {
-	return (
-		<Wrapper>
-			<Paper className="paper paper-top">
-				<div className="flex paper-top-head wrap">{top}</div>
-				<div className="paper-top-tail">
-					<div className="flex user-details wrap ">
-						<div className="lhs flex">
-							<div className="dp flex">
-								<p className="initials">{initials}</p>
-							</div>
-							<div className="names">
-								<p className="name">{userName}</p>
-								<p className="id">User ID: {userId}</p>
-								<div className="buttons">{buttons}</div>
-							</div>
-						</div>
-						<div className="lhs rhs">
-							<div className={`${weight}`}>{text}</div>
-							<div className="full-detail grid">{fullDetail}</div>
-						</div>
-					</div>
-				</div>
-			</Paper>
-		</Wrapper>
-	);
+function UserDetailCard({ top, text, weight, fullDetail, userId, userName, buttons, initials }) {
+    return (
+        <Wrapper>
+            <Paper className="paper paper-top">
+                <div className="flex paper-top-head wrap">{top}</div>
+                <div className="paper-top-tail">
+                    <div className="flex user-details wrap ">
+                        <div className="lhs flex">
+                            <div className="dp flex">
+                                <p className="initials">{initials}</p>
+                            </div>
+                            <div className="names">
+                                <p className="name">{userName}</p>
+                                <p className="id">User ID: {userId}</p>
+                                <div className="buttons">{buttons}</div>
+                            </div>
+                        </div>
+                        <div className="lhs rhs">
+                            <div className={`${weight}`}>{text}</div>
+                            <div className="full-detail grid">{fullDetail}</div>
+                        </div>
+                    </div>
+                </div>
+            </Paper>
+        </Wrapper>
+    );
 }
 
 UserDetailCard.propTypes = {
-	top: PropTypes.any,
-	buttons: PropTypes.any,
-	fullDetail: PropTypes.any,
-	date: PropTypes.string,
-	userId: PropTypes.string,
-	userName: PropTypes.string,
-	text: PropTypes.string,
-	initials: PropTypes.string,
-	weight: PropTypes.string,
+    top: PropTypes.any,
+    buttons: PropTypes.any,
+    fullDetail: PropTypes.any,
+    date: PropTypes.string,
+    userId: PropTypes.string,
+    userName: PropTypes.string,
+    text: PropTypes.string,
+    initials: PropTypes.string,
+    weight: PropTypes.string,
 };
 
 export default UserDetailCard;

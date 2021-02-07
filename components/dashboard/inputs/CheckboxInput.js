@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
@@ -117,40 +117,34 @@ input[type=radio]:not(.switch):checked {
 
 `;
 function CheckboxInput({ label, checked }) {
-  const [state, setState] = React.useState({
-    checkedItem: false,
-    checkedItemTrue: true,
-  });
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+    const [state, setState] = React.useState({
+        checkedItem: false,
+        checkedItemTrue: true,
+    });
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
 
-  return (
-    <Wrapper>
-      {!checked ? (
-        <input
-          id="c1"
-          type="checkbox"
-          checked={state.checkedItem}
-          onChange={handleChange}
-          name="checkedItem"
-        />
-      ) : (
-        <input
-          id="c1"
-          type="checkbox"
-          checked={state.checkedItemTrue}
-          onChange={handleChange}
-          name="checkedItemTrue"
-        />
-      )}
-      <label htmlFor="c1">{label}</label>
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            {!checked ? (
+                <input id="c1" type="checkbox" checked={state.checkedItem} onChange={handleChange} name="checkedItem" />
+            ) : (
+                <input
+                    id="c1"
+                    type="checkbox"
+                    checked={state.checkedItemTrue}
+                    onChange={handleChange}
+                    name="checkedItemTrue"
+                />
+            )}
+            <label htmlFor="c1">{label}</label>
+        </Wrapper>
+    );
 }
 
 CheckboxInput.propTypes = {
-  checked: PropTypes.string,
+    checked: PropTypes.string,
 };
 
 export { CheckboxInput };

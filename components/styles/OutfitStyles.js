@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   .crumbs {
     font-size: 18px;
     line-height: 30px;
-    @media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+    @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
       font-size: 13px;
     }
   }
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
     line-height: 32px;
     margin: 33px 0;
 	color: #4b6962;
-	@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		font-size: 20px;
 	  }
   }
@@ -60,7 +60,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
 }
  .user-details>.lhs{
-	@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		flex-wrap: wrap;
 	  }
 }
@@ -82,7 +82,7 @@ const Wrapper = styled.div`
    .user-details .lhs {
  margin-bottom:30px;
  align-items: flex-start;
- @media screen and (max-width: ${props => props.theme.breakpoint.md}) {
+ @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
 	width: 100%;
   }
 
@@ -92,7 +92,7 @@ const Wrapper = styled.div`
     line-height: 24px;
     color: #2f3930;
     	max-width: 32%;
-		  @media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+		  @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		max-width: 100%;
 	  }
   }
@@ -100,7 +100,7 @@ const Wrapper = styled.div`
     grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
   margin-top: 24px;
-	@media screen and (max-width: ${props => props.theme.breakpoint.md}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
@@ -154,7 +154,7 @@ const Wrapper = styled.div`
     grid-gap: 28px;
     margin: 30px 0;
 	grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-	@media screen and (max-width: ${props => props.theme.breakpoint.sm}) {
+	@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 		min-width: auto;
 				grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
 	}
