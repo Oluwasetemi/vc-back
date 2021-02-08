@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import LinkMaterial from '@material-ui/core/Link';
 import Button from '@components/common/Button';
+import DashboardLayout from '@components/layout/DashboardLayout';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import menShoes from '@public/assets/men_shoes.png';
+import pants from '@public/assets/pants.png';
+import shirt from '@public/assets/shirt.png';
+import tie from '@public/assets/tie.png';
 import Link from 'next/link';
-import DashboardLayout from '../../components/layout/DashboardLayout';
-import shirt from '../../public/assets/shirt.png';
-import pants from '../../public/assets/pants.png';
-import menShoes from '../../public/assets/men_shoes.png';
-import tie from '../../public/assets/tie.png';
-import { TextInput } from '../../components/dashboard/inputs';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
 
@@ -45,7 +43,7 @@ const Wrapper = styled.div`
   .paper-tail {
 	margin: 30px 0 50px 0;
   }
- 
+
   .paper-tail h1 {
     font-weight: 600;
     font-size: 18px;
@@ -80,7 +78,7 @@ const Wrapper = styled.div`
 
   .paper-tail
 	  .button {
-		padding: 0.4rem 2.5rem;  
+		padding: 0.4rem 2.5rem;
   }
   .grid-items .product {
     background-color: #f3f0f0;

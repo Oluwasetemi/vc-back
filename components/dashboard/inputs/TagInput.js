@@ -1,10 +1,10 @@
 /* eslint-disable no-use-before-define */
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import add from '@public/assets/Add.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import add from '../../../public/assets/Add.svg';
 
 const Wrapper = styled.div`
     h6 {

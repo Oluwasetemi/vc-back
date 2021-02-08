@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -45,6 +46,9 @@ function FileUpload({ onChange, src }) {
     );
 }
 
-FileUpload.propTypes = {};
+FileUpload.propTypes = {
+    onChange: PropTypes.any,
+    src: PropTypes.any,
+};
 
 export default FileUpload;

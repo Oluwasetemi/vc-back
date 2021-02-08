@@ -1,5 +1,5 @@
+import menShoes from '@public/assets/men_shoes.png';
 import styled from 'styled-components';
-import menShoes from '../../public/assets/men_shoes.png';
 
 const Wrapper = styled.div`
     .bread-crumbs {

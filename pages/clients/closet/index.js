@@ -1,12 +1,12 @@
 import Button from '@components/common/Button';
+import { CheckboxInput } from '@components/dashboard/inputs';
+import DashboardLayout from '@components/layout/DashboardLayout';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import { CheckboxInput } from '../../../components/dashboard/inputs';
-import DashboardLayout from '../../../components/layout/DashboardLayout';
 
 const Wrapper = styled.div`
 

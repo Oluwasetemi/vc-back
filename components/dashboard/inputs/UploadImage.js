@@ -1,6 +1,6 @@
+import camera from '@public/assets/photo.svg';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import camera from '../../../public/assets/photo.svg';
 
 const Wrapper = styled.div`
     input {

@@ -1,12 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
+import next from '@public/assets/NextPageButton.svg';
+import prev from '@public/assets/PreviousPageButton.svg';
+import searchIcon from '@public/assets/searchIcon.svg';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import next from '../../../public/assets/NextPageButton.svg';
-import prev from '../../../public/assets/PreviousPageButton.svg';
-import searchIcon from '../../../public/assets/searchIcon.svg';
 import Button from '../../common/Button';
 import useTable from '../../common/table/useTable';
 
@@ -84,7 +84,11 @@ function AllEvents({ error, loading, data }, ...props) {
                                                 <Link
                                                     className="btn"
                                                     href={{
-                                                        pathname: `/requests/${item.status.toLowerCase()}${item.type.toLowerCase()}`,
+                                                        pathname: `/requests/${
+                                                            item.status.toLowerCase() === 'active'
+                                                                ? 'send'
+                                                                : item.status.toLowerCase()
+                                                        }${item.type.toLowerCase()}`,
                                                         query: {
                                                             type: item.type.toLowerCase(),
                                                             id: item._id,
@@ -104,20 +108,24 @@ function AllEvents({ error, loading, data }, ...props) {
                     'no data'
                 )}
             </div>
-            <div className="flex pagination">
-                <img
-                    src={prev}
-                    alt="prev"
-                    onClick={() => (currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1))}
-                />
+            {!loading && !error && (
+                <div className="flex pagination">
+                    <img
+                        src={prev}
+                        alt="prev"
+                        onClick={() => (currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1))}
+                    />
 
-                <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
-                <img
-                    src={next}
-                    alt="next"
-                    onClick={() => (currentPage < pageNumbers.length ? setCurrentPage(currentPage + 1) : currentPage)}
-                />
-            </div>
+                    <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
+                    <img
+                        src={next}
+                        alt="next"
+                        onClick={() =>
+                            currentPage < pageNumbers.length ? setCurrentPage(currentPage + 1) : currentPage
+                        }
+                    />
+                </div>
+            )}
         </Wrapper>
     );
 }

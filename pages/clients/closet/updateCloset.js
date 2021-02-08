@@ -1,16 +1,16 @@
 import Button from '@components/common/Button';
+import { UploadImage } from '@components/dashboard/inputs';
+import DashboardLayout from '@components/layout/DashboardLayout';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import menShoes from '@public/assets/men_shoes.png';
+import pants from '@public/assets/pants.png';
+import shirt from '@public/assets/shirt.png';
+import tie from '@public/assets/tie.png';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import { UploadImage } from '../../../components/dashboard/inputs';
-import DashboardLayout from '../../../components/layout/DashboardLayout';
-import menShoes from '../../../public/assets/men_shoes.png';
-import pants from '../../../public/assets/pants.png';
-import shirt from '../../../public/assets/shirt.png';
-import tie from '../../../public/assets/tie.png';
 
 const Wrapper = styled.div`
 

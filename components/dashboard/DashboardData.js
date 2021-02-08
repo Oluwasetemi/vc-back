@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useQuery } from '@apollo/client';
 import Button from '@components/common/Button';
 import gql from 'graphql-tag';

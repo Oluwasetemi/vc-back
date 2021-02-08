@@ -1,17 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
-import AppBar from "@material-ui/core/AppBar";
-import Box from "@material-ui/core/Box";
-import tabImage1 from "../../public/assets/tabImage1.png";
-import tabImage2 from "../../public/assets/tabImage2.png";
-import tabImage3 from "../../public/assets/tabImage3.png";
-import tabImage4 from "../../public/assets/tabImage4.png";
-import tabImage5 from "../../public/assets/tabImage5.png";
-import next from "../../public/assets/next.svg";
-import { Divider } from "@material-ui/core";
+import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import next from '@public/assets/next.svg';
+import tabImage1 from '@public/assets/tabImage1.png';
+import tabImage2 from '@public/assets/tabImage2.png';
+import tabImage3 from '@public/assets/tabImage3.png';
+import tabImage4 from '@public/assets/tabImage4.png';
+import tabImage5 from '@public/assets/tabImage5.png';
+import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     .MuiAppBar-colorPrimary {
@@ -54,7 +52,7 @@ const Wrapper = styled.div`
         }
     }
     .MuiTab-wrapper {
-        font-family: "Matteo";
+        font-family: 'Matteo';
         font-weight: 600;
         font-size: 18px;
         line-height: 24px;
@@ -86,9 +84,7 @@ const Wrapper = styled.div`
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-    return (
-        <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>
-    );
+    return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
 }
 function HowItWorks(props) {
     const [value, setValue] = React.useState(0);
@@ -110,91 +106,36 @@ function HowItWorks(props) {
 
             <TabPanel className="pd-0" value={value} index={0}>
                 <div className="control flex">
-                    <img
-                        className="prev"
-                        src={next}
-                        onClick={() =>
-                            value === 0 ? value : setValue(value - 1)
-                        }
-                    />
-                    <img
-                        src={next}
-                        onClick={() =>
-                            value < 4 ? setValue(value + 1) : value
-                        }
-                    />
+                    <img className="prev" src={next} onClick={() => (value === 0 ? value : setValue(value - 1))} />
+                    <img src={next} onClick={() => (value < 4 ? setValue(value + 1) : value)} />
                 </div>
                 <img className="tab-image" src={tabImage1} alt="tabImage1" />
             </TabPanel>
             <TabPanel className="pd-0" value={value} index={1}>
                 <div className="control flex">
-                    <img
-                        className="prev"
-                        src={next}
-                        onClick={() =>
-                            value === 0 ? value : setValue(value - 1)
-                        }
-                    />
-                    <img
-                        src={next}
-                        onClick={() =>
-                            value < 4 ? setValue(value + 1) : value
-                        }
-                    />
+                    <img className="prev" src={next} onClick={() => (value === 0 ? value : setValue(value - 1))} />
+                    <img src={next} onClick={() => (value < 4 ? setValue(value + 1) : value)} />
                 </div>
                 <img className="tab-image" src={tabImage2} alt="tabImage2" />
             </TabPanel>
             <TabPanel className="pd-0" value={value} index={2}>
                 <div className="control flex">
-                    <img
-                        className="prev"
-                        src={next}
-                        onClick={() =>
-                            value === 0 ? value : setValue(value - 1)
-                        }
-                    />
-                    <img
-                        src={next}
-                        onClick={() =>
-                            value < 4 ? setValue(value + 1) : value
-                        }
-                    />
+                    <img className="prev" src={next} onClick={() => (value === 0 ? value : setValue(value - 1))} />
+                    <img src={next} onClick={() => (value < 4 ? setValue(value + 1) : value)} />
                 </div>
                 <img className="tab-image" src={tabImage3} alt="tabImage3" />
             </TabPanel>
             <TabPanel className="pd-0" value={value} index={3}>
                 <div className="control flex">
-                    <img
-                        className="prev"
-                        src={next}
-                        onClick={() =>
-                            value === 0 ? value : setValue(value - 1)
-                        }
-                    />
-                    <img
-                        src={next}
-                        onClick={() =>
-                            value < 4 ? setValue(value + 1) : value
-                        }
-                    />
+                    <img className="prev" src={next} onClick={() => (value === 0 ? value : setValue(value - 1))} />
+                    <img src={next} onClick={() => (value < 4 ? setValue(value + 1) : value)} />
                 </div>
                 <img className="tab-image" src={tabImage4} alt="tabImage4" />
             </TabPanel>
             <TabPanel className="pd-0" value={value} index={4}>
                 <div className="control flex">
-                    <img
-                        className="prev"
-                        src={next}
-                        onClick={() =>
-                            value === 0 ? value : setValue(value - 1)
-                        }
-                    />
-                    <img
-                        src={next}
-                        onClick={() =>
-                            value < 4 ? setValue(value + 1) : value
-                        }
-                    />
+                    <img className="prev" src={next} onClick={() => (value === 0 ? value : setValue(value - 1))} />
+                    <img src={next} onClick={() => (value < 4 ? setValue(value + 1) : value)} />
                 </div>
                 <img className="tab-image" src={tabImage5} alt="tabImage5" />
             </TabPanel>

@@ -1,4 +1,9 @@
 import { useQuery } from '@apollo/client';
+import UserDetailCard from '@components/dashboard/common/UserDetailCard';
+import InventoryReportsTab from '@components/dashboard/events/request/InventoryReportsTab';
+import SendOutPickup from '@components/dashboard/events/SendOutPickup';
+import DashboardLayout from '@components/layout/DashboardLayout';
+import Wrapper from '@components/styles/SendPickupStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -10,11 +15,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import UserDetailCard from '../../components/dashboard/common/UserDetailCard';
-import InventoryReportsTab from '../../components/dashboard/events/request/InventoryReportsTab';
-import SendOutPickup from '../../components/dashboard/events/SendOutPickup';
-import DashboardLayout from '../../components/layout/DashboardLayout';
-import Wrapper from '../../components/styles/SendPickupStyles';
 import { SINGLE_REQUEST } from './unconfirmedpickup';
 
 function TabPanel(props) {

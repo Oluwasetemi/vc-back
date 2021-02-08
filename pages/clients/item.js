@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client';
 import SingleItemFull from '@components/dashboard/clients/SingleItemFull';
+import DashboardLayout from '@components/layout/DashboardLayout';
+import Wrapper from '@components/styles/SingleItemStyles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -7,8 +9,6 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import DashboardLayout from '../../components/layout/DashboardLayout';
-import Wrapper from '../../components/styles/SingleItemStyles';
 
 const ME_QUERY = gql`
     query ME_QUERY($id: String) {

@@ -1,4 +1,6 @@
 import { useQuery } from '@apollo/client';
+import SingleRequest from '@components/dashboard/events/request/SingleRequest';
+import DashboardLayout from '@components/layout/DashboardLayout';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -6,8 +8,6 @@ import gql from 'graphql-tag';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import SingleRequest from '../../components/dashboard/events/request/SingleRequest';
-import DashboardLayout from '../../components/layout/DashboardLayout';
 
 const Wrapper = styled.div`
     .bread-crumbs {

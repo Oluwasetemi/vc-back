@@ -1,12 +1,13 @@
+/* eslint-disable no-nested-ternary */
 import { useQuery } from '@apollo/client';
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
+import next from '@public/assets/NextPageButton.svg';
+import prev from '@public/assets/PreviousPageButton.svg';
+import searchIcon from '@public/assets/searchIcon.svg';
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import next from '../../../../public/assets/NextPageButton.svg';
-import prev from '../../../../public/assets/PreviousPageButton.svg';
-import searchIcon from '../../../../public/assets/searchIcon.svg';
 import Button from '../../../common/Button';
 import useTable from '../../../common/table/useTable';
 
@@ -71,17 +72,17 @@ function PickupRequest(props) {
     // Change page
     const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(data && data.fetchAllRequest.data.length / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(data && data.fetchAllRequest.data.length / postsPerPage); i += 1) {
         pageNumbers.push(i);
     }
 
     const { TblContainer, TblHead } = useTable(records, headCells);
 
     // search function
-    function search(records) {
+    function search(recordsInSearch) {
         return (
-            records &&
-            records.filter(
+            recordsInSearch &&
+            recordsInSearch.filter(
                 (record) =>
                     record.pickupLocation.location.toLowerCase().indexOf(value) > -1 ||
                     record.user.name.toLowerCase().indexOf(value) > -1 ||
@@ -124,9 +125,13 @@ function PickupRequest(props) {
                                             <Link
                                                 className="btn"
                                                 href={{
-                                                    pathname: `/requests/${item.status.toLowerCase()}${item.type.toLowerCase()}`,
+                                                    pathname: `/requests/${
+                                                        item.status.toLowerCase() === 'active'
+                                                            ? 'send'
+                                                            : item.status.toLowerCase()
+                                                    }${item.type.toLowerCase()}`,
                                                     query: {
-                                                        type: 'pickup',
+                                                        type: item.type.toLowerCase(),
                                                         id: item._id,
                                                         status: item.status.toLowerCase(),
                                                     },
@@ -143,20 +148,24 @@ function PickupRequest(props) {
             ) : (
                 'no data'
             )}
-            <div className="flex pagination">
-                <img
-                    src={prev}
-                    alt="prev"
-                    onClick={() => (currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1))}
-                />
+            {!loading && !error && (
+                <div className="flex pagination">
+                    <img
+                        src={prev}
+                        alt="prev"
+                        onClick={() => (currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1))}
+                    />
 
-                <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
-                <img
-                    src={next}
-                    alt="next"
-                    onClick={() => (currentPage < pageNumbers.length ? setCurrentPage(currentPage + 1) : currentPage)}
-                />
-            </div>
+                    <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
+                    <img
+                        src={next}
+                        alt="next"
+                        onClick={() =>
+                            currentPage < pageNumbers.length ? setCurrentPage(currentPage + 1) : currentPage
+                        }
+                    />
+                </div>
+            )}
         </Wrapper>
     );
 }

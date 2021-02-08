@@ -7,9 +7,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { CheckboxInput, TextInput } from '../../components/dashboard/inputs';
-import DashboardLayout from '../../components/layout/DashboardLayout';
-import Wrapper from '../../components/styles/OutfitStyles';
+import { CheckboxInput, TextInput } from '@components/dashboard/inputs';
+import DashboardLayout from '@components/layout/DashboardLayout';
+import Wrapper from '@components/styles/OutfitStyles';
 import { SINGLE_USER } from './client';
 
 const CREATE_OUTFIT = gql`

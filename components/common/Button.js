@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -19,14 +19,14 @@ const Wrapper = styled.div`
         transition: 0.4s;
     }
     .peachBtn {
-        border: 1px solid #FFDBA8;
-        color: #F26144;
-        background-color: #FFDBA8;
+        border: 1px solid #ffdba8;
+        color: #f26144;
+        background-color: #ffdba8;
     }
 
     .peachBtn:hover {
-        color: #FFDBA8;
-        background-color: #F26144;
+        color: #ffdba8;
+        background-color: #f26144;
         transition: 0.4s;
     }
     .orangeBtn {
@@ -82,15 +82,16 @@ function Button({ style, theme, isLoading, disabled, children, text, title, ...r
     );
 }
 
-Button.defaultProps = {
-    isLoading: false,
-    disabled: false,
-};
+Button.defaultProps = {};
 
 Button.propTypes = {
+    children: PropTypes.any,
+    disabled: PropTypes.bool,
+    isLoading: PropTypes.bool,
     style: PropTypes.object,
-    title: PropTypes.string,
+    text: PropTypes.any,
     theme: PropTypes.string.isRequired,
+    title: PropTypes.string,
 };
 
 export default Button;

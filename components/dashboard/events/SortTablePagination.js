@@ -6,11 +6,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
+import searchIcon from '@public/assets/searchIcon.svg';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
-import searchIcon from '../../../public/assets/searchIcon.svg';
 import Button from '../../common/Button';
 
 const SearchWraper = styled.div`

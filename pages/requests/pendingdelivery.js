@@ -1,4 +1,8 @@
 import { useQuery } from '@apollo/client';
+import Item from '@components/dashboard/clients/SingleItem';
+import UserDetailCard from '@components/dashboard/common/UserDetailCard';
+import { SINGLE_REQUEST } from '@components/dashboard/events/request/SingleRequest';
+import DashboardLayout from '@components/layout/DashboardLayout';
 import Wrapper from '@components/styles/PendingDeliveryPageStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
@@ -11,10 +15,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import Item from '../../components/dashboard/clients/SingleItem';
-import UserDetailCard from '../../components/dashboard/common/UserDetailCard';
-import { SINGLE_REQUEST } from '../../components/dashboard/events/request/SingleRequest';
-import DashboardLayout from '../../components/layout/DashboardLayout';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

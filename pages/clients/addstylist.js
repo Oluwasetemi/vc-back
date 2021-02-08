@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import LinkMaterial from '@material-ui/core/Link';
 import Button from '@components/common/Button';
+import { TagInput, Textarea, TextInput, UploadDp } from '@components/dashboard/inputs';
+import DashboardLayout from '@components/layout/DashboardLayout';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import LinkMaterial from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
-import { TextInput, Textarea, UploadDp, TagInput } from '../../components/dashboard/inputs';
-import DashboardLayout from '../../components/layout/DashboardLayout';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
 
@@ -53,7 +52,7 @@ const Wrapper = styled.div`
     line-height: 24px;
     color: #2f3930;
   }
- 
+
   .paper-tail .grid {
 	grid-gap: 43px;
     margin-top: -25px;
@@ -81,7 +80,7 @@ const Wrapper = styled.div`
       margin-right:0px;
 		}
   }
-  
+
 	.pink {
 		color: #f26144;
 		background-color: #fff1de;
@@ -99,7 +98,7 @@ letter-spacing: 0.5px;
 		}
 	  }
   }
- 
+
   .paper-tail .buttoned{
 	margin-left: auto;
     width: fit-content;
@@ -108,10 +107,10 @@ letter-spacing: 0.5px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			padding: 0.4rem 1.5rem;
 		}
-		  
+
 	  }
   }
-  
+
   // constructor(props) {
   //   super(props);
   //   this.state = {

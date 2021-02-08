@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import Button from '@components/common/Button';
+import DashboardLayout from '@components/layout/DashboardLayout';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import LinkMaterial from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from 'next/link';
-import Button from '@components/common/Button';
-import DashboardLayout from '../../../components/layout/DashboardLayout';
+import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     .bread-crumbs {

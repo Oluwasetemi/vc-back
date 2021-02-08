@@ -5,10 +5,10 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
+import vaultIcon from '@public/assets/Vault.svg';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import vaultIcon from '../../../public/assets/Vault.svg';
 import SingleItem from './Item';
 import SingleOutfit from './SingleOutfit';
 

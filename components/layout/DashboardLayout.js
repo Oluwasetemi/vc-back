@@ -4,13 +4,13 @@ import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
+import brand from '@public/assets/brand.svg';
+import dpIcon from '@public/assets/dpIcon.png';
+import notifyIcon from '@public/assets/notifyIcon.svg';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import brand from '../../public/assets/brand.svg';
-import dpIcon from '../../public/assets/dpIcon.png';
-import notifyIcon from '../../public/assets/notifyIcon.svg';
 import { ListItems } from '../ListItems';
 
 const Wrapper = styled.div`

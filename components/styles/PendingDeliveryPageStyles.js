@@ -1,8 +1,8 @@
+import menShoes from '@public/assets/men_shoes.png';
+import pants from '@public/assets/pants.png';
+import shirt from '@public/assets/shirt.png';
+import tie from '@public/assets/tie.png';
 import styled from 'styled-components';
-import menShoes from '../../public/assets/men_shoes.png';
-import pants from '../../public/assets/pants.png';
-import shirt from '../../public/assets/shirt.png';
-import tie from '../../public/assets/tie.png';
 
 const Wrapper = styled.div`
   .bread-crumbs {

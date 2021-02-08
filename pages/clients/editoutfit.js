@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import Button from '@components/common/Button';
-import SingleOutfit from '@components/dashboard/clients/Outfit';
+import DashboardLayout from '@components/layout/DashboardLayout';
 import Wrapper from '@components/styles/OutfitStyles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
@@ -9,7 +9,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DashboardLayout from '../../components/layout/DashboardLayout';
 import { SINGLE_USER } from './client';
 
 const SingleClosetItem = ({ name, id }) => (

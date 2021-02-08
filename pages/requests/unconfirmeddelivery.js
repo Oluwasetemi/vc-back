@@ -1,4 +1,7 @@
 import { useQuery } from '@apollo/client';
+import Item from '@components/dashboard/clients/SingleItem';
+import SingleRequest, { SINGLE_REQUEST } from '@components/dashboard/events/request/SingleRequest';
+import DashboardLayout from '@components/layout/DashboardLayout';
 import Wrapper from '@components/styles/UnconfirmedDeliveryStyles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
@@ -6,9 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { useRouter } from 'next/router';
 import React from 'react';
-import Item from '../../components/dashboard/clients/SingleItem';
-import SingleRequest, { SINGLE_REQUEST } from '../../components/dashboard/events/request/SingleRequest';
-import DashboardLayout from '../../components/layout/DashboardLayout';
 
 function DeliveryRequest(props) {
     const { query } = useRouter();

@@ -82,11 +82,6 @@ const feature = {
     Other,
 };
 
-const optionItemCategory = [
-    { value: 'Short Sleeve', text: 'Short Sleeve' },
-    { value: 'Long Sleeve', text: 'Long Sleeve' },
-];
-
 const optionItemMaterial = [
     { value: 'Cotton', text: 'Cotton' },
     { value: 'Satin', text: 'Satin' },
@@ -111,22 +106,14 @@ const optionCategory = [
     { value: 'Social', text: 'Social' },
 ];
 
-const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickupId, userId, index }) => {
-    // const [itemId, setItemId] = useState('0000000');
-    // const [itemType, setItemType] = useState('');
-    // const [itemCategory, setItemCategory] = useState('');
-    // const [itemTag, setItemTag] = useState('1234567');
-    // const [itemFeature, setItemFeature] = useState('');
-    // const [itemMaterial, setItemMaterial] = useState('');
-    // const [itemName, setItemName] = useState('');
-    // const [itemColor, setItemColor] = useState('Blue');
-    // const [category, setCategory] = useState('');
-    // const [itemBrand, setItemBrand] = useState('LV');
-    // const [itemCondition, setItemCondition] = useState(
-    // 	'Describe the condition of the item',
-    // );
+const SingleTabPanel = ({ numberOfItems, onClickPrev, onClickNext, pickupId, userId }) => {
+    // set the state to count number of times to show SingleTabPanel
+    const [itemCount, setItemCount] = useState(0);
+    const [items, setItems] = useState([]);
+    const [imgSrc, setImgSrc] = useState('');
 
-    const { inputs, handleChange, resetForm } = useForm({
+    // set the state to store the inputs object
+    const { inputs, handleChange, resetForm, clearForm } = useForm({
         name: '',
         tag: '',
         feature: '',
@@ -140,6 +127,10 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
         largeImage: '',
     });
 
+    // useEffect(() => {
+    //     setItems(items.push(inputs));
+    // }, [inputs, items]);
+
     const handleFeatureChange = (val) => {
         if (val) {
             const res = feature[val].map((each) => ({ value: each, text: each }));
@@ -152,43 +143,38 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            // items: [
-            // 			{
-            // 				name: "testItem"
-            // 				material: Cotton
-            // 				category: Cocktail
-            // 				type: "Shirt"
-            // 				feature: "Long Sleeve"
-            // 				color: "blue"
-            // 				brand: "LV"
-            // 				itemCondition: "Good"
-            // 				pickupId: "60083dcfae225e2b84841456"
-            // 			}
-            // 		]
-            // userId: "6002ff319c23052cf93d7b70"
-            console.log(inputs);
-            inputs.pickupId = pickupId;
-            // prepare data
-            const variables = { items: [inputs], userId };
-            console.log(variables);
-            // debugger;
-            // handle the mutation
-            const res = await addItemToCloset({
-                variables: { input: variables },
-            });
-            console.log(res);
-            alert('submitted');
-            resetForm();
+            inputs.pickup = pickupId;
+            if (itemCount === numberOfItems) {
+                // console.log(inputs);
+                // setItems([...items, inputs]);
+                // prepare data
+                const variables = { items, userId };
+                console.log(variables);
+                debugger;
+                // handle the mutation
+                const res = await addItemToCloset({
+                    variables: { input: variables },
+                });
+                console.log(res);
+                alert('submitted');
+                resetForm();
+                onClickNext();
+            } else {
+                debugger;
+                setItems([...items, inputs]);
+                setItemCount(itemCount + 1);
+                clearForm();
+                setImgSrc(null);
+            }
         } catch (error) {
             alert(error.message);
+            onClickPrev();
         }
     };
-    const [imgSrc, setImgSrc] = useState('');
-    // const handleFileChange = (event) => {
-    //     setFile(URL.createObjectURL(event.target.files[0]));
-    // };
 
     const uploadFile = async (e) => {
+        inputs.image = '';
+        inputs.largeImage = '';
         const { files } = e.target;
         const data = new FormData();
         data.append('file', files[0]);
@@ -202,6 +188,7 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
         inputs.image = file.secure_url;
         inputs.largeImage = file.eager[0].secure_url;
         setImgSrc(file && file.secure_url);
+        e.target.value = null;
     };
 
     return (
@@ -209,7 +196,7 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
             <div className="flex j-btw">
                 <p className="date">Condition & Inventory Report</p>
                 <p className="date">
-                    {count}/{numberOfItems} Items
+                    {itemCount}/{numberOfItems} Items
                 </p>
             </div>
 
@@ -332,7 +319,6 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
 };
 
 SingleTabPanel.propTypes = {
-    count: PropTypes.any,
     numberOfItems: PropTypes.any,
     onClickNext: PropTypes.any,
     onClickPrev: PropTypes.any,
@@ -345,32 +331,18 @@ function InventoryReportsTab({ onClickPrev, onClickNext, id }) {
         variables: { id },
     });
     const singleRequest = data && data.fetchOneRequest;
-    console.log(singleRequest);
-
-    // all the items state
-    // current state
-    // count
-
-    // keep the state of the number of items that has been added
-    const [itemAdded, setItemAdded] = useState(1);
-
+    // console.log(singleRequest);
     return (
         <Wrapper>
             {/* based on the numberOfItems from the request create TabPanel */}
 
-            {Array.from({ length: singleRequest && singleRequest.numberOfItems }, (_, index) => index + 1).map(
-                (each, index) => (
-                    <SingleTabPanel
-                        numberOfItems={singleRequest && singleRequest.numberOfItems}
-                        userId={singleRequest && singleRequest.user._id}
-                        pickupId={singleRequest && singleRequest._id}
-                        count={each}
-                        onClickPrev={onClickPrev}
-                        onClickNext={onClickNext}
-                        index={index}
-                    />
-                ),
-            )}
+            <SingleTabPanel
+                numberOfItems={singleRequest && singleRequest.numberOfItems}
+                userId={singleRequest && singleRequest.user._id}
+                pickupId={singleRequest && singleRequest._id}
+                onClickNext={onClickNext}
+                onClickPrev={onClickPrev}
+            />
         </Wrapper>
     );
 }

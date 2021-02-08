@@ -1,7 +1,7 @@
+import camera from '@public/assets/camera.svg';
+import alt from '@public/assets/String-initials.png';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import camera from '../../../public/assets/camera.svg';
-import alt from '../../../public/assets/String-initials.png';
 
 const Wrapper = styled.div`
     input {

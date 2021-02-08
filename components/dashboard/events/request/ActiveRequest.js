@@ -1,9 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
+import next from '@public/assets/NextPageButton.svg';
+import prev from '@public/assets/PreviousPageButton.svg';
+import searchIcon from '@public/assets/searchIcon.svg';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import next from '../../../../public/assets/NextPageButton.svg';
-import prev from '../../../../public/assets/PreviousPageButton.svg';
-import searchIcon from '../../../../public/assets/searchIcon.svg';
 import Button from '../../../common/Button';
 import useTable from '../../../common/table/useTable';
 
@@ -33,15 +35,15 @@ function ActiveRequest({ error, loading, data }, ...props) {
     // Change page
     const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(data && data.fetchAllRequest.data.length / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(data && data.fetchAllRequest.data.length / postsPerPage); i += 1) {
         pageNumbers.push(i);
     }
 
     // search function
-    function search(records) {
+    function search(recordsInSearch) {
         return (
-            records &&
-            records.filter(
+            recordsInSearch &&
+            recordsInSearch.filter(
                 (record) =>
                     record.numberOfItems.toString().toLowerCase().indexOf(value) > -1 ||
                     record.user.name.toLowerCase().indexOf(value) > -1,
@@ -82,11 +84,15 @@ function ActiveRequest({ error, loading, data }, ...props) {
                                                 <Link
                                                     className="btn"
                                                     href={{
-                                                        pathname: `/requests/${item.status.toLowerCase()}${item.type.toLowerCase()}`,
+                                                        pathname: `/requests/${
+                                                            item.status.toLowerCase() === 'active'
+                                                                ? 'send'
+                                                                : item.status.toLowerCase()
+                                                        }${item.type.toLowerCase()}`,
                                                         query: {
                                                             type: item.type.toLowerCase(),
-                                                            status: item.status.toLowerCase(),
                                                             id: item._id,
+                                                            status: item.status.toLowerCase(),
                                                         },
                                                     }}
                                                 >
@@ -102,24 +108,39 @@ function ActiveRequest({ error, loading, data }, ...props) {
             ) : (
                 'no data'
             )}
-            <div className="flex pagination">
-                <img
-                    src={prev}
-                    alt="prev"
-                    onClick={() => (currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1))}
-                />
+            {!loading && !error && (
+                <div className="flex pagination">
+                    <img
+                        src={prev}
+                        alt="prev"
+                        onClick={() => (currentPage === 1 ? currentPage : setCurrentPage(currentPage - 1))}
+                    />
 
-                <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
-                <img
-                    src={next}
-                    alt="next"
-                    onClick={() => (currentPage < pageNumbers.length ? setCurrentPage(currentPage + 1) : currentPage)}
-                />
-            </div>
+                    <div className="page">{`page ${currentPage} of ${pageNumbers.length} `}</div>
+                    <img
+                        src={next}
+                        alt="next"
+                        onClick={() =>
+                            currentPage < pageNumbers.length ? setCurrentPage(currentPage + 1) : currentPage
+                        }
+                    />
+                </div>
+            )}
         </>
     );
 }
 
-ActiveRequest.propTypes = {};
+ActiveRequest.propTypes = {
+    data: PropTypes.shape({
+        fetchAllRequest: PropTypes.shape({
+            data: PropTypes.shape({
+                length: PropTypes.any,
+                slice: PropTypes.func,
+            }),
+        }),
+    }),
+    error: PropTypes.any,
+    loading: PropTypes.any,
+};
 
 export { ActiveRequest };

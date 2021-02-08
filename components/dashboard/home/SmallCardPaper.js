@@ -46,7 +46,7 @@ function SmallCardPaper({ title, value, info, link }) {
 
 SmallCardPaper.propTypes = {
     title: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
     info: PropTypes.string.isRequired,
     link: PropTypes.any,
 };

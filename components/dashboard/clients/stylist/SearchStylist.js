@@ -1,9 +1,9 @@
 import Button from '@components/common/Button';
+import searchIcon from '@public/assets/searchIcon.svg';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import searchIcon from '../../../../public/assets/searchIcon.svg';
 
 const Wrapper = styled.div`
     .searchbar {
