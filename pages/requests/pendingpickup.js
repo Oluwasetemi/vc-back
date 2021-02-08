@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     }
 `;
 
-function startPickupPage(props) {
+function StartPickupPage(props) {
     const { query } = useRouter();
     // fetch the id from the page
     const { id, type, status } = query;
@@ -161,6 +161,6 @@ function startPickupPage(props) {
     );
 }
 
-startPickupPage.propTypes = {};
+StartPickupPage.propTypes = {};
 
-export default startPickupPage;
+export default StartPickupPage;

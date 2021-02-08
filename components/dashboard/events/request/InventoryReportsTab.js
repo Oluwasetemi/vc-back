@@ -171,7 +171,7 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
             // prepare data
             const variables = { items: [inputs], userId };
             console.log(variables);
-            debugger;
+            // debugger;
             // handle the mutation
             const res = await addItemToCloset({
                 variables: { input: variables },
@@ -183,9 +183,25 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
             alert(error.message);
         }
     };
-    const [file, setFile] = useState(null);
-    const handleFileChange = (event) => {
-        setFile(URL.createObjectURL(event.target.files[0]));
+    const [imgSrc, setImgSrc] = useState('');
+    // const handleFileChange = (event) => {
+    //     setFile(URL.createObjectURL(event.target.files[0]));
+    // };
+
+    const uploadFile = async (e) => {
+        const { files } = e.target;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'virtual_closet_image');
+
+        const res = await fetch('https://api.cloudinary.com/v1_1/virtualclosets/image/upload', {
+            method: 'POST',
+            body: data,
+        });
+        const file = await res.json();
+        inputs.image = file.secure_url;
+        inputs.largeImage = file.eager[0].secure_url;
+        setImgSrc(file && file.secure_url);
     };
 
     return (
@@ -286,7 +302,7 @@ const SingleTabPanel = ({ numberOfItems, count, onClickPrev, onClickNext, pickup
                             />
                         </div>
                         <div>
-                            <FileUpload onChange={handleFileChange} src={file} />
+                            <FileUpload onChange={uploadFile} src={imgSrc} />
                         </div>
                     </div>
 

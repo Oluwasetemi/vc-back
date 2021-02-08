@@ -30,14 +30,15 @@ const ONE_ITEM_QUERY = gql`
     }
 `;
 
-function item() {
+function Item() {
     const { query } = useRouter();
-    const { id, userId } = query;
+    const { id, userid } = query;
     const { data, loading, error } = useQuery(ME_QUERY, {
-        variables: { id: userId },
+        variables: { id: userid },
     });
+    console.log(id, userid);
     const { data: dataOneItem, loading: loadingOneItem, error: errorOneItem } = useQuery(ONE_ITEM_QUERY, {
-        variables: { id, userId },
+        variables: { id, userId: userid },
     });
 
     return (
@@ -74,7 +75,7 @@ function item() {
     );
 }
 
-item.propTypes = {};
+Item.propTypes = {};
 
-export default item;
+export default Item;
 export { ME_QUERY };

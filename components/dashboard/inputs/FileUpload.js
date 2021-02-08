@@ -40,7 +40,7 @@ function FileUpload({ onChange, src }) {
                 Choose Image
             </label>
             <input id="upload" type="file" onChange={onChange} />
-            <img src={src} />
+            {src && <img src={src} alt="item preview" />}
         </Wrapper>
     );
 }

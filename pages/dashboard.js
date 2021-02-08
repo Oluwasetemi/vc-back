@@ -1,5 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import { useQuery } from '@apollo/client';
 import SimpleTable from '@components/common/SimpleTable';
+import DashboardData from '@components/dashboard/DashboardData';
 import { homeTableConstants } from '@components/dashboard/home/homeTableConstants';
 import DashboardLayout from '@components/layout/DashboardLayout';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -9,7 +11,6 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import DashboardData from '../components/dashboard/DashboardData';
 
 const ALL_REQUEST = gql`
     query ALL_REQUEST {

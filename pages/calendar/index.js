@@ -2,8 +2,9 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import TimekitBooking from 'timekit-booking';
 import CalendarModal from '../../components/dashboard/calendar/CalendarModal';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 
@@ -24,7 +25,7 @@ const Wrapper = styled.div`
     }
 `;
 
-class Calendar extends React.Component {
+class Calendar extends Component {
     componentDidMount() {
         const widget = new TimekitBooking();
         widget.init({

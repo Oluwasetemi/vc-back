@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import alt from '../../../public/assets/String-initials.png';
 import camera from '../../../public/assets/camera.svg';
+import alt from '../../../public/assets/String-initials.png';
 
 const Wrapper = styled.div`
     input {
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
         position: absolute;
     }
 `;
-class UploadDp extends React.Component {
+class UploadDp extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +45,7 @@ class UploadDp extends React.Component {
     render() {
         return (
             <Wrapper>
-                <input accept="image/*" id="icon-button-file" type="file" type="file" onChange={this.handleChange} />
+                <input accept="image/*" id="icon-button-file" type="file" onChange={this.handleChange} />
                 <label htmlFor="icon-button-file">
                     <div className="dp flex" color="primary" aria-label="upload picture" component="span">
                         <img className="picture" src={this.state.file} />

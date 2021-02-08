@@ -40,12 +40,13 @@ export default function AcceptPickRequest({ id, bookingId, type, status }) {
                             variables: { id, bookingId },
                         });
 
-                        const { status: newStatus } = res.data.acceptRequest;
+                        const { status: newStatus, type: newType } = res.data.acceptRequest;
+                        console.log(newStatus);
                         // send out notification
                         alert('successful');
                         router.push({
-                            pathname: `/requests/${newStatus.toLowerCase()}${type}`,
-                            query: { id, type, status: newStatus.toLowerCase() },
+                            pathname: `/requests/${newStatus.toLowerCase()}${newType.toLowerCase()}`,
+                            query: { id, type: newType.toLowerCase(), status: newStatus.toLowerCase() },
                         });
                     } catch (error) {
                         alert(error.message);

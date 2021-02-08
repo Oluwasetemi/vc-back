@@ -21,9 +21,9 @@ const ONE_ITEM_QUERY = gql`
 
 export default function SingleItemFull() {
     const { query } = useRouter();
-    const { id, userId } = query;
+    const { id, userid } = query;
     const { data, loading, error } = useQuery(ONE_ITEM_QUERY, {
-        variables: { id, userId },
+        variables: { id, userId: userid },
     });
     return (
         <Paper className="paper">

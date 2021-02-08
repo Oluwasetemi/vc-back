@@ -20,6 +20,7 @@ const SINGLE_REQUEST = gql`
             user {
                 _id
                 email
+                name
                 currentSubscriptionPlan {
                     _id
                     amount
@@ -28,6 +29,10 @@ const SINGLE_REQUEST = gql`
                         storage
                     }
                 }
+            }
+            items {
+                _id
+                name
             }
             bookingId
             datetimePicked
@@ -74,7 +79,7 @@ function SingleRequest(props) {
                         </div>
                     </>
                 }
-                initials="JT"
+                initials={!loading && !error ? data.fetchOneRequest.user.name.substring(0, 2) : 'JT'}
                 userId={data.fetchOneRequest.user._id.substring(0, 7)}
                 userName={data.fetchOneRequest.user.email}
                 fullDetail={
@@ -121,7 +126,7 @@ function SingleRequest(props) {
                     </Link>
                 }
                 weight="value"
-                text={`User has requested to pickup ${data.fetchOneRequest.numberOfItems} items from their closet`}
+                text={`User has requested that ${data.fetchOneRequest.numberOfItems} items be removed from their closet and delivered`}
             />
         </>
     );

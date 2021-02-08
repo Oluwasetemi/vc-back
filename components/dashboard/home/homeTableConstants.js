@@ -26,15 +26,19 @@ export const homeTableConstants = () => [
     },
     {
         title: 'STATUS',
+        displayName: 'ViewButton',
         render: (rowData) => <span className="status">{rowData.status}</span>,
     },
     {
         title: '',
+        displayName: 'ViewButton',
         render: (rowData) => (
             <Link
                 className="btn"
                 href={{
-                    pathname: `/requests/${rowData.status.toLowerCase()}${rowData.type.toLowerCase()}`,
+                    pathname: `/requests/${
+                        rowData.status.toLowerCase() === 'active' ? 'send' : rowData.status.toLowerCase()
+                    }${rowData.type.toLowerCase()}`,
                     query: {
                         type: rowData.type.toLowerCase(),
                         status: rowData.status.toLowerCase(),

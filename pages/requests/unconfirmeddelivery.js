@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { useRouter } from 'next/router';
 import React from 'react';
+import Item from '../../components/dashboard/clients/SingleItem';
 import SingleRequest, { SINGLE_REQUEST } from '../../components/dashboard/events/request/SingleRequest';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 
@@ -17,6 +18,7 @@ function DeliveryRequest(props) {
         variables: { id },
     });
     const singleRequest = data && data.fetchOneRequest;
+    // console.log(singleRequest);
     return (
         <Wrapper>
             <DashboardLayout>
@@ -44,63 +46,19 @@ function DeliveryRequest(props) {
                 <Paper className="paper paper-tail">
                     <h1 id="tag">Items</h1>
                     <div className="grid">
-                        <div className="grid-items">
-                            <div className="product">
-                                <div className="image image1" />
-                            </div>
-                            <p className="name text">
-                                {loading
-                                    ? 'loading'
-                                    : singleRequest.closet &&
-                                      singleRequest.closet.items &&
-                                      singleRequest.closet.items.length > 0 &&
-                                      singleRequest.closet.items[0].name}
-                            </p>
-                            <p className="id text">
-                                ID:{' '}
-                                {loading
-                                    ? 'loading'
-                                    : singleRequest.closet &&
-                                      singleRequest.closet.items &&
-                                      singleRequest.closet.items.length > 0 &&
-                                      singleRequest.closet.items[0]._id.substring(0, 7)}
-                            </p>
-                        </div>
-                        <div className="grid-items">
-                            <div className="product">
-                                <div className="image image2" />
-                            </div>
-                            <p className="name text">Plain black shirt</p>
-                            <p className="id text">ID: 2342323</p>
-                        </div>
-                        <div className="grid-items">
-                            <div className="product">
-                                <div className="image image3" />
-                            </div>
-                            <p className="name text">Plain black shirt</p>
-                            <p className="id text">ID: 2342323</p>
-                        </div>
-                        <div className="grid-items">
-                            <div className="product">
-                                <div className="image image4" />
-                            </div>
-                            <p className="name text">Plain black shirt</p>
-                            <p className="id text">ID: 2342323</p>
-                        </div>
-                        <div className="grid-items">
-                            <div className="product">
-                                <div className="image image1" />
-                            </div>
-                            <p className="name text">Plain black shirt</p>
-                            <p className="id text">ID: 2342323</p>
-                        </div>
-                        <div className="grid-items">
-                            <div className="product">
-                                <div className="image image2" />
-                            </div>
-                            <p className="name text">Plain black shirt</p>
-                            <p className="id text">ID: 2342323</p>
-                        </div>
+                        {singleRequest && singleRequest.items.length === 0 ? (
+                            <p>user do not have any outfit</p>
+                        ) : (
+                            singleRequest &&
+                            singleRequest.items.map((item) => (
+                                <Item
+                                    name={item.name}
+                                    id={item._id}
+                                    userid={singleRequest && singleRequest.user._id}
+                                    key={item._id}
+                                />
+                            ))
+                        )}
                     </div>
                 </Paper>
             </DashboardLayout>

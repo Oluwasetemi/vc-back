@@ -22,15 +22,16 @@ function TabPanel(props) {
     return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
 }
 
-const sendPickup = (props) => {
+const SendPickup = (props) => {
     const { query } = useRouter();
     // fetch the id from the page
     const { id, type, status } = query;
-    console.log(id, type, status);
+    // console.log(id, type, status);
     const { error, loading, data } = useQuery(SINGLE_REQUEST, {
         variables: { id },
     });
     const singleRequest = data && data.fetchOneRequest;
+
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -52,7 +53,7 @@ const sendPickup = (props) => {
                     <LinkMaterial className="crumbs" color="inherit" href="/calendar/allevents">
                         Requests
                     </LinkMaterial>
-                    <LinkMaterial className="crumbs" color="textPrimary" href="#">
+                    <LinkMaterial className="crumbs" color="textPrimary">
                         {loading ? 'loading' : singleRequest && singleRequest._id}
                     </LinkMaterial>
                 </Breadcrumbs>
@@ -498,6 +499,6 @@ const sendPickup = (props) => {
     );
 };
 
-sendPickup.propTypes = {};
+SendPickup.propTypes = {};
 
-export default sendPickup;
+export default SendPickup;

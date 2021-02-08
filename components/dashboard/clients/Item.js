@@ -8,7 +8,7 @@ export default function SingleItem({ item, userId, button }) {
             <Link
                 href={{
                     pathname: '/clients/item',
-                    query: { id: item._id, userId },
+                    query: { id: item._id, userid: userId },
                 }}
             >
                 <div className="product">
@@ -30,5 +30,5 @@ SingleItem.propTypes = {
         }),
         name: PropTypes.any,
     }),
-    userId: PropTypes.String,
+    userId: PropTypes.string,
 };
