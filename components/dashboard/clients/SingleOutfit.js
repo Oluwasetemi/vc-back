@@ -5,7 +5,7 @@ import SingleItem from './Item';
 
 export default function SingleOutfit({ outfit }) {
     return (
-        <div className="gray-paper-client">
+        <div className="gray-paper-client mb-22">
             <div className="flex mb-26">
                 <p className="season season1">{outfit.name}</p>{' '}
                 <Link href={{ pathname: '/clients/editoutfit', query: { id: outfit._id, userid: outfit.user._id } }}>

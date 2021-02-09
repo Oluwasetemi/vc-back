@@ -28,7 +28,6 @@ function UploadImage() {
                         <img src={camera} onChange={handleChange} />
                     </div>
                     <div className="image" style={{ backgroundImage: `url(${image.file})` }} />
-                    />
                 </div>
             </label>
         </Wrapper>

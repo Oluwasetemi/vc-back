@@ -112,6 +112,7 @@ function client(props) {
                 <UserDetailCard
                     userId={loading ? 'loading' : userById._id.substring(0, 7)}
                     userName={loading ? 'loading' : userById.name}
+                    mt='mt--30'
                     fullDetail={
                         <>
                             {' '}

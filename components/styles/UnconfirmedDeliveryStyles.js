@@ -55,7 +55,11 @@ overflow-y: hidden;
 	}
 	  }
   }
-
+  .full-detail{
+    @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+      display:flex: !important;
+}
+  }
   .grid-items .product {
     background-color: #f3f0f0;
     padding: 38px 5px;

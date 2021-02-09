@@ -15,6 +15,9 @@ const Wrapper = styled.div`
       font-size: 13px;
     }
   }
+  .ml-0{
+    margin-left:0 !important;
+  }
   .appbar {
     background: #fbfcfa;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);

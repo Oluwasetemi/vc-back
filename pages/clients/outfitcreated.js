@@ -192,7 +192,7 @@ function outfitCreated(props) {
                             </div>
                         </div>
                     </div>
-                    <Link href="/clients/closet">
+                    <Link href="/clients/reviewoutfit">
                         <Button theme="orange">Okay</Button>
                     </Link>
                 </div>
