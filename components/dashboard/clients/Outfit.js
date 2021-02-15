@@ -14,6 +14,12 @@ const SingleItem = ({ image, name, id }) => (
     </div>
 );
 
+SingleItem.propTypes = {
+    id: PropTypes.any,
+    image: PropTypes.any,
+    name: PropTypes.any,
+};
+
 // FETCH SINGLE OUTFIT
 const SINGLE_OUTFIT = gql`
     query SINGLE_OUTFIT($id: ID!) {
@@ -46,6 +52,9 @@ const SingleOutfit = ({ id, userid }) => {
     });
     // console.log(data);
 
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+    if (!data) return <p>No request found!</p>;
     return (
         <div className="paper paper-tail">
             <div className="flex">

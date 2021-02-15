@@ -1,8 +1,6 @@
-// import primaryFont from '../public/assets/fonts/Matteo.otf';
-// @font-face {
-//   font-family: Matteo;
-//   src: url(${primaryFont}) ;
-// }
+/* eslint-disable react/destructuring-assignment */
+
+import Meta from '@components/Meta';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Typography from './Typography';
@@ -57,6 +55,7 @@ const Theme = (props) => (
     <ThemeProvider theme={theme}>
         <div>
             <GlobalStyle />
+            <Meta />
             <Typography />
             {props.children}
         </div>

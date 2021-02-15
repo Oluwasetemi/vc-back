@@ -27,6 +27,7 @@ const Wrapper = styled.div`
 
 class Calendar extends Component {
     componentDidMount() {
+        console.log(typeof window);
         const widget = new TimekitBooking();
         widget.init({
             app_key: 'test_api_key_zIe4YynLxlleSLVVRcVCbUxcdw4XtRxg',

@@ -1,8 +1,6 @@
-import Button from '@components/common/Button';
-import Link from 'next/link';
+import Signin from '@components/dashboard/Signin';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { PasswordInput, TextInput } from '../components/dashboard/inputs';
 import brand from '../public/assets/brand.svg';
 
 const Wrapper = styled.div`
@@ -66,36 +64,7 @@ function login(props) {
         <Wrapper>
             <div className="main">
                 <img src={brand} alt="brand" />
-                <div className="paper">
-                    <h1>Log In</h1>
-                    <p className="greeting">Welcome to your admin portal. Enter your details to login.</p>
-                    <div className="mb-30">
-                        <TextInput
-                            label="Email Address"
-                            type="text"
-                            placeholder="name@example.com"
-                            value={email}
-                            onChange={setEmail}
-                        />
-                    </div>
-                    <div className="mb-30">
-                        <PasswordInput
-                            label={
-                                <div className="label-name flex">
-                                    <span>Password</span>
-                                    <span className="orange-link">
-                                        <Link href="/requestpasswordreset">Forgot Your Password?</Link>
-                                    </span>
-                                </div>
-                            }
-                            value={password}
-                            onChange={setPassword}
-                        />
-                    </div>
-                    <Link href="/dashboard">
-                        <Button theme="orange">Log In</Button>
-                    </Link>
-                </div>
+                <Signin />
             </div>
         </Wrapper>
     );

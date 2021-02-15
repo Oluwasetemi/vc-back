@@ -1,5 +1,9 @@
+/* eslint-disable no-nested-ternary */
 import { gql, useMutation, useQuery } from '@apollo/client';
 import Button from '@components/common/Button';
+import { CheckboxInput, TextInput } from '@components/dashboard/inputs';
+import DashboardLayout from '@components/layout/DashboardLayout';
+import Wrapper from '@components/styles/OutfitStyles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import LinkMaterial from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -7,9 +11,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { CheckboxInput, TextInput } from '@components/dashboard/inputs';
-import DashboardLayout from '@components/layout/DashboardLayout';
-import Wrapper from '@components/styles/OutfitStyles';
 import { SINGLE_USER } from './client';
 
 const CREATE_OUTFIT = gql`
@@ -43,6 +44,7 @@ SingleItem.propTypes = {
 };
 
 function CreateAnOutfit(props) {
+    const Router = useRouter();
     const { query } = useRouter();
     const { userid } = query;
     const { data, loading, error } = useQuery(SINGLE_USER, {
@@ -192,6 +194,7 @@ function CreateAnOutfit(props) {
                                     items: [],
                                 });
                                 setCheckBoxState({});
+                                Router.push({ pathname: '/clients/client', query: { id: data && data.userById._id } });
                             } catch (error) {
                                 alert(error.message);
                             }

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useQuery } from '@apollo/client';
 import { Paper } from '@material-ui/core';
 import gql from 'graphql-tag';

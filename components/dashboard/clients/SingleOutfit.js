@@ -24,6 +24,7 @@ export default function SingleOutfit({ outfit }) {
 SingleOutfit.propTypes = {
     outfit: PropTypes.shape({
         _id: PropTypes.any,
+        name: PropTypes.any,
         category: PropTypes.any,
         items: PropTypes.shape({
             map: PropTypes.func,

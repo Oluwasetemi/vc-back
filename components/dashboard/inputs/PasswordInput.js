@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     h6 {
@@ -88,7 +88,7 @@ function PasswordInput({ label, onChange, value }) {
 }
 
 PasswordInput.propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.object.isRequired,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };

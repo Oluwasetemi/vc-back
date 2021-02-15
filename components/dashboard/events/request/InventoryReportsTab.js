@@ -97,13 +97,13 @@ const optionItemMaterial = [
     { value: 'Other', text: 'Other' },
 ];
 const optionCategory = [
-    { value: 'Corporate', text: 'Corporate' },
     { value: 'Casual', text: 'Casual' },
     { value: 'Cocktail', text: 'Cocktail' },
     { value: 'Dinner', text: 'Dinner' },
     { value: 'Formal', text: 'Formal' },
     { value: 'Work', text: 'Work' },
     { value: 'Social', text: 'Social' },
+    { value: 'Other', text: 'Other' },
 ];
 
 const SingleTabPanel = ({ numberOfItems, onClickPrev, onClickNext, pickupId, userId }) => {

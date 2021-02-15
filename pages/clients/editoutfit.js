@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import Button from '@components/common/Button';
+import SingleOutfit from '@components/dashboard/clients/Outfit';
 import DashboardLayout from '@components/layout/DashboardLayout';
 import Wrapper from '@components/styles/OutfitStyles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
