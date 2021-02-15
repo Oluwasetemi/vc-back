@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import { gql, useMutation, useQuery } from '@apollo/client';
 import Button from '@components/common/Button';
-import { CheckboxInput, TextInput } from '@components/dashboard/inputs';
+import { optionCategory } from '@components/dashboard/events/request/InventoryReportsTab';
+import { CheckboxInput, SelectInput, TextInput } from '@components/dashboard/inputs';
 import DashboardLayout from '@components/layout/DashboardLayout';
 import Wrapper from '@components/styles/OutfitStyles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -14,8 +15,8 @@ import React, { useState } from 'react';
 import { SINGLE_USER } from './client';
 
 const CREATE_OUTFIT = gql`
-    mutation CREATE_OUTFIT($items: [String], $name: String, $userId: String) {
-        createOutfit(items: $items, name: $name, userId: $userId) {
+    mutation CREATE_OUTFIT($items: [String], $name: String!, $userId: String, $category: String!) {
+        createOutfit(items: $items, name: $name, userId: $userId, category: $category) {
             message
         }
     }
@@ -52,7 +53,7 @@ function CreateAnOutfit(props) {
     });
     // console.log(data);
 
-    const [outfitName, setOutfitName] = useState({ name: '', items: [], userId: userid });
+    const [outfitName, setOutfitName] = useState({ name: '', items: [], userId: userid, category: '' });
 
     const [checkBoxState, setCheckBoxState] = React.useState({});
 
@@ -65,10 +66,18 @@ function CreateAnOutfit(props) {
 
     const handleChange = (e) => {
         setOutfitName({
+            ...outfitName,
             name: e.target.value,
             // items: Array.isArray(outfitName.items) ? outfitName.items.push(checkBoxState) : [],
         });
         // const itemArray = outfitName.items;
+    };
+
+    const handleChangeSelect = (e) => {
+        setOutfitName({
+            ...outfitName,
+            category: e.target.value,
+        });
     };
 
     React.useEffect(() => {
@@ -84,20 +93,14 @@ function CreateAnOutfit(props) {
             name: outfitName.name,
             items: arr,
             userId: userid,
+            category: outfitName.category,
         });
-        // return () => {
-        //     setOutfitName({
-        //         name: '',
-        //         items: [],
-        //     });
-        //     setCheckBoxState({});
-        // };
-    }, [outfitName.name, checkBoxState, userid, data && data.userById]);
+    }, [outfitName.name, checkBoxState, userid, data?.userById, outfitName.category]);
 
     const [createOutfitMutation, { loading: loadingCreateOutfit, error: errorCreateOutfit }] = useMutation(
         CREATE_OUTFIT,
         {
-            variables: { items: outfitName.items, name: outfitName.name, userId: outfitName.userId },
+            variables: { ...outfitName },
             refetchQueries: [{ query: SINGLE_USER, variables: { id: userid } }],
         },
     );
@@ -156,11 +159,7 @@ function CreateAnOutfit(props) {
                                 <div className="list grid">
                                     <p className="text">Outfits</p>
                                     <p className="text bold">
-                                        {loading
-                                            ? 'loading'
-                                            : error
-                                            ? 'no data'
-                                            : data.userById.outfit && data.userById.outfit.length}
+                                        {loading ? 'loading' : error ? 'no data' : data?.userById?.outfit?.length}
                                     </p>
                                 </div>
                             </div>
@@ -184,14 +183,16 @@ function CreateAnOutfit(props) {
                             try {
                                 e.preventDefault();
 
-                                // console.log(outfitName);
+                                console.log(outfitName);
                                 // debugger;
                                 // console.log(res);
+                                debugger;
                                 const res = await createOutfitMutation();
                                 alert(res.data.createOutfit.message);
                                 setOutfitName({
                                     name: '',
                                     items: [],
+                                    category: '',
                                 });
                                 setCheckBoxState({});
                                 Router.push({ pathname: '/clients/client', query: { id: data && data.userById._id } });
@@ -214,6 +215,16 @@ function CreateAnOutfit(props) {
                                 onChange={handleChange}
                                 type="text"
                                 placeholder="Outfit Name"
+                            />
+                        </div>
+                        <div className="text-input mt-10">
+                            <SelectInput
+                                label="Enter Outfit Category"
+                                name="category"
+                                value={outfitName.category}
+                                onChange={handleChangeSelect}
+                                disabled
+                                options={optionCategory}
                             />
                         </div>
                         <div className="scroll">

@@ -96,7 +96,7 @@ const optionItemMaterial = [
     { value: 'Suede', text: 'Suede' },
     { value: 'Other', text: 'Other' },
 ];
-const optionCategory = [
+export const optionCategory = [
     { value: 'Casual', text: 'Casual' },
     { value: 'Cocktail', text: 'Cocktail' },
     { value: 'Dinner', text: 'Dinner' },
@@ -149,13 +149,13 @@ const SingleTabPanel = ({ numberOfItems, onClickPrev, onClickNext, pickupId, use
                 // setItems([...items, inputs]);
                 // prepare data
                 const variables = { items, userId };
-                console.log(variables);
+                // console.log(variables);
                 debugger;
                 // handle the mutation
                 const res = await addItemToCloset({
                     variables: { input: variables },
                 });
-                console.log(res);
+                // console.log(res);
                 alert('submitted');
                 resetForm();
                 onClickNext();
