@@ -44,8 +44,16 @@ const Wrapper = styled.div`
     }
     .grid {
         display: grid;
+     
     }
-
+// .grided{
+//     display: grid;
+//     grid-template-columns: 45% 53%;
+//     grid-gap: 2%;
+//     @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
+//         display:block;
+//                 }
+// }
     .dp {
         margin-right: 28px;
         width: 70px;
@@ -65,6 +73,7 @@ const Wrapper = styled.div`
     .full-detail {
         grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
+        margin-top:20px;
         @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
             display: flex;
             justify-content: space-between;
@@ -134,8 +143,8 @@ function stylist(props) {
                 </Breadcrumbs>
                 <Paper className="paper">
                     <h1 id="tag">Plain Black Shirt</h1>
-                    <div className="flex item-details wrap">
-                        <div className="flex">
+                    <div className="flex wrap item-details">
+                        <div className="flex wrap">
                             <div className="dp flex">
                                 <p className="initials">JT</p>
                             </div>

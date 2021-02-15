@@ -39,15 +39,15 @@ export default function ItemsVaultAndOutfit({ user }) {
                         <Tab label={`Outfits (${user.outfit.length})`} />
                     </Tabs>
                     {value === 1 && (
-                        <TabPanel value={value} index={1}>
-                            <Link href={{ pathname: '/clients/editoutfit', query: { userid: user._id } }}>
+                        <TabPanel className='mt-10-sm' value={value} index={1}>
+                            <Link  href={{ pathname: '/clients/editoutfit', query: { userid: user._id } }}>
                                 <Button theme="orange">Edit</Button>
                             </Link>
                         </TabPanel>
                     )}
                     {value === 2 && (
-                        <TabPanel value={value} index={2}>
-                            <Link
+                        <TabPanel className='mt-10-sm' value={value} index={2}>
+                            <Link 
                                 href={{
                                     pathname: '/clients/createoutfit',
                                     query: { userid: user._id },
@@ -69,7 +69,7 @@ export default function ItemsVaultAndOutfit({ user }) {
                 </div>
             </TabPanel>
             {value === 1 && (
-                <TabPanel value={value} index={1} className="gray-paper-client">
+                <TabPanel value={value} index={1} className="gray-paper-client ">
                     <p className="season">Sweet Summer </p>
                     <div className="flexy">
                         <div className="grid-items">

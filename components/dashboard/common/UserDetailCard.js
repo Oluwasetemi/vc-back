@@ -157,13 +157,14 @@ const Wrapper = styled.div`
   .full-detail .rhs .first {
     border-top: 1px solid #d6d8d3;
   }
+  
 `;
-function UserDetailCard({ top, text, weight, fullDetail, userId, userName, buttons, initials }) {
+function UserDetailCard({ top, text, weight, fullDetail, userId, userName,mt, buttons, initials }) {
     return (
         <Wrapper>
             <Paper className="paper paper-top">
                 <div className="flex paper-top-head wrap">{top}</div>
-                <div className="paper-top-tail">
+                <div className={`${mt} paper-top-tail`}>
                     <div className="flex user-details wrap ">
                         <div className="lhs flex">
                             <div className="dp flex">
@@ -194,6 +195,7 @@ UserDetailCard.propTypes = {
     userId: PropTypes.string,
     userName: PropTypes.string,
     text: PropTypes.string,
+    mt: PropTypes.string,
     initials: PropTypes.string,
     weight: PropTypes.string,
 };
