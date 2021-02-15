@@ -148,7 +148,15 @@ const Wrapper = styled.div`
     line-height: 24px;
     color: #2f3930;
   }
-
+.top-with-btn-flex{
+  justify-content: space-between;
+  div{
+    width: auto;
+  }
+  .button{
+    padding: 7px 20px;
+  }
+}
   .paper-tail .scroll{
 	max-width: 100%;
 	overflow-x: scroll;

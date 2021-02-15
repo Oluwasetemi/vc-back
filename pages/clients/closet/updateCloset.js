@@ -66,7 +66,7 @@ const Wrapper = styled.div`
   .paper-tail {
 	margin: 30px 0 50px 0;
 	.buttons.flex{
-		align-items: baseline;
+		align-items: center;
 		min-width: 270px;
 		@media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
 			min-width: -webkit-fill-available;

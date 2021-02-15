@@ -79,6 +79,18 @@ const Wrapper = styled.div`
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
     }
+    .mt-10-sm{
+        @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+                  margin-top: 10px;
+        }
+
+    }
+    .mb-22{
+        margin-bottom: 22px;
+    }
+    .mt--30{
+        margin-top: -30px;
+    }
     .gray-paper-client .season {
         font-size: 14px;
         line-height: 24px;

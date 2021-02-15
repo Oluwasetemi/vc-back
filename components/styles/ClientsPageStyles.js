@@ -11,6 +11,7 @@ const Wrapper = styled.div`
             font-size: 13px;
         }
     }
+  
     .searchbar {
         position: absolute;
         top: 0;
@@ -24,11 +25,14 @@ const Wrapper = styled.div`
         overflow: hidden;
         @media screen and (max-width: ${(props) => props.theme.breakpoint.md}) {
             position: relative;
-            width: 300px;
+            max-width: 50%;
+            margin-bottom: 10px;
+            margin-top: 10px;
             margin-left: auto;
         }
         @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
-            width: fit-content;
+            max-width: 100%;
+            right: 0;
         }
 
         &:focus-within {

@@ -40,6 +40,7 @@ const Wrapper = styled.div`
     .control {
         position: absolute;
         width: 80%;
+        cursor: pointer;
         justify-content: space-between;
         right: 75px;
         top: 50%;

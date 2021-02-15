@@ -9,9 +9,16 @@ const Wrapper = styled.div`
         border: none;
         border-radius: 10px;
         margin-left: 14px;
+        @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
+            margin-left: 0;
+            margin-top: 10px;
 
+        }
+    
         p {
             margin-left: 0px !important;
+            font-family: Matteo;
+            margin-top: 0 !important;
         }
     }
 `;

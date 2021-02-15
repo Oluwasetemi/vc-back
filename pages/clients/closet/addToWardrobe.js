@@ -217,7 +217,7 @@ function addToWardrobe3(props) {
                             <Link href="/clients/closet/updatecloset">
                                 <Button theme="pink">Back</Button>
                             </Link>
-                            <Link href="/clients/addastylist">
+                            <Link href="/clients/addstylist">
                                 <Button theme="orange">Continue</Button>
                             </Link>
                         </div>

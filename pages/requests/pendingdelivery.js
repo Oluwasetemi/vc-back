@@ -67,7 +67,7 @@ const SendPickup = (props) => {
                                         query: { id, userid: singleRequest && singleRequest.user._id },
                                     }}
                                 >
-                                    <p className="accept pink"> Back</p>
+                                    <p className="accept pink  ml-0"> Back</p>
                                 </Link>
                                 <p className="accept red" onClick={() => setValue(1)}>
                                     Start Checkout
@@ -199,7 +199,7 @@ const SendPickup = (props) => {
                                     query: { id: singleRequest && singleRequest.user._id },
                                 }}
                             >
-                                <p className="pink">View Client</p>
+                                <p className="pink ml-0">View Client</p>
                             </Link>
                         }
                         userName={loading ? 'loading' : singleRequest.user.name}
@@ -279,7 +279,7 @@ const SendPickup = (props) => {
                                     query: { id: singleRequest && singleRequest.user._id },
                                 }}
                             >
-                                <p className="pink">View Client</p>
+                                <p className=" ml-0">View Client</p>
                             </Link>
                         }
                         userName={loading ? 'loading' : singleRequest.user.name}

@@ -200,7 +200,7 @@ function CreateAnOutfit(props) {
                             }
                         }}
                     >
-                        <div className="flex">
+                        <div className="flex top-with-btn-flex">
                             <h1>Items</h1>
                             <Button type="submit" theme="orange">
                                 Create an outfit
